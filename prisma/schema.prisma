@@ -9,3 +9,56 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Cliente {
+  id        Int         @id @default(autoincrement())
+  bi        String      @unique
+  dataNasc  DateTime
+  morada    String
+  email     String
+  telefone  Int
+  password  String
+  Atividade Atividade[]
+}
+
+model Anuncio {
+  id          Int         @id @default(autoincrement())
+  titulo      String
+  dataCriado  DateTime    @default(now())
+  images      String?
+  Prestador   Prestador?  @relation(fields: [prestadorId], references: [id])
+  prestadorId Int?
+  Atividade   Atividade[]
+}
+
+model Prestador {
+  id            Int         @id @default(autoincrement())
+  bi            String      @unique
+  dataNasc      DateTime
+  morada        String
+  email         String
+  telefone      Int
+  password      String
+  estado        String
+  iban          String
+  classificacao Float
+  numAvaliacoes Int
+  rate          Float
+  anuncios      Anuncio[]
+  Atividade     Atividade[]
+}
+
+model Atividade {
+  id             Int       @id @default(autoincrement())
+  Prestador      Prestador @relation(fields: [prestadorId], references: [id])
+  Cliente        Cliente   @relation(fields: [clienteId], references: [id])
+  dataCriado     DateTime  @default(now())
+  dataFinalizado DateTime
+  valorAssociado Float
+  numRef         Int
+  Anuncio        Anuncio   @relation(fields: [anuncioId], references: [id])
+  estado         String
+  prestadorId    Int
+  clienteId      Int
+  anuncioId      Int
+}
