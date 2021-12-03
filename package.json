@@ -2,11 +2,12 @@
   "name": "uservices-api",
   "version": "1.0.0",
   "description": "API for uServices",
-  "main": "app.js",
+  "main": "dist/app.js",
   "scripts": {
     "migrate": "prisma migrate dev",
     "dev": "tsnd --respawn ./src/app.ts",
     "build": "tsc",
+    "prestart": "npm run build",
     "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
