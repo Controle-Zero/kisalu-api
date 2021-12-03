@@ -15,7 +15,7 @@ model Cliente {
   bi        String      @unique
   dataNasc  DateTime
   morada    String
-  email     String
+  email     String      @unique
   telefone  Int
   password  String
   Atividade Atividade[]
