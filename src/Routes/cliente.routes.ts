@@ -5,10 +5,15 @@ import {
   actualizarCliente,
   apagarCliente,
 } from "../controller/cliente.controllers";
+import bodyParser from "body-parser";
+
+const jsonParser = bodyParser.json();
 
 const routes = Router();
 
-routes.post("/", criarCliente);
-routes.put("/:id", actualizarCliente);
-routes.get("/:id", retornarCliente);
-routes.delete("/:id", apagarCliente);
+routes.post("/", jsonParser, criarCliente);
+routes.put("/", jsonParser, actualizarCliente);
+routes.get("/", jsonParser, retornarCliente);
+routes.delete("/", jsonParser, apagarCliente);
+
+export default routes;

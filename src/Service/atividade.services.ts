@@ -1,6 +1,6 @@
 import prisma from "../database/uservices.database";
 import Atividade from "../Model/atividade.models";
 
-export function criarAtividade(atividade: Atividade) {}
+export async function criarAtividadeService(atividade: Atividade) {}
 
-export function retornarAtividade(idAtividade: number) {}
+export async function retornarAtividadeService(idAtividade: number) {}

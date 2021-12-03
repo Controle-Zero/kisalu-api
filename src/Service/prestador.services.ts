@@ -1,13 +1,17 @@
-import prisma from "../database/uservices.database";
+import db from "../database/uservices.database";
 import Prestador from "../Model/prestador.models";
 
-export function criarPrestador(prestador: Prestador) {}
+export async function criarPrestadorService(prestador: Prestador) {
+  await db.prestador.create({
+    data: prestador,
+  });
+}
 
-export function actualizarPrestador(
+export async function actualizarPrestadorService(
   idPrestador: number,
   prestador: Prestador
 ) {}
 
-export function retornarPrestador(idPrestador: number) {}
+export async function retornarPrestadorService(idPrestador: number) {}
 
-export function apagarPrestador(idPrestador: number) {}
+export async function apagarPrestadorService(idPrestador: number) {}
