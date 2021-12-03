@@ -11,32 +11,33 @@ datasource db {
 }
 
 model Cliente {
-  id        Int         @id @default(autoincrement())
-  bi        String      @unique
-  dataNasc  DateTime
-  morada    String
-  email     String      @unique
-  telefone  Int
-  password  String
-  Atividade Atividade[]
+  id         String      @id @default(uuid())
+  bi         String      @unique
+  nome       String
+  dataNasc   DateTime
+  morada     String
+  email      String      @unique
+  telefone   Int
+  password   String
+  atividades Atividade[]
 }
 
 model Anuncio {
-  id          Int         @id @default(autoincrement())
+  id          String      @id @default(uuid())
   titulo      String
   dataCriado  DateTime    @default(now())
   images      String?
+  atividades  Atividade[]
   Prestador   Prestador?  @relation(fields: [prestadorId], references: [id])
-  prestadorId Int?
-  Atividade   Atividade[]
+  prestadorId String?
 }
 
 model Prestador {
-  id            Int         @id @default(autoincrement())
+  id            String      @id @default(uuid())
   bi            String      @unique
   dataNasc      DateTime
   morada        String
-  email         String
+  email         String      @unique
   telefone      Int
   password      String
   estado        String
@@ -45,20 +46,20 @@ model Prestador {
   numAvaliacoes Int
   rate          Float
   anuncios      Anuncio[]
-  Atividade     Atividade[]
+  atividades    Atividade[]
 }
 
 model Atividade {
-  id             Int       @id @default(autoincrement())
-  Prestador      Prestador @relation(fields: [prestadorId], references: [id])
-  Cliente        Cliente   @relation(fields: [clienteId], references: [id])
+  id             String    @id @default(uuid())
   dataCriado     DateTime  @default(now())
   dataFinalizado DateTime
   valorAssociado Float
   numRef         Int
-  Anuncio        Anuncio   @relation(fields: [anuncioId], references: [id])
   estado         String
-  prestadorId    Int
-  clienteId      Int
-  anuncioId      Int
+  prestadorId    String
+  clienteId      String
+  anuncioId      String
+  Cliente        Cliente   @relation(fields: [clienteId], references: [id])
+  Anuncio        Anuncio   @relation(fields: [anuncioId], references: [id])
+  Prestador      Prestador @relation(fields: [prestadorId], references: [id])
 }

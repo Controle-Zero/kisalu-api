@@ -3,12 +3,12 @@ import Prestador from "./prestador.models";
 import Cliente from "./cliente.models";
 
 export default interface Atividade {
-    id : Number;
+    id : string;
     dataCriado : Date;
     dataFinalizado : Date;
-    valorAssociado : Number;
-    numRef : Number;
-    estado : String;
+    valorAssociado : number;
+    numRef : number;
+    estado : string;
     anuncio : Anuncio;
     prestador : Prestador;
     cliente : Cliente;

@@ -4,10 +4,10 @@ import Prestador from "../Model/prestador.models";
 export function criarPrestador(prestador: Prestador) {}
 
 export function actualizarPrestador(
-  idPrestador: Number,
+  idPrestador: number,
   prestador: Prestador
 ) {}
 
-export function retornarPrestador(idPrestador: Number) {}
+export function retornarPrestador(idPrestador: number) {}
 
-export function apagarPrestador(idPrestador: Number) {}
+export function apagarPrestador(idPrestador: number) {}
