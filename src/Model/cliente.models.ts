@@ -8,5 +8,5 @@ export default interface Cliente {
     email : String;
     telefone : Number;
     password : String;
-    atividades : Atividade[];
+    atividades? : Atividade[];
 }
