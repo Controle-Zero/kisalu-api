@@ -4,7 +4,7 @@ import {
   retornarPrestador,
   apagarPrestador,
   actualizarPrestador,
-} from "../controller/prestador.controllers";
+} from "../controllers/prestador.controllers";
 import bodyParser from "body-parser";
 
 const jsonParser = bodyParser.json()

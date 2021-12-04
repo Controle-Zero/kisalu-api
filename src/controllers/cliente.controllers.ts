@@ -1,10 +1,9 @@
 import { Request, response, Response } from "express";
-import log from "../log";
-import Cliente from "../Model/cliente.models";
+import Cliente from "../models/cliente.models";
 import {
   criarClienteService,
   retornarClienteService,
-} from "../Service/cliente.services";
+} from "../services/cliente.services";
 
 export const criarCliente = async (req: Request, res: Response) => {
   const cliente: Cliente = req.body;

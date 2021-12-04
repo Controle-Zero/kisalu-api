@@ -1,5 +1,5 @@
 import db from "../database/uservices.database";
-import Prestador from "../Model/prestador.models";
+import Prestador from "../models/prestador.models";
 
 export async function criarPrestadorService(prestador: Prestador) {
   await db.prestador.create({

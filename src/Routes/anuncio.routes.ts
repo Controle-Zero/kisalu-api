@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { retornarAnuncios } from "../controller/anuncio.controllers";
+import { retornarAnuncios } from "../controllers/anuncio.controllers";
 
 const routes = Router();
 

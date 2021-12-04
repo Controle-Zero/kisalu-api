@@ -1,7 +1,7 @@
-import Cliente from "../Model/cliente.models";
+import Cliente from "../models/cliente.models";
 import log from "../log";
 import db from "../database/uservices.database";
-import { encryptPassword } from "../middleware/encryption";
+import { encryptData } from "../helpers/encryption.helpers";
 
 export async function criarClienteService(cliente: Cliente) {
   try {
@@ -12,14 +12,14 @@ export async function criarClienteService(cliente: Cliente) {
         email: cliente.email,
         morada: cliente.morada,
         telefone: +cliente.telefone,
-        password: encryptPassword(cliente.password),
+        password: encryptData(cliente.password),
         nome: cliente.nome,
       },
     });
-    log.info("Cliente criado com sucesso!!");
+    log.info(`Cliente ${cliente.nome} criado com sucesso!!`);
     return { mensagem: "Cliente criado com sucesso!!" };
   } catch (e) {
-    log.error(`${e}- Falha ao criar o cliente: ${cliente}`);
+    log.error(`${e}- Falha ao criar o cliente: ${cliente.nome}`);
     return { mensagem: "Falha ao criar o cliente..." };
   }
 }
@@ -36,7 +36,7 @@ export async function retornarClienteService(emailCliente: string) {
         email: emailCliente,
       },
     });
-    log.info(`Cliente retorando: ${cliente?.email}`); 
+    log.info(`Cliente retorando: ${cliente?.email}`);
     return cliente;
   } catch (e) {
     log.error(`${e}- Falha ao retornar o cliente`);

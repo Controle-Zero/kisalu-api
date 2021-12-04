@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   criarAtividade,
   retornarAtividade,
-} from "../controller/atividade.controllers";
+} from "../controllers/atividade.controllers";
 import bodyParser from "body-parser";
 
 const jsonParser = bodyParser.json()

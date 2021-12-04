@@ -4,7 +4,7 @@ import {
   retornarCliente,
   actualizarCliente,
   apagarCliente,
-} from "../controller/cliente.controllers";
+} from "../controllers/cliente.controllers";
 import bodyParser from "body-parser";
 
 const jsonParser = bodyParser.json();

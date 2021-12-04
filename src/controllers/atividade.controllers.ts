@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Atividade from "../Model/atividade.models";
+import Atividade from "../models/atividade.models";
 
 export const criarAtividade = async (req: Request, res: Response) => {};
 

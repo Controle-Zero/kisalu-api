@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import clienteRoute from "./Routes/cliente.routes";
+import clienteRoute from "./routes/cliente.routes";
 import log from "./log";
 
 dotenv.config();
