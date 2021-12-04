@@ -1,6 +1,7 @@
 import Cliente from "../Model/cliente.models";
 import log from "../log";
 import db from "../database/uservices.database";
+import { encryptPassword } from "../middleware/encryption";
 
 export async function criarClienteService(cliente: Cliente) {
   try {
@@ -11,7 +12,7 @@ export async function criarClienteService(cliente: Cliente) {
         email: cliente.email,
         morada: cliente.morada,
         telefone: +cliente.telefone,
-        password: cliente.password,
+        password: encryptPassword(cliente.password),
         nome: cliente.nome,
       },
     });

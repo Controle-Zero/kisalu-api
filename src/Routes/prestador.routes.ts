@@ -12,8 +12,8 @@ const jsonParser = bodyParser.json()
 const routes = Router();
 
 routes.post("/", jsonParser, criarPrestador);
-routes.get("/", retornarPrestador);
-routes.put("/:id", actualizarPrestador);
-routes.delete("/:id", apagarPrestador);
+routes.get("/", jsonParser, retornarPrestador);
+routes.put("/", jsonParser, actualizarPrestador);
+routes.delete("/", jsonParser, apagarPrestador);
 
 export default routes;

@@ -10,6 +10,6 @@ const jsonParser = bodyParser.json()
 const routes = Router();
 
 routes.post("/", jsonParser, criarAtividade);
-routes.get("/:id", retornarAtividade);
+routes.get("/", jsonParser, retornarAtividade);
 
 export default routes;
