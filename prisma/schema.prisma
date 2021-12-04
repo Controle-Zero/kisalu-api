@@ -20,6 +20,8 @@ model Cliente {
   telefone   Int
   password   String
   atividades Atividade[]
+
+  @@map("clientes")
 }
 
 model Anuncio {
@@ -30,6 +32,8 @@ model Anuncio {
   atividades  Atividade[]
   Prestador   Prestador?  @relation(fields: [prestadorId], references: [id])
   prestadorId String?
+
+  @@map("anuncios")
 }
 
 model Prestador {
@@ -47,6 +51,8 @@ model Prestador {
   rate          Float
   anuncios      Anuncio[]
   atividades    Atividade[]
+
+  @@map("prestadores")
 }
 
 model Atividade {
@@ -62,4 +68,6 @@ model Atividade {
   Cliente        Cliente   @relation(fields: [clienteId], references: [id])
   Anuncio        Anuncio   @relation(fields: [anuncioId], references: [id])
   Prestador      Prestador @relation(fields: [prestadorId], references: [id])
+
+  @@map("atividades")
 }
