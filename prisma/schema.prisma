@@ -11,15 +11,16 @@ datasource db {
 }
 
 model Cliente {
-  id         String      @id @default(uuid())
-  bi         String      @unique
-  nome       String
-  dataNasc   DateTime
-  morada     String
-  email      String      @unique
-  telefone   Int
-  password   String
-  atividades Atividade[]
+  id                  String               @id @default(uuid())
+  bi                  String               @unique
+  nome                String
+  dataNasc            DateTime
+  morada              String
+  email               String               @unique
+  telefone            Int
+  password            String
+  refreshTokenCliente RefreshTokenCliente?
+  atividades          Atividade[]
 
   @@map("clientes")
 }
@@ -37,20 +38,21 @@ model Anuncio {
 }
 
 model Prestador {
-  id            String      @id @default(uuid())
-  bi            String      @unique
-  dataNasc      DateTime
-  morada        String
-  email         String      @unique
-  telefone      Int
-  password      String
-  estado        String
-  iban          String
-  classificacao Float
-  numAvaliacoes Int
-  rate          Float
-  anuncios      Anuncio[]
-  atividades    Atividade[]
+  id                    String                 @id @default(uuid())
+  bi                    String                 @unique
+  dataNasc              DateTime
+  morada                String
+  email                 String                 @unique
+  telefone              Int
+  password              String
+  estado                String
+  iban                  String
+  classificacao         Float
+  numAvaliacoes         Int
+  rate                  Float
+  refreshTokenPrestador RefreshTokenPrestador?
+  anuncios              Anuncio[]
+  atividades            Atividade[]
 
   @@map("prestadores")
 }
@@ -70,4 +72,22 @@ model Atividade {
   Prestador      Prestador @relation(fields: [prestadorId], references: [id])
 
   @@map("atividades")
+}
+
+model RefreshTokenCliente {
+  id        String  @id @default(uuid())
+  expiraEm  Int
+  cliente   Cliente @relation(fields: [clienteId], references: [id])
+  clienteId String  @unique
+
+  @@map("refresh_token_cliente")
+}
+
+model RefreshTokenPrestador {
+  id          String    @id @default(uuid())
+  expiraEm    Int
+  prestador   Prestador @relation(fields: [prestadorId], references: [id])
+  prestadorId String    @unique
+
+  @@map("refresh_token_prestador")
 }

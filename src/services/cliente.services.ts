@@ -85,10 +85,13 @@ export async function autenticarClienteService(
     return { mensagem: "Email ou palavra-passe incorrecto" };
   }
 
-  const token = sign({}, process.env.SECRET!!, {
-    subject: clienteExiste.id,
-    expiresIn: "20s",
-  });
+  const token = sign(
+    { id: clienteExiste.id, email: clienteExiste.email },
+    process.env.SECRET!!,
+    {
+      expiresIn: "1d",
+    }
+  );
 
-  return {token};
+  return { token };
 }
