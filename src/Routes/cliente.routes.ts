@@ -5,6 +5,7 @@ import {
   actualizarCliente,
   apagarCliente,
   autenticarCliente,
+  refreshTokenCliente,
 } from "../controllers/cliente.controllers";
 import bodyParser from "body-parser";
 import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
@@ -15,6 +16,7 @@ const routes = Router();
 
 routes.post("/", jsonParser, criarCliente);
 routes.post("/login", jsonParser, autenticarCliente);
+routes.post("/refresh-token", jsonParser, refreshTokenCliente);
 routes.put("/", jsonParser, actualizarCliente);
 routes.get("/", ensureAuthenticated, jsonParser, retornarCliente);
 routes.delete("/", jsonParser, apagarCliente);

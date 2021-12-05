@@ -3,6 +3,7 @@ import Cliente from "../models/cliente.models";
 import {
   autenticarClienteService,
   criarClienteService,
+  refreshTokenClienteService,
   retornarClienteService,
 } from "../services/cliente.services";
 
@@ -35,5 +36,12 @@ export const autenticarCliente = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   const token = await autenticarClienteService(email, password);
+  res.json(token);
+};
+
+export const refreshTokenCliente = async (req: Request, res: Response) => {
+  const { refreshToken } = req.body;
+
+  const token = await refreshTokenClienteService(refreshToken);
   res.json(token);
 };

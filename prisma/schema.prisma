@@ -11,15 +11,15 @@ datasource db {
 }
 
 model Cliente {
-  id                  String               @id @default(uuid())
-  bi                  String               @unique
+  id                  String                @id @default(uuid())
+  bi                  String                @unique
   nome                String
   dataNasc            DateTime
   morada              String
-  email               String               @unique
+  email               String                @unique
   telefone            Int
   password            String
-  refreshTokenCliente RefreshTokenCliente?
+  refreshTokenCliente RefreshTokenCliente[]
   atividades          Atividade[]
 
   @@map("clientes")
@@ -38,11 +38,11 @@ model Anuncio {
 }
 
 model Prestador {
-  id                    String                 @id @default(uuid())
-  bi                    String                 @unique
+  id                    String                  @id @default(uuid())
+  bi                    String                  @unique
   dataNasc              DateTime
   morada                String
-  email                 String                 @unique
+  email                 String                  @unique
   telefone              Int
   password              String
   estado                String
@@ -50,7 +50,7 @@ model Prestador {
   classificacao         Float
   numAvaliacoes         Int
   rate                  Float
-  refreshTokenPrestador RefreshTokenPrestador?
+  refreshTokenPrestador RefreshTokenPrestador[]
   anuncios              Anuncio[]
   atividades            Atividade[]
 
@@ -78,7 +78,7 @@ model RefreshTokenCliente {
   id        String  @id @default(uuid())
   expiraEm  Int
   cliente   Cliente @relation(fields: [clienteId], references: [id])
-  clienteId String  @unique
+  clienteId String
 
   @@map("refresh_token_cliente")
 }
@@ -87,7 +87,7 @@ model RefreshTokenPrestador {
   id          String    @id @default(uuid())
   expiraEm    Int
   prestador   Prestador @relation(fields: [prestadorId], references: [id])
-  prestadorId String    @unique
+  prestadorId String
 
   @@map("refresh_token_prestador")
 }

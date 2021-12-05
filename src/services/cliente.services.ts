@@ -5,10 +5,8 @@ import {
   compareEncryptedData,
   encryptData,
 } from "../helpers/encryption.helpers";
-import { sign } from "jsonwebtoken";
-import dotenv from "dotenv";
-
-dotenv.config();
+import { gerarRefreshTokenCliente } from "../helpers/generateRefreshToken.helpers";
+import { gerarToken } from "../helpers/generateToken.helpers";
 
 export async function criarClienteService(cliente: Cliente) {
   try {
@@ -76,22 +74,34 @@ export async function autenticarClienteService(
   });
 
   if (!clienteExiste) {
-    return { mensagem: "Email ou palavra-passe incorrecto" };
+    return { mensagem: "Dados incorretos" };
   }
 
   const passwordMatch = compareEncryptedData(clienteExiste.password, password);
 
   if (!passwordMatch) {
-    return { mensagem: "Email ou palavra-passe incorrecto" };
+    return { mensagem: "Dados incorretos" };
   }
 
-  const token = sign(
-    { id: clienteExiste.id, email: clienteExiste.email },
-    process.env.SECRET!!,
-    {
-      expiresIn: "1d",
-    }
-  );
+  const token = gerarToken(clienteExiste.id);
+
+  const refreshToken = await gerarRefreshTokenCliente(clienteExiste.id);
+
+  return { token, refreshToken };
+}
+
+export async function refreshTokenClienteService(refreshTokenId: string) {
+  const refreshToken = await db.refreshTokenCliente.findFirst({
+    where: {
+      id: refreshTokenId,
+    },
+  });
+
+  if (!refreshTokenId) {
+    return { mensagem: "Refresh token inválido" };
+  }
+
+  const token = gerarToken(refreshToken?.clienteId ?? "");
 
   return { token };
 }
