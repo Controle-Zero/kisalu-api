@@ -1,6 +1,7 @@
 import { Request, response, Response } from "express";
 import Cliente from "../models/cliente.models";
 import {
+  actualizarClienteService,
   autenticarClienteService,
   criarClienteService,
   refreshTokenClienteService,
@@ -28,7 +29,16 @@ export const retornarCliente = async (req: Request, res: Response) => {
   }
 };
 
-export const actualizarCliente = async (req: Request, res: Response) => {};
+export const actualizarCliente = async (req: Request, res: Response) => {
+  const cliente = req.body;
+  const response = await actualizarClienteService(cliente);
+
+  if (response) {
+    res.status(200).json(response);
+  } else {
+    res.status(400).json("Erro ao atualizar os dados do cliente");
+  }
+};
 
 export const apagarCliente = async (req: Request, res: Response) => {};
 
@@ -36,12 +46,22 @@ export const autenticarCliente = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   const token = await autenticarClienteService(email, password);
-  res.json(token);
+
+  if (token) {
+    res.status(200).json(token);
+  } else {
+    res.status(400).json({ mensagem: "Dados incorretos" });
+  }
 };
 
 export const refreshTokenCliente = async (req: Request, res: Response) => {
   const { refreshToken } = req.body;
 
   const token = await refreshTokenClienteService(refreshToken);
-  res.json(token);
+
+  if (token) {
+    res.status(200).json(token);
+  } else {
+    res.status(400).json({ mensagem: "Refresh token inválido" });
+  }
 };

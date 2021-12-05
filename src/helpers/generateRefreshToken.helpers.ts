@@ -11,7 +11,7 @@ export async function gerarRefreshTokenCliente(idCliente: string) {
   const generateRefreshToken = await db.refreshTokenCliente.create({
     data: {
       clienteId: idCliente,
-      expiraEm: dayjs().add(1, "day").unix(),
+      expiraEm: dayjs().add(30, "minute").unix(),
     },
   });
 

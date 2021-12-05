@@ -17,7 +17,7 @@ const routes = Router();
 routes.post("/", jsonParser, criarCliente);
 routes.post("/login", jsonParser, autenticarCliente);
 routes.post("/refresh-token", jsonParser, refreshTokenCliente);
-routes.put("/", jsonParser, actualizarCliente);
+routes.put("/", ensureAuthenticated, jsonParser, actualizarCliente);
 routes.get("/", ensureAuthenticated, jsonParser, retornarCliente);
 routes.delete("/", jsonParser, apagarCliente);
 

@@ -42,10 +42,41 @@ export async function criarClienteService(cliente: Cliente) {
   }
 }
 
-export async function actualizarClienteService(
-  idClient: number,
-  cliente: Cliente
-) {}
+export async function actualizarClienteService(cliente: Cliente) {
+  try {
+    const clienteExiste = await db.cliente.findMany({
+      where: {
+        email: cliente.email,
+      },
+    });
+
+    if (clienteExiste) {
+      await db.cliente.update({
+        where: {
+          email: cliente.email,
+        },
+        data: {
+          bi: cliente.bi,
+          dataNasc: new Date(cliente.dataNasc),
+          email: cliente.email,
+          morada: cliente.morada,
+          telefone: +cliente.telefone,
+          password: encryptData(cliente.password),
+          nome: cliente.nome,
+        },
+      });
+
+      log.info("Os dados foram atualizados");
+      return { mensagem: "Os dados foram atualizados" };
+    } else {
+      log.info("Cliente não existe");
+      return { mensagem: "O cliente não existe" };
+    }
+  } catch (e) {
+    log.error(`Erro ao atualizar os dados do cliente- ${e}`);
+    return undefined;
+  }
+}
 
 export async function retornarClienteService(emailCliente: string) {
   try {
@@ -75,13 +106,13 @@ export async function autenticarClienteService(
   });
 
   if (!clienteExiste) {
-    return { mensagem: "Dados incorretos" };
+    return undefined;
   }
 
   const passwordMatch = compareEncryptedData(clienteExiste.password, password);
 
   if (!passwordMatch) {
-    return { mensagem: "Dados incorretos" };
+    return undefined;
   }
 
   const token = gerarToken(clienteExiste.id);
@@ -99,7 +130,7 @@ export async function refreshTokenClienteService(refreshTokenId: string) {
   });
 
   if (!refreshTokenId) {
-    return { mensagem: "Refresh token inválido" };
+    return undefined;
   }
 
   const refreshTokenExpirado = dayjs().isAfter(
