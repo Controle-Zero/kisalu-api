@@ -7,6 +7,7 @@ import {
 } from "../helpers/encryption.helpers";
 import { gerarRefreshTokenCliente } from "../helpers/generateRefreshToken.helpers";
 import { gerarToken } from "../helpers/generateToken.helpers";
+import dayjs from "dayjs";
 
 export async function criarClienteService(cliente: Cliente) {
   try {
@@ -101,7 +102,23 @@ export async function refreshTokenClienteService(refreshTokenId: string) {
     return { mensagem: "Refresh token inválido" };
   }
 
+  const refreshTokenExpirado = dayjs().isAfter(
+    dayjs.unix(refreshToken?.expiraEm ?? 0)
+  );
+
   const token = gerarToken(refreshToken?.clienteId ?? "");
+
+  if (refreshTokenExpirado) {
+    await db.refreshTokenCliente.deleteMany({
+      where: {
+        clienteId: refreshToken?.clienteId,
+      },
+    });
+    const renewedToken = await gerarRefreshTokenCliente(
+      refreshToken?.clienteId ?? ""
+    );
+    return { token, renewedToken };
+  }
 
   return { token };
 }

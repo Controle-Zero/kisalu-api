@@ -1,9 +1,11 @@
 import { sign } from "jsonwebtoken";
 import dotenv from "dotenv";
 
-export function gerarToken(idCliente: string) {
+dotenv.config();
+
+export function gerarToken(id: string) {
   const token = sign({}, process.env.SECRET!!, {
-    subject: idCliente,
+    subject: id,
     expiresIn: "1d",
   });
 
