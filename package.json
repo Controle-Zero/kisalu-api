@@ -5,6 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "migrate": "prisma migrate dev",
+    "heroku-postbuild": "npm run migrate",
     "dev": "tsnd --respawn --ignore-watch node_modules ./src/app.ts",
     "build": "tsc",
     "prestart": "npm run build",
