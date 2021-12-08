@@ -12,7 +12,7 @@ export const criarCliente = async (req: Request, res: Response) => {
   const cliente: Cliente = req.body;
   const response = await criarClienteService(cliente);
   if (response) {
-    res.status(200).json(response);
+    res.status(201).json(response);
   } else {
     res.status(400).json({ mensagem: "Erro ao criar o cliente" });
   }

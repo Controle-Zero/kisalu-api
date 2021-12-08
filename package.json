@@ -5,7 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "migrate": "prisma migrate dev",
-    "dev": "tsnd --respawn ./src/app.ts",
+    "dev": "tsnd --respawn --ignore-watch node_modules ./src/app.ts",
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node .",
