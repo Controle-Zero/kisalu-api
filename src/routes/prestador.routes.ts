@@ -6,14 +6,15 @@ import {
   actualizarPrestador,
 } from "../controllers/prestador.controllers";
 import bodyParser from "body-parser";
+import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
 
-const jsonParser = bodyParser.json()
+const jsonParser = bodyParser.json();
 
-const routes = Router();
+const prestadorRoutes = Router();
 
-routes.post("/", jsonParser, criarPrestador);
-routes.get("/", jsonParser, retornarPrestador);
-routes.put("/", jsonParser, actualizarPrestador);
-routes.delete("/", jsonParser, apagarPrestador);
+prestadorRoutes.post("/", jsonParser, criarPrestador);
+prestadorRoutes.get("/", ensureAuthenticated, jsonParser, retornarPrestador);
+prestadorRoutes.put("/", ensureAuthenticated, jsonParser, actualizarPrestador);
+prestadorRoutes.delete("/", ensureAuthenticated, jsonParser, apagarPrestador);
 
-export default routes;
+export { prestadorRoutes };

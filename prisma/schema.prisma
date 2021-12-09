@@ -40,16 +40,17 @@ model Anuncio {
 model Prestador {
   id                    String                 @id @default(uuid())
   bi                    String                 @unique
+  nome                  String
   dataNasc              DateTime
   morada                String
   email                 String                 @unique
   telefone              Int
   password              String
-  estado                String
+  estado                String                  @default("INATIVO")
   iban                  String
-  classificacao         Float
-  numAvaliacoes         Int
-  rate                  Float
+  classificacao         Float                   @default(0)
+  numAvaliacoes         Int                     @default(0)
+  rate                  Float                   @default(0)
   refreshTokenPrestador RefreshTokenPrestador?
   anuncios              Anuncio[]
   atividades            Atividade[]
