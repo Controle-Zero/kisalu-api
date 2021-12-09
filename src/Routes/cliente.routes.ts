@@ -12,13 +12,13 @@ import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
 
 const jsonParser = bodyParser.json();
 
-const routes = Router();
+const clienteRoutes = Router();
 
-routes.post("/", jsonParser, criarCliente);
-routes.post("/login", jsonParser, autenticarCliente);
-routes.post("/refresh-token", jsonParser, refreshTokenCliente);
-routes.put("/", ensureAuthenticated, jsonParser, actualizarCliente);
-routes.get("/", ensureAuthenticated, jsonParser, retornarCliente);
-routes.delete("/", jsonParser, apagarCliente);
+clienteRoutes.post("/", jsonParser, criarCliente);
+clienteRoutes.post("/login", jsonParser, autenticarCliente);
+clienteRoutes.post("/refresh-token", jsonParser, refreshTokenCliente);
+clienteRoutes.put("/", ensureAuthenticated, jsonParser, actualizarCliente);
+clienteRoutes.get("/", ensureAuthenticated, jsonParser, retornarCliente);
+clienteRoutes.delete("/", jsonParser, apagarCliente);
 
-export default routes;
+export { clienteRoutes };

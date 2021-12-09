@@ -1,5 +1,5 @@
 import Cliente from "../models/cliente.models";
-import log from "../log";
+import { log } from "../log";
 import db from "../database/uservices.database";
 import {
   compareEncryptedData,
