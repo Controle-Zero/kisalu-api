@@ -25,7 +25,7 @@ export const retornarCliente = async (req: Request, res: Response) => {
   if (cliente) {
     res.status(200).json(cliente);
   } else {
-    res.status(404).json({ mensagem: "Cliente não encontrado" });
+    res.status(404).json({ mensagem: "O cliente não foi encontrado" });
   }
 };
 

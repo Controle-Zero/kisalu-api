@@ -37,11 +37,56 @@ export async function criarPrestadorService(prestador: Prestador) {
   }
 }
 
-export async function actualizarPrestadorService(
-  idPrestador: number,
-  prestador: Prestador
-) {}
+export async function actualizarPrestadorService(prestador: Prestador) {
+  try {
+    const prestadorExiste = await db.prestador.findMany({
+      where: {
+        email: prestador.email,
+      },
+    });
 
-export async function retornarPrestadorService(idPrestador: number) {}
+    if (prestadorExiste) {
+      await db.prestador.update({
+        where: {
+          email: prestador.email,
+        },
+        data: {
+          bi: prestador.bi,
+          dataNasc: new Date(prestador.dataNasc),
+          email: prestador.email,
+          morada: prestador.morada,
+          telefone: +prestador.telefone,
+          password: encryptData(prestador.password),
+          nome: prestador.nome,
+          iban: prestador.iban,
+        },
+      });
+
+      log.info("Os dados foram atualizados");
+      return { mensagem: "Os dados foram atualizados" };
+    } else {
+      log.info("Prestador não existe");
+      return { mensagem: "O prestador não existe" };
+    }
+  } catch (e) {
+    log.error(`Erro ao atualizar os dados do prestador- ${e}`);
+    return undefined;
+  }
+}
+
+export async function retornarPrestadorService(emailPrestador : string) {
+  try {
+    const prestador = await db.prestador.findUnique({
+      where: {
+        email: emailPrestador,
+      },
+    });
+    log.info(`prestador retorando: ${prestador?.email}`);
+    return prestador;
+  } catch (e) {
+    log.error(`${e}- Falha ao retornar o prestador`);
+    return undefined;
+  }
+}
 
 export async function apagarPrestadorService(idPrestador: number) {}
