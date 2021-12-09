@@ -6,9 +6,7 @@
   "scripts": {
     "migrate": "prisma migrate dev",
     "dev": "tsnd --respawn --ignore-watch node_modules ./src/app.ts",
-    "build": "tsc",
-    "prestart": "npm run build",
-    "start": "node .",
+    "start": "ts-node ./src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "3R",
