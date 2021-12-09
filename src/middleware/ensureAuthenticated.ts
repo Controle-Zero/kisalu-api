@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 import dotenv from "dotenv";
-import log from "../log";
+import log from "../log"
 
 dotenv.config();
 
