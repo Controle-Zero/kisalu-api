@@ -4,6 +4,8 @@ import {
   criarPrestadorService,
   actualizarPrestadorService,
   retornarPrestadorService,
+  autenticarPrestadorService,
+  refreshTokenPrestadorService,
 } from "../services/prestador.services";
 
 export const criarPrestador = async (req: Request, res: Response) => {
@@ -41,3 +43,27 @@ export const actualizarPrestador = async (req: Request, res: Response) => {
 };
 
 export const apagarPrestador = async (req: Request, res: Response) => {};
+
+export const autenticarPrestador = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+
+  const token = await autenticarPrestadorService(email, password);
+
+  if (token) {
+    res.status(200).json(token);
+  } else {
+    res.status(400).json({ mensagem: "Dados incorretos" });
+  }
+};
+
+export const refreshTokenPrestador = async (req: Request, res: Response) => {
+  const { refreshToken } = req.body;
+
+  const token = await refreshTokenPrestadorService(refreshToken);
+
+  if (token) {
+    res.status(200).json(token);
+  } else {
+    res.status(400).json({ mensagem: "Refresh token inválido" });
+  }
+};

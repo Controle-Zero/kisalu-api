@@ -1,7 +1,13 @@
 import db from "../database/uservices.database";
 import Prestador from "../models/prestador.models";
 import { log } from "../log";
-import { encryptData } from "../helpers/encryption.helpers";
+import {
+  encryptData,
+  compareEncryptedData,
+} from "../helpers/encryption.helpers";
+import { gerarToken } from "../helpers/generateToken.helpers";
+import { gerarRefreshTokenPrestador } from "../helpers/generateRefreshToken.helpers";
+import dayjs from "dayjs";
 
 export async function criarPrestadorService(prestador: Prestador) {
   try {
@@ -74,7 +80,7 @@ export async function actualizarPrestadorService(prestador: Prestador) {
   }
 }
 
-export async function retornarPrestadorService(emailPrestador : string) {
+export async function retornarPrestadorService(emailPrestador: string) {
   try {
     const prestador = await db.prestador.findUnique({
       where: {
@@ -90,3 +96,65 @@ export async function retornarPrestadorService(emailPrestador : string) {
 }
 
 export async function apagarPrestadorService(idPrestador: number) {}
+
+export async function autenticarPrestadorService(
+  email: string,
+  password: string
+) {
+  const prestadorExiste = await db.prestador.findFirst({
+    where: {
+      email: email,
+    },
+  });
+
+  if (!prestadorExiste) {
+    return undefined;
+  }
+
+  const passwordMatch = compareEncryptedData(
+    prestadorExiste.password,
+    password
+  );
+
+  if (!passwordMatch) {
+    return undefined;
+  }
+
+  const token = gerarToken(prestadorExiste.id);
+
+  const refreshToken = await gerarRefreshTokenPrestador(prestadorExiste.id);
+
+  return { token, refreshToken };
+}
+
+export async function refreshTokenPrestadorService(refreshTokenId: string) {
+  const refreshToken = await db.refreshTokenPrestador.findFirst({
+    where: {
+      id: refreshTokenId,
+    },
+  });
+
+  if (!refreshTokenId) {
+    return undefined;
+  }
+
+  const refreshTokenExpirado = dayjs().isAfter(
+    dayjs.unix(refreshToken?.expiraEm ?? 0)
+  );
+
+  const token = gerarToken(refreshToken?.prestadorId ?? "");
+
+  if (refreshTokenExpirado) {
+    await db.refreshTokenPrestador.deleteMany({
+      where: {
+        prestadorId: refreshToken?.prestadorId,
+      },
+    });
+    const renewedToken = await gerarRefreshTokenPrestador(
+      refreshToken?.prestadorId ?? ""
+    );
+    return { token, renewedToken };
+  }
+
+  return { token };
+}

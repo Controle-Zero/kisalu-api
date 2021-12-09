@@ -18,4 +18,19 @@ export async function gerarRefreshTokenCliente(idCliente: string) {
   return generateRefreshToken;
 }
 
-export async function gerarRefreshTokenPrestador(idPrestador: string) {}
+export async function gerarRefreshTokenPrestador(idPrestador: string) {
+  await db.refreshTokenPrestador.deleteMany({
+    where: {
+      prestadorId: idPrestador,
+    },
+  });
+
+  const generateRefreshToken = await db.refreshTokenPrestador.create({
+    data: {
+      prestadorId: idPrestador,
+      expiraEm: dayjs().add(30, "minute").unix(),
+    },
+  });
+
+  return generateRefreshToken;
+}
