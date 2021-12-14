@@ -31,6 +31,7 @@ export async function criarPrestadorService(prestador: Prestador) {
           password: encryptData(prestador.password),
           nome: prestador.nome,
           iban: prestador.iban,
+          descricao: prestador.descricao,
         },
       });
 
@@ -45,7 +46,7 @@ export async function criarPrestadorService(prestador: Prestador) {
 
 export async function actualizarPrestadorService(prestador: Prestador) {
   try {
-    const prestadorExiste = await db.prestador.findMany({
+    const prestadorExiste = await db.prestador.findUnique({
       where: {
         email: prestador.email,
       },
@@ -65,6 +66,9 @@ export async function actualizarPrestadorService(prestador: Prestador) {
           password: encryptData(prestador.password),
           nome: prestador.nome,
           iban: prestador.iban,
+          descricao: prestador.descricao,
+          classificacao: prestador.classificacao,
+          numAvaliacoes: prestadorExiste.numAvaliacoes + 1,
         },
       });
 
@@ -85,6 +89,9 @@ export async function retornarPrestadorService(emailPrestador: string) {
     const prestador = await db.prestador.findUnique({
       where: {
         email: emailPrestador,
+      },
+      include: {
+        atividades: true,
       },
     });
     log.info(`prestador retorando: ${prestador?.email}`);

@@ -84,6 +84,9 @@ export async function retornarClienteService(emailCliente: string) {
       where: {
         email: emailCliente,
       },
+      include: {
+        atividades: true,
+      },
     });
     log.info(`Cliente retorando: ${cliente?.email}`);
     return cliente;

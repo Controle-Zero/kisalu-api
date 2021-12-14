@@ -8,10 +8,10 @@ import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
 
 const jsonParser = bodyParser.json();
 
-const routes = Router();
+const atividadeRoutes = Router();
 
-routes.all("/", ensureAuthenticated);
-routes.post("/", jsonParser, criarAtividade);
-routes.put("/", jsonParser, actualizarAtividade);
+atividadeRoutes.all("/", ensureAuthenticated);
+atividadeRoutes.post("/", jsonParser, criarAtividade);
+atividadeRoutes.put("/", jsonParser, actualizarAtividade);
 
-export default routes;
+export {atividadeRoutes};

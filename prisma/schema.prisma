@@ -39,6 +39,7 @@ model Prestador {
   classificacao         Float                  @default(0)
   numAvaliacoes         Int                    @default(0)
   rate                  Float                  @default(0)
+  descricao             String?                 @db.Text
   refreshTokenPrestador RefreshTokenPrestador?
   atividades            Atividade[]
   habilidades           String[]
