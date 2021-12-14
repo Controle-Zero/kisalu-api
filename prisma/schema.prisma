@@ -25,18 +25,6 @@ model Cliente {
   @@map("clientes")
 }
 
-model Anuncio {
-  id          String      @id @default(uuid())
-  titulo      String
-  dataCriado  DateTime    @default(now())
-  images      String?
-  atividades  Atividade[]
-  Prestador   Prestador?  @relation(fields: [prestadorId], references: [id])
-  prestadorId String?
-
-  @@map("anuncios")
-}
-
 model Prestador {
   id                    String                 @id @default(uuid())
   bi                    String                 @unique
@@ -52,7 +40,6 @@ model Prestador {
   numAvaliacoes         Int                     @default(0)
   rate                  Float                   @default(0)
   refreshTokenPrestador RefreshTokenPrestador?
-  anuncios              Anuncio[]
   atividades            Atividade[]
 
   @@map("prestadores")
@@ -67,9 +54,7 @@ model Atividade {
   estado         String
   prestadorId    String
   clienteId      String
-  anuncioId      String
   Cliente        Cliente   @relation(fields: [clienteId], references: [id])
-  Anuncio        Anuncio   @relation(fields: [anuncioId], references: [id])
   Prestador      Prestador @relation(fields: [prestadorId], references: [id])
 
   @@map("atividades")
