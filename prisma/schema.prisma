@@ -34,13 +34,14 @@ model Prestador {
   email                 String                 @unique
   telefone              Int
   password              String
-  estado                String                  @default("INATIVO")
+  estado                String                 @default("INATIVO")
   iban                  String
-  classificacao         Float                   @default(0)
-  numAvaliacoes         Int                     @default(0)
-  rate                  Float                   @default(0)
+  classificacao         Float                  @default(0)
+  numAvaliacoes         Int                    @default(0)
+  rate                  Float                  @default(0)
   refreshTokenPrestador RefreshTokenPrestador?
   atividades            Atividade[]
+  habilidades           String[]
 
   @@map("prestadores")
 }
