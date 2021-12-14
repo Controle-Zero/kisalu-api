@@ -49,10 +49,10 @@ model Prestador {
 model Atividade {
   id             String    @id @default(uuid())
   dataCriado     DateTime  @default(now())
-  dataFinalizado DateTime
-  valorAssociado Float
-  numRef         Int
-  estado         String
+  dataFinalizado DateTime?
+  valorAssociado Float?
+  numRef         Int?
+  estado         String    @default("PENDENTE")
   prestadorId    String
   clienteId      String
   Cliente        Cliente   @relation(fields: [clienteId], references: [id])

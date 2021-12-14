@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "atividades" ALTER COLUMN "dataFinalizado" DROP NOT NULL,
+ALTER COLUMN "valorAssociado" DROP NOT NULL,
+ALTER COLUMN "numRef" DROP NOT NULL,
+ALTER COLUMN "estado" SET DEFAULT E'PENDENTE';
