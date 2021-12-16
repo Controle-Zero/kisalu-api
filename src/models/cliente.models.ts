@@ -7,7 +7,7 @@ export default interface Cliente {
     dataNasc : Date;
     morada : string;
     email : string;
-    telefone : number;
+    telefone : string;
     password : string;
     atividades? : Atividade[];
 }

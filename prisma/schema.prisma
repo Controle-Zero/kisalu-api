@@ -17,7 +17,7 @@ model Cliente {
   dataNasc            DateTime
   morada              String
   email               String               @unique
-  telefone            Int
+  telefone            String
   password            String
   refreshTokenCliente RefreshTokenCliente?
   atividades          Atividade[]
@@ -32,14 +32,14 @@ model Prestador {
   dataNasc              DateTime
   morada                String
   email                 String                 @unique
-  telefone              Int
+  telefone              String
   password              String
   estado                String                 @default("INATIVO")
   iban                  String
   classificacao         Float                  @default(0)
   numAvaliacoes         Int                    @default(0)
   rate                  Float                  @default(0)
-  descricao             String?                 @db.Text
+  descricao             String?                @db.Text
   refreshTokenPrestador RefreshTokenPrestador?
   atividades            Atividade[]
   habilidades           String[]
