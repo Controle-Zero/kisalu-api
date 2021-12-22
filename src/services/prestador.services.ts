@@ -33,9 +33,11 @@ export async function criarPrestadorService(prestador: Prestador) {
           iban: prestador.iban,
           descricao: prestador.descricao,
           categorias: {
-            connect: prestador.idCategorias.map((e) => {
-              return { id: e };
-            }),
+            createMany: {
+              data: prestador.idCategorias.map((e) => {
+                return { idCategoria: e };
+              }),
+            },
           },
         },
       });
@@ -73,7 +75,7 @@ export async function actualizarPrestadorService(prestador: Prestador) {
           iban: prestador.iban,
           descricao: prestador.descricao,
           classificacao: prestador.classificacao,
-          numAvaliacoes: prestadorExiste.numAvaliacoes + 1,
+          //numAvaliacoes: prestadorExiste.numAvaliacoes + 1,
         },
       });
 

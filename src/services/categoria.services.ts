@@ -5,7 +5,11 @@ export async function retornarCategoriasService() {
   try {
     return await db.categoria.findMany({
       include: {
-        prestador: true,
+        prestadores: {
+          select: {
+            prestador: true,
+          },
+        },
       },
     });
   } catch (e) {

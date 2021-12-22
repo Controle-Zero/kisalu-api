@@ -42,7 +42,7 @@ model Prestador {
   descricao             String?                @db.Text
   refreshTokenPrestador RefreshTokenPrestador?
   atividades            Atividade[]
-  categorias            Categoria[]
+  categorias            PrestadorCategoria[]
 
   @@map("prestadores")
 }
@@ -65,13 +65,22 @@ model Atividade {
 }
 
 model Categoria {
-  id        String      @id @default(uuid())
-  titulo    String
-  imageUrl  String
-  Atividade Atividade[]
-  prestador Prestador[]
+  id          String               @id @default(uuid())
+  titulo      String
+  imageUrl    String
+  Atividade   Atividade[]
+  prestadores PrestadorCategoria[]
 
   @@map("categorias")
+}
+
+model PrestadorCategoria {
+  idPrestador String
+  idCategoria String
+  prestador   Prestador @relation(fields: [idPrestador], references: [id])
+  categoria   Categoria @relation(fields: [idCategoria], references: [id])
+
+  @@id([idPrestador, idCategoria])
 }
 
 model RefreshTokenCliente {
