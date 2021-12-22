@@ -10,4 +10,5 @@ export default interface Prestador extends Cliente {
   rate: number;
   descricao: string;
   atividades: Atividade[];
+  idCategorias: string[];
 }

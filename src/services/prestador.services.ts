@@ -32,6 +32,11 @@ export async function criarPrestadorService(prestador: Prestador) {
           nome: prestador.nome,
           iban: prestador.iban,
           descricao: prestador.descricao,
+          categorias: {
+            connect: prestador.idCategorias.map((e) => {
+              return { id: e };
+            }),
+          },
         },
       });
 
@@ -91,7 +96,11 @@ export async function retornarPrestadorService(emailPrestador: string) {
         email: emailPrestador,
       },
       include: {
-        atividades: true,
+        atividades: {
+          where: {
+            estado: "PENDENTE" || "ATIVA",
+          },
+        },
       },
     });
     log.info(`prestador retorando: ${prestador?.email}`);

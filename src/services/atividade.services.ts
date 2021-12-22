@@ -11,6 +11,7 @@ export async function criarAtividadeService(atividade: Atividade) {
       data: {
         clienteId: atividade.idCliente,
         prestadorId: atividade.idPrestador,
+        categoriaId: atividade.idCategoria,
       },
     });
     return { mensagem: "Atividade criada com sucesso" };
@@ -37,8 +38,6 @@ export async function actualizarAtividadeService(
           id: idAtividade,
         },
         data: {
-          clienteId: atividade.idCliente,
-          prestadorId: atividade.idPrestador,
           dataFinalizado: atividade.dataFinalizado,
           estado: atividade.estado,
           numRef: atividade.numRef,
