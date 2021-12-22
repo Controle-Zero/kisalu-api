@@ -43,7 +43,7 @@ export async function criarPrestadorService(prestador: Prestador) {
       });
 
       log.info(`Prestador ${prestador.nome} criado com sucesso!!`);
-      return { mensagem: "prestador criado com sucesso!!" };
+      return { mensagem: "prestador criado com sucesso!!", sucesso: true };
     }
   } catch (e) {
     log.error(`${e}- Falha ao criar o prestador: ${prestador.nome}`);
@@ -80,10 +80,10 @@ export async function actualizarPrestadorService(prestador: Prestador) {
       });
 
       log.info("Os dados foram atualizados");
-      return { mensagem: "Os dados foram atualizados" };
+      return { mensagem: "Os dados foram atualizados", sucesso: true };
     } else {
       log.info("Prestador não existe");
-      return { mensagem: "O prestador não existe" };
+      return { mensagem: "O prestador não existe", sucesso: false };
     }
   } catch (e) {
     log.error(`Erro ao atualizar os dados do prestador- ${e}`);
@@ -100,7 +100,12 @@ export async function retornarPrestadorService(emailPrestador: string) {
       include: {
         atividades: {
           where: {
-            estado: "PENDENTE" || "ATIVA",
+            estado: {
+              in: ["PENDENTE", "ATIVA"],
+            },
+          },
+          include: {
+            Cliente: true,
           },
         },
       },

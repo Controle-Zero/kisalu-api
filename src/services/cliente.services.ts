@@ -34,7 +34,7 @@ export async function criarClienteService(cliente: Cliente) {
       });
 
       log.info(`Cliente ${cliente.nome} criado com sucesso!!`);
-      return { mensagem: "Cliente criado com sucesso!!" };
+      return { mensagem: "Cliente criado com sucesso!!", sucesso : true };
     }
   } catch (e) {
     log.error(`${e}- Falha ao criar o cliente: ${cliente.nome}`);
@@ -67,7 +67,7 @@ export async function actualizarClienteService(cliente: Cliente) {
       });
 
       log.info("Os dados foram atualizados");
-      return { mensagem: "Os dados foram atualizados" };
+      return { mensagem: "Os dados foram atualizados", sucesso : true };
     } else {
       log.info("Cliente não existe");
       return { mensagem: "O cliente não existe" };

@@ -16,7 +16,7 @@ export const criarPrestador = async (req: Request, res: Response) => {
   if (response) {
     res.status(201).json(response);
   } else {
-    res.status(400).json({ mensagem: "Erro ao criar o prestador" });
+    res.status(400).json({ mensagem: "Erro ao criar o prestador", sucesso : false });
   }
 };
 
@@ -25,9 +25,9 @@ export const retornarPrestador = async (req: Request, res: Response) => {
 
   const prestador = await retornarPrestadorService(email);
   if (prestador) {
-    res.status(200).json(prestador);
+    res.status(200).json({prestador, sucesso : true});
   } else {
-    res.status(404).json({ mensagem: "O prestador não foi encontrado" });
+    res.status(404).json({ mensagem: "O prestador não foi encontrado", sucesso : false});
   }
 };
 
@@ -38,7 +38,7 @@ export const actualizarPrestador = async (req: Request, res: Response) => {
   if (response) {
     res.status(200).json(response);
   } else {
-    res.status(400).json("Erro ao atualizar os dados do prestador");
+    res.status(400).json({mensagem : "Erro ao atualizar os dados do prestador", sucesso : false});
   }
 };
 
@@ -52,7 +52,7 @@ export const autenticarPrestador = async (req: Request, res: Response) => {
   if (token) {
     res.status(200).json(token);
   } else {
-    res.status(400).json({ mensagem: "Dados incorretos" });
+    res.status(400).json({ mensagem: "Dados incorretos", sucesso : false});
   }
 };
 
@@ -64,6 +64,6 @@ export const refreshTokenPrestador = async (req: Request, res: Response) => {
   if (token) {
     res.status(200).json(token);
   } else {
-    res.status(400).json({ mensagem: "Refresh token inválido" });
+    res.status(400).json({ mensagem: "Refresh token inválido", sucesso : false });
   }
 };

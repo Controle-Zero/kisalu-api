@@ -14,7 +14,7 @@ export const criarCliente = async (req: Request, res: Response) => {
   if (response) {
     res.status(201).json(response);
   } else {
-    res.status(400).json({ mensagem: "Erro ao criar o cliente" });
+    res.status(400).json({ mensagem: "Erro ao criar o cliente", sucesso : false });
   }
 };
 
@@ -23,9 +23,9 @@ export const retornarCliente = async (req: Request, res: Response) => {
 
   const cliente = await retornarClienteService(email);
   if (cliente) {
-    res.status(200).json(cliente);
+    res.status(200).json({cliente, sucesso : true});
   } else {
-    res.status(404).json({ mensagem: "O cliente não foi encontrado" });
+    res.status(404).json({ mensagem: "O cliente não foi encontrado", sucesso : false });
   }
 };
 
@@ -36,7 +36,7 @@ export const actualizarCliente = async (req: Request, res: Response) => {
   if (response) {
     res.status(200).json(response);
   } else {
-    res.status(400).json("Erro ao atualizar os dados do cliente");
+    res.status(400).json({mensagem : "Erro ao atualizar os dados do cliente", sucesso : false});
   }
 };
 
@@ -50,7 +50,7 @@ export const autenticarCliente = async (req: Request, res: Response) => {
   if (token) {
     res.status(200).json(token);
   } else {
-    res.status(400).json({ mensagem: "Dados incorretos" });
+    res.status(400).json({ mensagem: "Dados incorretos", sucesso : false });
   }
 };
 
@@ -62,6 +62,6 @@ export const refreshTokenCliente = async (req: Request, res: Response) => {
   if (token) {
     res.status(200).json(token);
   } else {
-    res.status(400).json({ mensagem: "Refresh token inválido" });
+    res.status(400).json({ mensagem: "Refresh token inválido", sucesso : false });
   }
 };

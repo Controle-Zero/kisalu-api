@@ -5,8 +5,8 @@ export const retornarCategorias = async (req: Request, res: Response) => {
   const response = await retornarCategoriasService();
 
   if (response) {
-    res.status(200).json(response);
+    res.status(200).json({categorias: response, sucesso : true});
   } else {
-    res.status(400).json({ mensagem: "Erro ao retornar as categorias" });
+    res.status(400).json({ mensagem: "Erro ao retornar as categorias", sucesso : false });
   }
 };

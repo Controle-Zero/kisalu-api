@@ -1,9 +1,7 @@
-import { Atividade, Prestador } from "@prisma/client";
-
+import Prestador from "./prestador.models";
 export default interface Categoria {
   categoriaId: string;
   titulo: string;
   imageUrl: string;
-  atividades: Atividade[];
   prestadores: Prestador[];
 }

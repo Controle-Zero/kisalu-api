@@ -14,28 +14,25 @@ export async function criarAtividadeService(atividade: Atividade) {
         categoriaId: atividade.idCategoria,
       },
     });
-    return { mensagem: "Atividade criada com sucesso" };
+    return { mensagem: "Atividade criada com sucesso", sucesso: true };
   } catch (e) {
     log.error(`Erro ao criar nova atividade- ${e}`);
     return undefined;
   }
 }
 
-export async function actualizarAtividadeService(
-  idAtividade: string,
-  atividade: Atividade
-) {
+export async function actualizarAtividadeService(atividade: Atividade) {
   try {
     const atividadeExiste = await db.atividade.findUnique({
       where: {
-        id: idAtividade,
+        id: atividade.idAtividade,
       },
     });
 
     if (atividadeExiste) {
       await db.atividade.update({
         where: {
-          id: idAtividade,
+          id: atividade.idAtividade,
         },
         data: {
           dataFinalizado: atividade.dataFinalizado,
@@ -45,9 +42,9 @@ export async function actualizarAtividadeService(
         },
       });
       log.info(`Os dados da atividade ${atividadeExiste.id} foram atualizados`);
-      return { mensagem: "Os dados foram atualizados" };
+      return { mensagem: "Os dados foram atualizados", sucesso: true };
     } else {
-      log.info(`A atividade de id ${idAtividade} não existe`);
+      log.info(`A atividade de id ${atividade.idAtividade} não existe`);
       return undefined;
     }
   } catch (e) {

@@ -14,4 +14,4 @@ atividadeRoutes.all("/", ensureAuthenticated);
 atividadeRoutes.post("/", jsonParser, criarAtividade);
 atividadeRoutes.put("/", jsonParser, actualizarAtividade);
 
-export {atividadeRoutes};
+export { atividadeRoutes };
