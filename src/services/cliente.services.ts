@@ -96,7 +96,7 @@ export async function retornarClienteService(idCliente: string) {
   }
 }
 
-export async function apagarClienteService(emailCliente: string) {}
+export async function apagarClienteService(idCliente: string) {}
 
 export async function autenticarClienteService(
   email: string,

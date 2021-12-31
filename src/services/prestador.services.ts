@@ -91,11 +91,11 @@ export async function actualizarPrestadorService(prestador: Prestador) {
   }
 }
 
-export async function retornarPrestadorService(emailPrestador: string) {
+export async function retornarPrestadorService(idPrestador: string) {
   try {
     const prestador = await db.prestador.findUnique({
       where: {
-        email: emailPrestador,
+        id: idPrestador,
       },
       include: {
         atividades: {
