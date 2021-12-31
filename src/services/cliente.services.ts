@@ -78,11 +78,11 @@ export async function actualizarClienteService(cliente: Cliente) {
   }
 }
 
-export async function retornarClienteService(emailCliente: string) {
+export async function retornarClienteService(idCliente: string) {
   try {
     const cliente = await db.cliente.findUnique({
       where: {
-        email: emailCliente,
+        id: idCliente,
       },
       include: {
         atividades: true,
@@ -91,7 +91,7 @@ export async function retornarClienteService(emailCliente: string) {
     log.info(`Cliente retorando: ${cliente?.email}`);
     return cliente;
   } catch (e) {
-    log.error(`${e}- Falha ao retornar o cliente (${emailCliente})`);
+    log.error(`${e}- Falha ao retornar o cliente`);
     return undefined;
   }
 }

@@ -10,7 +10,7 @@
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "sourceMap": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true        
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

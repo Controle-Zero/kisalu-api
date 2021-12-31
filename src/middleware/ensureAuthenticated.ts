@@ -1,12 +1,13 @@
-import { NextFunction, Request, Response } from "express";
-import { verify } from "jsonwebtoken";
+import { NextFunction, Response } from "express";
+import { decode, verify } from "jsonwebtoken";
+import CustomRequest from "./models/customRequest.models";
 import dotenv from "dotenv";
 import { log } from "../log";
 
 dotenv.config();
 
 export function ensureAuthenticated(
-  req: Request,
+  req: CustomRequest,
   res: Response,
   next: NextFunction
 ) {
@@ -22,6 +23,9 @@ export function ensureAuthenticated(
     log.info("Verificando o token...");
     verify(authToken.split(" ")[1], process.env.SECRET!!);
     log.info("Token aprovado");
+
+    const { sub: id } = decode(authToken.split(" ")[1]);
+    req.id = String(id);
     return next();
   } catch (e) {
     log.error("Token reprovado...");
