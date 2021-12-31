@@ -91,7 +91,7 @@ export async function retornarClienteService(emailCliente: string) {
     log.info(`Cliente retorando: ${cliente?.email}`);
     return cliente;
   } catch (e) {
-    log.error(`${e}- Falha ao retornar o cliente`);
+    log.error(`${e}- Falha ao retornar o cliente (${emailCliente})`);
     return undefined;
   }
 }
