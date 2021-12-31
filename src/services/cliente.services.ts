@@ -34,7 +34,7 @@ export async function criarClienteService(cliente: Cliente) {
       });
 
       log.info(`Cliente ${cliente.nome} criado com sucesso!!`);
-      return { mensagem: "Cliente criado com sucesso!!", sucesso : true };
+      return { mensagem: "Cliente criado com sucesso!!", sucesso: true };
     }
   } catch (e) {
     log.error(`${e}- Falha ao criar o cliente: ${cliente.nome}`);
@@ -67,7 +67,7 @@ export async function actualizarClienteService(cliente: Cliente) {
       });
 
       log.info("Os dados foram atualizados");
-      return { mensagem: "Os dados foram atualizados", sucesso : true };
+      return { mensagem: "Os dados foram atualizados", sucesso: true };
     } else {
       log.info("Cliente não existe");
       return { mensagem: "O cliente não existe" };
@@ -109,12 +109,14 @@ export async function autenticarClienteService(
   });
 
   if (!clienteExiste) {
+    log.info(`O cliente não existe: ${email}`);
     return undefined;
   }
 
   const passwordMatch = compareEncryptedData(clienteExiste.password, password);
 
   if (!passwordMatch) {
+    log.info(`A palavra passe está incorrecta: ${password}`);
     return undefined;
   }
 
@@ -122,6 +124,7 @@ export async function autenticarClienteService(
 
   const refreshToken = await gerarRefreshTokenCliente(clienteExiste.id);
 
+  log.info(`Login feito com sucesso!!`);
   return { token, refreshToken };
 }
 
