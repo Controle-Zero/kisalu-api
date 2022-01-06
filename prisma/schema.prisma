@@ -34,7 +34,7 @@ model Prestador {
   email                 String                 @unique
   telefone              String
   password              String
-  estado                String                 @default("INATIVO")
+  estado                String                 @default("DISPONIVEL")
   iban                  String
   classificacao         Float                  @default(0)
   numAvaliacoes         Int                    @default(0)

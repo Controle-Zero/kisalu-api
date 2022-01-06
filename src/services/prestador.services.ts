@@ -75,6 +75,7 @@ export async function actualizarPrestadorService(prestador: Prestador) {
           iban: prestador.iban,
           descricao: prestador.descricao,
           classificacao: prestador.classificacao,
+          estado: prestador.estado,
           //numAvaliacoes: prestadorExiste.numAvaliacoes + 1,
         },
       });
