@@ -11,6 +11,7 @@ import dayjs from "dayjs";
 
 export async function criarPrestadorService(prestador: Prestador) {
   try {
+    log.info(`Prestador recebido: ${prestador}`)
     const prestadorExiste = await db.prestador.findFirst({
       where: {
         email: prestador.email,
