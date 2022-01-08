@@ -15,7 +15,11 @@ export const criarPrestador = async (req: CustomRequest, res: Response) => {
   const response = await criarPrestadorService(prestador);
 
   if (response) {
-    res.status(201).json(response);
+    if (response.sucesso) {
+      res.status(201).json(response);
+    } else {
+      res.status(400).json(response);
+    }
   } else {
     res
       .status(400)
@@ -44,12 +48,10 @@ export const actualizarPrestador = async (
   if (response) {
     res.status(200).json(response);
   } else {
-    res
-      .status(400)
-      .json({
-        mensagem: "Erro ao atualizar os dados do prestador",
-        sucesso: false,
-      });
+    res.status(400).json({
+      mensagem: "Erro ao atualizar os dados do prestador",
+      sucesso: false,
+    });
   }
 };
 

@@ -19,7 +19,7 @@ export async function criarClienteService(cliente: Cliente) {
 
     if (clienteExiste) {
       log.info(`Email já existe no sistema ${cliente.email}`);
-      return { mensagem: "O email já se encontra no sistema" };
+      return { mensagem: "O email já se encontra no sistema", sucesso: false };
     } else {
       await db.cliente.create({
         data: {

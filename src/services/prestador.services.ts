@@ -11,7 +11,7 @@ import dayjs from "dayjs";
 
 export async function criarPrestadorService(prestador: Prestador) {
   try {
-    log.info(`Prestador recebido: ${JSON.stringify(prestador)}`)
+    log.info(`Prestador recebido: ${JSON.stringify(prestador)}`);
     const prestadorExiste = await db.prestador.findFirst({
       where: {
         email: prestador.email,
@@ -20,7 +20,7 @@ export async function criarPrestadorService(prestador: Prestador) {
 
     if (prestadorExiste) {
       log.info(`Email já existe no sistema ${prestador.email}`);
-      return { mensagem: "O email já se encontra no sistema" };
+      return { mensagem: "O email já se encontra no sistema", sucesso: false };
     } else {
       await db.prestador.create({
         data: {
@@ -77,6 +77,13 @@ export async function actualizarPrestadorService(prestador: Prestador) {
           descricao: prestador.descricao,
           classificacao: prestador.classificacao,
           estado: prestador.estado,
+          categorias: {
+            createMany: {
+              data: prestador.idCategorias.map((ic) => {
+                return { idCategoria: ic };
+              }),
+            },
+          },
           //numAvaliacoes: prestadorExiste.numAvaliacoes + 1,
         },
       });

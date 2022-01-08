@@ -13,7 +13,11 @@ export const criarCliente = async (req: CustomRequest, res: Response) => {
   const cliente: Cliente = req.body;
   const response = await criarClienteService(cliente);
   if (response) {
-    res.status(201).json(response);
+    if (response.sucesso) {
+      res.status(201).json(response);
+    } else {
+      res.status(400).json(response);
+    }
   } else {
     res
       .status(400)
