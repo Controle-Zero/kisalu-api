@@ -40,8 +40,3 @@ npm start
 This API is used by the following company:
 
 - Uservices
-
-
-## Requirements
-
-- [NodeJS v14.x](/nodejs.org)
