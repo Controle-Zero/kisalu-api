@@ -17,7 +17,7 @@ export async function atividadeChannel(io: Server) {
     log.info(`Socket ${socket.id} connected`);
     const { idCliente, idProvedor } = socket.handshake.auth;
 
-    if (idProvedor) {
+    if (idCliente) {
       const clienteExiste =
         sockets.length > 0 ? sockets.find((f) => f[idCliente]) : undefined;
       if (clienteExiste) {
