@@ -1,7 +1,7 @@
 
-# USERVICEs REST API🌐
+# USERVICEs API🌐
 
-A REST API that deals with the Uservices business logic
+AN API that deals with the Uservices business logic
 
 
 ## Authors
