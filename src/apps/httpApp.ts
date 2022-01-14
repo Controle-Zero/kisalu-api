@@ -1,8 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
-import { clienteRoutes } from "../src/routes/cliente.routes";
-import { prestadorRoutes } from "./routes/prestador.routes";
-import { categoriaRoutes } from "./routes/categoria.routes";
+import { clienteRoutes } from "../routes/cliente.routes";
+import { prestadorRoutes } from "../routes/prestador.routes";
+import { categoriaRoutes } from "../routes/categoria.routes";
 import cors from "cors";
 
 dotenv.config();
