@@ -1,20 +1,22 @@
 
-# USERVICEs RESTful API🌐
+# USERVICEs REST API🌐
 
-A RESTful API that deals with the Uservices business logic
+A REST API that deals with the Uservices business logic
 
 
 ## Authors
 
-- [@RegiReis](https://www.github.com/RegiReis7)
-- [@rafaelwillen](https://github.com/rafaelwillen)
-- [@roblemos](https://github.com/roblemos1) 
+- [@Reginaldo Reis](https://www.github.com/RegiReis7)
+- [@Rafael Willen](https://github.com/rafaelwillen)
+- [@Roberto Lemos](https://github.com/roblemos1) 
 
 
 ## Tech Stack
 
-- **Node JS** 
-- **Express**
+- [**Node JS**](/nodejs.org) 
+- [**Express**](https://expressjs.com/)
+- [**Socket.io**](https://socket.io/)
+- [**Prisma**](https://www.prisma.io/)
 
 
 ## Requirements
