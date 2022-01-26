@@ -1,7 +1,7 @@
 
 # USERVICEs API🌐
 
-AN API that deals with the Uservices business logic
+An API that deals with the Uservices business logic
 
 
 ## Authors
@@ -13,7 +13,7 @@ AN API that deals with the Uservices business logic
 
 ## Tech Stack
 
-- [**Node JS**](/nodejs.org) 
+- [**Node JS**](https://nodejs.org) 
 - [**Express**](https://expressjs.com/)
 - [**Socket.io**](https://socket.io/)
 - [**Prisma**](https://www.prisma.io/)
@@ -21,7 +21,7 @@ AN API that deals with the Uservices business logic
 
 ## Requirements
 
-- [NodeJS v14.x](/nodejs.org)
+- [NodeJS v14.x](http://nodejs.org)
 ## Installation
 
 First of all, install the dependencies using de command below
