@@ -8,8 +8,8 @@
   },
   "scripts": {
     "migrate-dev": "prisma migrate dev",
-    "dev": "tsnd --respawn --ignore-watch node_modules ./src/server.ts",
-    "start": "ts-node ./src/server.ts",
+    "dev": "tsnd --respawn --ignore-watch node_modules ./src/server",
+    "start": "ts-node ./src/server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "3R",
@@ -27,6 +27,7 @@
     "pino": "^7.2.0",
     "pino-pretty": "^7.2.0",
     "prisma": "^3.6.0",
+    "socket.io": "^4.4.1",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.1.6",
     "ts-node": "^10.4.0",

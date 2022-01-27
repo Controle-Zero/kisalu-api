@@ -1,25 +1,27 @@
 
-# USERVICEs RESTful API🌐
+# USERVICEs API🌐
 
-A RESTful API that deals with the Uservices business logic
+An API that deals with the Uservices business logic
 
 
 ## Authors
 
-- [@RegiReis](https://www.github.com/RegiReis7)
-- [@rafaelwillen](https://github.com/rafaelwillen)
-- [@roblemos](https://github.com/roblemos1) 
+- [@Reginaldo Reis](https://www.github.com/RegiReis7)
+- [@Rafael Willen](https://github.com/rafaelwillen)
+- [@Roberto Lemos](https://github.com/roblemos1) 
 
 
 ## Tech Stack
 
-- **Node JS** 
-- **Express**
+- [**Node JS**](https://nodejs.org) 
+- [**Express**](https://expressjs.com/)
+- [**Socket.io**](https://socket.io/)
+- [**Prisma**](https://www.prisma.io/)
 
 
 ## Requirements
 
-- [NodeJS v14.x](/nodejs.org)
+- [NodeJS v14.x](http://nodejs.org)
 ## Installation
 
 First of all, install the dependencies using de command below
