@@ -30,12 +30,12 @@ export async function atividadeChannel(io: Server) {
       log.info(sockets);
 
       socket.on(`request:${idProvedor}`, (atividade: Atividade) => {
-        atividadeService(atividade);
+        const atividadeDB = atividadeService(atividade);
 
         const payload = {
           cliente: retornarClienteService(atividade.idCliente),
           categoria: atividade.idCategoria,
-          atividade,
+          atividadeDB,
         };
 
         io.emit(`request:${idProvedor}`, payload);
