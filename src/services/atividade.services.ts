@@ -7,7 +7,7 @@ export async function atividadeService(atividade: Atividade) {
     log.info(
       `Trabalhando na atividade entre ${atividade.idCliente} e ${atividade.idPrestador}`
     );
-    await db.atividade.upsert({
+    const dbResponse = await db.atividade.upsert({
       where: {
         id: atividade.idAtividade ?? "",
       },
@@ -23,7 +23,7 @@ export async function atividadeService(atividade: Atividade) {
         categoriaId: atividade.idCategoria,
       },
     });
-    return { mensagem: "Atividade criada com sucesso", sucesso: true };
+    return dbResponse;
   } catch (e) {
     log.error(`Erro ao criar nova atividade- ${e}`);
     return undefined;
