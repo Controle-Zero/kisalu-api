@@ -6,6 +6,7 @@ import {
   actualizarPrestador,
   autenticarPrestador,
   refreshTokenPrestador,
+  adicionarCategoriasProvedor,
 } from "../controllers/prestador.controllers";
 import bodyParser from "body-parser";
 import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
@@ -20,5 +21,11 @@ prestadorRoutes.post("/refresh-token", jsonParser, refreshTokenPrestador);
 prestadorRoutes.get("/", ensureAuthenticated, jsonParser, retornarPrestador);
 prestadorRoutes.put("/", ensureAuthenticated, jsonParser, actualizarPrestador);
 prestadorRoutes.delete("/", ensureAuthenticated, jsonParser, apagarPrestador);
+prestadorRoutes.put(
+  "/categorias",
+  ensureAuthenticated,
+  jsonParser,
+  adicionarCategoriasProvedor
+);
 
 export { prestadorRoutes };

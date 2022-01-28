@@ -7,6 +7,7 @@ import {
   retornarPrestadorService,
   autenticarPrestadorService,
   refreshTokenPrestadorService,
+  adicionarCategoriasService,
 } from "../services/prestador.services";
 
 export const criarPrestador = async (req: CustomRequest, res: Response) => {
@@ -86,5 +87,21 @@ export const refreshTokenPrestador = async (
     res
       .status(400)
       .json({ mensagem: "Refresh token inválido", sucesso: false });
+  }
+};
+
+export const adicionarCategoriasProvedor = async (
+  req: CustomRequest,
+  res: Response
+) => {
+  const idCategorias: string[] = req.body;
+  const response = await adicionarCategoriasService(req.id, idCategorias);
+
+  if (response) {
+    res.status(200).json(response);
+  } else {
+    res
+      .status(400)
+      .json({ mensagem: "Erro ao adicionar as categorias", sucesso: false });
   }
 };
