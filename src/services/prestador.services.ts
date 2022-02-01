@@ -1,6 +1,6 @@
 import db from "../database/uservices.database";
 import Prestador from "../models/prestador.models";
-import { log } from "../log";
+import { log } from "../libs/log";
 import {
   encryptData,
   compareEncryptedData,

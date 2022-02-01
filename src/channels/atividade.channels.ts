@@ -1,5 +1,5 @@
 import { Server, Socket } from "socket.io";
-import { log } from "../log";
+import { log } from "../libs/log";
 import Atividade from "../models/atividade.models";
 import { atividadeService } from "../services/atividade.services";
 import { retornarClienteService } from "../services/cliente.services";

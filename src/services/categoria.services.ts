@@ -1,6 +1,6 @@
 import db from "../database/uservices.database";
 import Categoria from "../models/categoria.model";
-import { log } from "../log";
+import { log } from "../libs/log";
 
 export async function criarCategoriaService(categoria: Categoria) {
   try {
@@ -30,6 +30,21 @@ export async function retornarCategoriasService() {
     });
   } catch (e) {
     log.error(`Erro ao retornar as categorias- ${e}`);
+    return undefined;
+  }
+}
+
+export async function retornarCategoriaService(idCategoria: string) {
+  try {
+    const categoria = await db.categoria.findUnique({
+      where: {
+        id: idCategoria,
+      },
+    });
+    log.info(`Categoria retornada- ${categoria.titulo}`);
+    return categoria;
+  } catch (e) {
+    log.info(`${e}- Erro ao retornar a categoria`);
     return undefined;
   }
 }

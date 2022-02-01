@@ -4,6 +4,7 @@ import { clienteRoutes } from "../routes/cliente.routes";
 import { prestadorRoutes } from "../routes/prestador.routes";
 import { categoriaRoutes } from "../routes/categoria.routes";
 import cors from "cors";
+import { atividadeRoutes } from "../routes/atividade.routes";
 
 dotenv.config();
 
@@ -13,5 +14,6 @@ app.use(cors());
 app.use("/cliente", clienteRoutes);
 app.use("/prestador", prestadorRoutes);
 app.use("/categoria", categoriaRoutes);
+app.use("/atividade", atividadeRoutes);
 
 export default app;
