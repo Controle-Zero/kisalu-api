@@ -3,24 +3,14 @@ import Categoria from "../../../models/categoria.model";
 import Cliente from "../../../models/cliente.models";
 import Prestador from "../../../models/prestador.models";
 import Mustache from "mustache";
+import { splitMorada } from "../../functions/splitMorada";
+import { Morada } from "../../types/Morada";
 
 interface AtividadeTemplateContext {
   atividade: Atividade;
   cliente: Cliente;
   provedor: Prestador;
   categoria: Categoria;
-}
-
-type Morada = {
-  provincia: string;
-  distrito: string;
-  bairro: string;
-};
-
-function splitMorada(moradaArray: string): Morada {
-  let morada: Morada;
-  [morada.provincia, morada.distrito, morada.bairro] = moradaArray.split(",");
-  return morada;
 }
 
 export default function atividadeTemplate({
