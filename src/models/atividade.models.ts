@@ -1,11 +1,11 @@
 export default interface Atividade {
-  idAtividade: string;
+  id: string;
   dataCriado: Date;
   dataFinalizado: Date;
   valorAssociado: number;
   numRef: number;
   estado: string;
-  idPrestador: string;
-  idCliente: string;
-  idCategoria: string;
+  prestadorId: string;
+  clienteId: string;
+  categoriaId: string;
 }

@@ -40,6 +40,7 @@
     "@types/cors": "^2.8.12",
     "@types/crypto-js": "^4.0.2",
     "@types/express": "^4.17.13",
+    "@types/html-pdf": "^3.0.0",
     "@types/http-build-query": "^0.7.3",
     "@types/jsonwebtoken": "^8.5.6",
     "@types/mustache": "^4.1.2",

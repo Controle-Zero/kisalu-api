@@ -3,10 +3,10 @@ import Categoria from "../../../models/categoria.model";
 import Cliente from "../../../models/cliente.models";
 import Prestador from "../../../models/prestador.models";
 import Mustache from "mustache";
-import { splitMorada } from "../../functions/splitMorada";
-import { Morada } from "../../types/Morada";
+import { splitMorada } from "../functions/splitMorada";
+import { Morada } from "../types/Morada";
 
-interface AtividadeTemplateContext {
+export interface AtividadeTemplateContext {
   atividade: Atividade;
   cliente: Cliente;
   provedor: Prestador;
