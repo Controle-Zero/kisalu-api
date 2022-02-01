@@ -58,10 +58,15 @@ export async function gerarDocumentoService(idAtividade: string) {
           id: atividade.categoriaId,
         },
       });
-      await generateAtividadePDF({ atividade, cliente, provedor, categoria });
+      return await generateAtividadePDF({
+        atividade,
+        cliente,
+        provedor,
+        categoria,
+      });
     }
   } catch (e) {
-    log.error(`${e}- Erro ao procurar a atividade`);
+    log.error(`${e}- Erro ao procurar a atividade...`);
     return undefined;
   }
 }

@@ -5,6 +5,7 @@ import Prestador from "../../../models/prestador.models";
 import Mustache from "mustache";
 import { splitMorada } from "../functions/splitMorada";
 import { Morada } from "../types/Morada";
+import { atividadeTemplateFile } from "../templates/atividade.templates";
 
 export interface AtividadeTemplateContext {
   atividade: Atividade;
@@ -31,5 +32,5 @@ export default function atividadeTemplate({
     moradaProvedor,
   };
 
-  return Mustache.render("../templates/atividade.templates.html", view);
+  return Mustache.render(atividadeTemplateFile(), view);
 }
