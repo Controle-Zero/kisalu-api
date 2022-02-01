@@ -4,9 +4,9 @@ import db from "../database/uservices.database";
 import {
   compareEncryptedData,
   encryptData,
-} from "../helpers/encryption.helpers";
-import { gerarRefreshTokenCliente } from "../helpers/generateRefreshToken.helpers";
-import { gerarToken } from "../helpers/generateToken.helpers";
+} from "../libs/encryption";
+import { gerarRefreshTokenCliente } from "../libs/generateRefreshToken";
+import { gerarToken } from "../libs/generateToken";
 import dayjs from "dayjs";
 
 export async function criarClienteService(cliente: Cliente) {
