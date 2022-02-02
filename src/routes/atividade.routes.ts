@@ -1,8 +1,12 @@
 import { Router } from "express";
-import { gerarDocumento } from "../controllers/atividade.controllers";
+import {
+  gerarDocumentoPDF,
+  verDocumento,
+} from "../controllers/atividade.controllers";
 
 const atividadeRoutes = Router();
 
-atividadeRoutes.get("/:id/documento", gerarDocumento);
+atividadeRoutes.get("/:id/faturaPDF", gerarDocumentoPDF);
+atividadeRoutes.get("/:id/fatura", verDocumento);
 
 export { atividadeRoutes };

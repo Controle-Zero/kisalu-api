@@ -29,12 +29,12 @@ export function atividadeTemplateFile() {
                 <div class="payment-info">
                   <div class="row">
                     <div class="col-sm-6">
-                      <span>Referência do pagamento</span>
+                      <span>Referência da transacção</span>
                       <strong>{{atividade.numRef}}</strong>
                     </div>
                     <div class="col-sm-6 text-right">
                       <span>Data</span>
-                      <strong>{{atividade.dataFinalizado}}</strong>
+                      <strong>{{data}}</strong>
                     </div>
                   </div>
                 </div>
@@ -48,8 +48,7 @@ export function atividadeTemplateFile() {
                         {{moradaCliente.provincia}} <br />
                         {{moradaCliente.distrito}} <br />
                         {{moradaCliente.bairro}} <br />
-                        Angola <br />
-                        <a href="#"> {{cliente.email}} </a>
+                        <a href="mailto:{{cliente.email}}"> {{cliente.email}} </a>
                       </p>
                     </div>
                     <div class="col-sm-6 text-right">
@@ -59,8 +58,7 @@ export function atividadeTemplateFile() {
                         {{moradaProvedor.provincia}} <br />
                         {{moradaProvedor.distrito}} <br />
                         {{moradaProvedor.bairro}} <br />
-                        Angola <br />
-                        <a href="#"> {{provedor.email}} </a>
+                        <a href="mailto:{{provedor.email}}"> {{provedor.email}} </a>
                       </p>
                     </div>
                   </div>
@@ -77,7 +75,7 @@ export function atividadeTemplateFile() {
                   <div class="items">
                     <div class="row item">
                       <div class="col-xs-4 desc">{{categoria.titulo}}</div>
-                      <div class="col-xs-3 qty">EMPTY</div>
+                      <div class="col-xs-3 qty"><del>Sem informação</del></div>
                       <div class="col-xs-5 amount text-right">
                         {{atividade.valorAssociado}}
                       </div>
@@ -92,7 +90,10 @@ export function atividadeTemplateFile() {
                 </div>
               </div>
   
-              <div class="footer">Copyright © 2022. UServices</div>
+              <div class="footer">
+              <p>Para questões de suporte, entre em contacto connosco via correio eletrônico</p>
+              <strong><a href="mailto:ccontrolezero@gmail.com">ccontrolezero@gmail.com</a></strong> </br>
+              </br> <p>Copyright © 2022. UServices</p></div>
             </div>
           </div>
         </div>

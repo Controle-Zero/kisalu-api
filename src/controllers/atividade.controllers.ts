@@ -3,7 +3,7 @@ import { gerarDocumentoService } from "../services/atividade.services";
 import pdf from "html-pdf";
 import { log } from "../libs/log";
 
-export const gerarDocumento = async (req: Request, res: Response) => {
+export const gerarDocumentoPDF = async (req: Request, res: Response) => {
   const response = await gerarDocumentoService(req.params.id);
 
   if (response) {
@@ -13,5 +13,15 @@ export const gerarDocumento = async (req: Request, res: Response) => {
     });
   } else {
     res.status(500).json({ mensagem: "Erro ao gerar o arquivo!" });
+  }
+};
+
+export const verDocumento = async (req: Request, res: Response) => {
+  const response = await gerarDocumentoService(req.params.id);
+
+  if (response) {
+    res.status(200).send(response);
+  } else {
+    res.status(500).json({ mensagem: "Erro ao exibir a factura" });
   }
 };

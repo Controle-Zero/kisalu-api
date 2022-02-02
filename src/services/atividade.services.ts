@@ -2,7 +2,7 @@ import db from "../database/uservices.database";
 import { log } from "../libs/log";
 import atividadeTemplate, {
   AtividadeTemplateContext,
-} from "../libs/receipt_generator/renders/atividade.renders";
+} from "../libs/document_generator/renders/atividade.renders";
 import Atividade from "../models/atividade.models";
 import Categoria from "../models/categoria.model";
 import Cliente from "../models/cliente.models";

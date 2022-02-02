@@ -4,8 +4,8 @@ import Cliente from "../../../models/cliente.models";
 import Prestador from "../../../models/prestador.models";
 import Mustache from "mustache";
 import { splitMorada } from "../functions/splitMorada";
-import { Morada } from "../types/Morada";
 import { atividadeTemplateFile } from "../templates/atividade.templates";
+import dayjs from "dayjs";
 
 export interface AtividadeTemplateContext {
   atividade: Atividade;
@@ -20,16 +20,15 @@ export default function atividadeTemplate({
   provedor,
   categoria,
 }: AtividadeTemplateContext) {
-  const moradaCliente: Morada = splitMorada(cliente.morada);
-  const moradaProvedor: Morada = splitMorada(provedor.morada);
 
   const view = {
     atividade,
     cliente,
     provedor,
     categoria,
-    moradaCliente,
-    moradaProvedor,
+    moradaCliente : splitMorada(cliente.morada),
+    moradaProvedor: splitMorada(provedor.morada),
+    data: dayjs(atividade.dataFinalizado).format("DD-MM-YYYY, HH:mm A"),
   };
 
   return Mustache.render(atividadeTemplateFile(), view);
