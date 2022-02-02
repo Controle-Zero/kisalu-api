@@ -7,7 +7,7 @@ export const gerarDocumentoPDF = async (req: Request, res: Response) => {
   const response = await gerarDocumentoService(req.params.id);
 
   if (response) {
-    pdf.create(response, {}).toBuffer((err, buffer) => {
+    pdf.create(response, { format: "A4" }).toBuffer((err, buffer) => {
       if (err) return log.error(`${err}- Erro ao criar o arquivo PDF`);
       res.end(buffer);
     });
