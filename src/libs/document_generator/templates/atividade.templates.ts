@@ -19,11 +19,9 @@ export function atividadeTemplateFile() {
             <div class="col-md-12">
               <div class="invoice-wrapper">
                 <div class="intro">
-                  Olá <strong>{{cliente.nome}}</strong>,
-                  <br />
-                  Esta é a factura do pagamento de
-                  <strong>{{atividade.valorAssociado}}</strong> (AKZ) para o seu
-                  consentimento
+                  <h2 id="company-name">UNION SERVICES</h2>,
+                  <h2 id="fatura">FACTURA</h2>
+                  <strong>{{atividade.id}}</strong>
                 </div>
   
                 <div class="payment-info">
@@ -319,6 +317,22 @@ export function atividadeTemplateFile() {
           font-size: 12px;
           color: #969cad;
         }
+
+        #company-name {
+          position: relative;
+          float: right;
+          color : #383D3B
+        }
+
+        .intro {
+          display: block;
+        }
+
+        #fatura {
+          margin-top: -5px;
+          color: #60DBDA;
+        }
+
       </style>
   
       <script type="text/javascript"></script>
