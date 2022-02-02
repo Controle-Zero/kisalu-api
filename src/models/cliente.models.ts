@@ -1,7 +1,7 @@
 import Atividade from "./atividade.models";
 
 export default interface Cliente {
-    idCliente? : string;
+    id : string;
     bi : string;
     nome : string;
     dataNasc : Date;

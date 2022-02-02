@@ -1,7 +1,7 @@
 import Prestador from "./prestador.models";
 export default interface Categoria {
-  categoriaId: string;
+  id: string;
   titulo: string;
   imageUrl: string;
-  prestadores: Prestador[];
+  prestadores?: Prestador[];
 }

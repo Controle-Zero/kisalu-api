@@ -1,4 +1,4 @@
-import { scrypt, randomBytes, scryptSync, timingSafeEqual } from "crypto";
+import { randomBytes, scryptSync, timingSafeEqual } from "crypto";
 
 export function encryptData(data: string): string {
   const salt = randomBytes(16).toString("hex");

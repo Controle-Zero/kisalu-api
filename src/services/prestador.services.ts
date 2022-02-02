@@ -1,12 +1,12 @@
 import db from "../database/uservices.database";
 import Prestador from "../models/prestador.models";
-import { log } from "../log";
+import { log } from "../libs/log";
 import {
   encryptData,
   compareEncryptedData,
-} from "../helpers/encryption.helpers";
-import { gerarToken } from "../helpers/generateToken.helpers";
-import { gerarRefreshTokenPrestador } from "../helpers/generateRefreshToken.helpers";
+} from "../libs/encryption";
+import { gerarToken } from "../libs/generateToken";
+import { gerarRefreshTokenPrestador } from "../libs/generateRefreshToken";
 import dayjs from "dayjs";
 
 export async function criarPrestadorService(prestador: Prestador) {

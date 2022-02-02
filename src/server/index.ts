@@ -1,5 +1,5 @@
 import app from "../apps/httpApp";
-import { log } from "../log";
+import { log } from "../libs/log";
 import http from "http";
 import dotenv from "dotenv";
 import webSocketApp from "../apps/webSocketApp";

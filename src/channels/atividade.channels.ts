@@ -1,5 +1,5 @@
 import { Server, Socket } from "socket.io";
-import { log } from "../log";
+import { log } from "../libs/log";
 import Atividade from "../models/atividade.models";
 import { atividadeService } from "../services/atividade.services";
 import { retornarClienteService } from "../services/cliente.services";
@@ -33,8 +33,8 @@ export async function atividadeChannel(io: Server) {
         const atividadeDB = atividadeService(atividade);
 
         const payload = {
-          cliente: retornarClienteService(atividade.idCliente),
-          categoria: atividade.idCategoria,
+          cliente: retornarClienteService(atividade.clienteId),
+          categoria: atividade.categoriaId,
           atividadeDB,
         };
 
@@ -45,7 +45,7 @@ export async function atividadeChannel(io: Server) {
         atividadeService(atividade);
         const to =
           sockets.length > 0
-            ? sockets.find((f) => f[atividade.idCliente])[atividade.idCliente]
+            ? sockets.find((f) => f[atividade.clienteId])[atividade.categoriaId]
             : "";
         log.info(to);
         socket.to(to).emit(`response`, atividade);

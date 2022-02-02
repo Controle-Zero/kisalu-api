@@ -2,7 +2,7 @@ import { NextFunction, Response } from "express";
 import { decode, verify } from "jsonwebtoken";
 import CustomRequest from "./models/customRequest.models";
 import dotenv from "dotenv";
-import { log } from "../log";
+import { log } from "../libs/log";
 
 dotenv.config();
 
