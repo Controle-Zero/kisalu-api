@@ -3,6 +3,6 @@ import { gerarDocumento } from "../controllers/atividade.controllers";
 
 const atividadeRoutes = Router();
 
-atividadeRoutes.get("/:id/gerarDocumento", gerarDocumento);
+atividadeRoutes.get("/:id/documento", gerarDocumento);
 
 export { atividadeRoutes };

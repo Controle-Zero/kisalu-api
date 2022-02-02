@@ -1,14 +1,12 @@
 import db from "../database/uservices.database";
 import { log } from "../libs/log";
-import { generateAtividadePDF } from "../libs/pdf_generator";
-import { AtividadeTemplateContext } from "../libs/pdf_generator/renders/atividade.renders";
+import atividadeTemplate, {
+  AtividadeTemplateContext,
+} from "../libs/receipt_generator/renders/atividade.renders";
 import Atividade from "../models/atividade.models";
 import Categoria from "../models/categoria.model";
 import Cliente from "../models/cliente.models";
 import Prestador from "../models/prestador.models";
-import { retornarCategoriaService } from "./categoria.services";
-import { retornarClienteService } from "./cliente.services";
-import { retornarPrestadorService } from "./prestador.services";
 
 export async function atividadeService(atividade: Atividade) {
   try {
@@ -58,12 +56,12 @@ export async function gerarDocumentoService(idAtividade: string) {
           id: atividade.categoriaId,
         },
       });
-      return await generateAtividadePDF({
+      return atividadeTemplate({
         atividade,
         cliente,
         provedor,
         categoria,
-      });
+      } as AtividadeTemplateContext);
     }
   } catch (e) {
     log.error(`${e}- Erro ao procurar a atividade...`);
