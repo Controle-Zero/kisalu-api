@@ -1,7 +1,7 @@
 
-# USERVICEs API🌐
+# USERVICEs (Back-end)🌐
 
-An API that deals with the Uservices business logic
+Uservices server-side structure
 
 
 ## Authors
@@ -37,8 +37,3 @@ After installing all dependencies, run the app using the command below
 ```bash
 npm start
 ```
-## Used By
-
-This API is used by the following company:
-
-- Uservices

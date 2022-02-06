@@ -1,7 +1,7 @@
 {
   "name": "uservices-api",
   "version": "1.0.0",
-  "description": "API for uServices",
+  "description": "uServices Back-End",
   "main": "dist/server.js",
   "engines": {
     "node": "14.17.6"
