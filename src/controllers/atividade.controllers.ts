@@ -1,16 +1,31 @@
 import { Request, Response } from "express";
 import { gerarDocumentoService } from "../services/atividade.services";
-import pdf from "html-pdf";
-import { log } from "../libs/log";
+import puppetter from "puppeteer";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export const gerarDocumentoPDF = async (req: Request, res: Response) => {
   const response = await gerarDocumentoService(req.params.id);
 
   if (response) {
-    pdf.create(response, { format: "A4" }).toBuffer((err, buffer) => {
-      if (err) return log.error(`${err}- Erro ao criar o arquivo PDF`);
-      res.end(buffer);
+    const browser = await puppetter.launch();
+    const page = await browser.newPage();
+
+    await page.goto(`${process.env.APP_URL}atividade/${req.params.id}/fatura`, {
+      waitUntil: "networkidle0",
     });
+
+    const pdf = await page.pdf({
+      printBackground: true,
+      format: "letter",
+    });
+
+    await browser.close();
+
+    res.contentType("application/pdf");
+
+    res.status(200).send(pdf);
   } else {
     res.status(500).json({ mensagem: "Erro ao gerar o arquivo!" });
   }
