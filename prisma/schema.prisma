@@ -10,18 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum prestadorStatus {
-  DISPONIVEL
-  INDISPONIVEL
-}
-
-enum atividadeStatus {
-  ATIVA
-  PENDENTE
-  COMPLETA
-  CANCELADA
-}
-
 model Cliente {
   id                  String               @id @default(uuid())
   bi                  String               @unique
@@ -46,7 +34,7 @@ model Prestador {
   email                 String                 @unique
   telefone              String
   password              String
-  estado                prestadorStatus        @default(DISPONIVEL)
+  estado                String                 @default("DISPONIVEL")
   iban                  String
   classificacao         Float                  @default(0)
   numAvaliacoes         Int                    @default(0)
@@ -60,18 +48,18 @@ model Prestador {
 }
 
 model Atividade {
-  id             String          @id @default(uuid())
-  dataCriado     DateTime        @default(now())
+  id             String    @id @default(uuid())
+  dataCriado     DateTime  @default(now())
   dataFinalizado DateTime?
   valorAssociado Float?
   numRef         Int?
-  estado         atividadeStatus @default(PENDENTE)
+  estado         String    @default("PENDENTE")
   prestadorId    String
   clienteId      String
   categoriaId    String
-  Cliente        Cliente         @relation(fields: [clienteId], references: [id])
-  Prestador      Prestador       @relation(fields: [prestadorId], references: [id])
-  Categoria      Categoria       @relation(fields: [categoriaId], references: [id])
+  Cliente        Cliente   @relation(fields: [clienteId], references: [id])
+  Prestador      Prestador @relation(fields: [prestadorId], references: [id])
+  Categoria      Categoria @relation(fields: [categoriaId], references: [id])
 
   @@map("atividades")
 }
