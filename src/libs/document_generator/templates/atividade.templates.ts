@@ -67,7 +67,7 @@ export function atividadeTemplateFile() {
                     <div class="row">
                       <div class="col-xs-4">Categoria</div>
                       <div class="col-xs-3">Serviço</div>
-                      <div class="col-xs-5 text-right">Montante (AKZ)</div>
+                      <div class="col-xs-5 text-right">Montante (AOA)</div>
                     </div>
                   </div>
                   <div class="items">

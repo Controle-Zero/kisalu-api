@@ -31,7 +31,7 @@ export async function atividadeService(atividade: Atividade) {
     });
     return dbResponse;
   } catch (e) {
-    log.error(`Erro ao criar nova atividade- ${e}`);
+    log.error(`Erro ao criar/atualizar nova atividade- ${e}`);
     return undefined;
   }
 }
@@ -64,7 +64,7 @@ export async function gerarDocumentoService(idAtividade: string) {
       } as AtividadeTemplateContext);
     }
   } catch (e) {
-    log.error(`${e}- Erro ao procurar a atividade...`);
+    log.error(`${e}- Erro ao gerar o documento`);
     return undefined;
   }
 }
