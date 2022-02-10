@@ -27,6 +27,6 @@ export const verDocumento = async (req: Request, res: Response) => {
   if (response) {
     res.status(200).send(response);
   } else {
-    res.status(500).json({ mensagem: "Erro ao exibir a factura" });
+    res.status(500).json({ mensagem: "Erro ao exibir o documento" });
   }
 };

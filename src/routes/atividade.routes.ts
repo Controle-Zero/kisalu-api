@@ -6,7 +6,7 @@ import {
 
 const atividadeRoutes = Router();
 
-atividadeRoutes.get("/:id/faturaPDF", gerarDocumentoPDF);
-atividadeRoutes.get("/:id/fatura", verDocumento);
+atividadeRoutes.get("/:id/docPDF", gerarDocumentoPDF);
+atividadeRoutes.get("/:id/doc", verDocumento);
 
 export { atividadeRoutes };

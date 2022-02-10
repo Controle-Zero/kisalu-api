@@ -19,8 +19,7 @@ export function atividadeTemplateFile() {
             <div class="col-md-12">
               <div class="invoice-wrapper">
                 <div class="intro">
-                  <h2 id="company-name">UNION SERVICES</h2>
-                  <h2 id="fatura">DOCUMENTO</h2>
+                  <h2 id="fatura">UNION SERVICES</h2>
                   <strong>{{atividade.id}}</strong>
                 </div>
   
