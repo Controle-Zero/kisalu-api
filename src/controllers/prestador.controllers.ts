@@ -29,7 +29,9 @@ export const criarPrestador = async (req: CustomRequest, res: Response) => {
 };
 
 export const retornarPrestador = async (req: CustomRequest, res: Response) => {
-  const prestador = await retornarPrestadorService(req.id);
+  const prestador: Omit<Prestador, "password"> = await retornarPrestadorService(
+    req.id
+  );
   if (prestador) {
     res.status(200).json({ prestador, sucesso: true });
   } else {

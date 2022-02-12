@@ -1,10 +1,7 @@
 import Cliente from "../models/cliente.models";
 import { log } from "../libs/log";
 import db from "../database/uservices.database";
-import {
-  compareEncryptedData,
-  encryptData,
-} from "../libs/encryption";
+import { compareEncryptedData, encryptData } from "../libs/encryption";
 import { gerarRefreshTokenCliente } from "../libs/generateRefreshToken";
 import { gerarToken } from "../libs/generateToken";
 import dayjs from "dayjs";
@@ -80,12 +77,19 @@ export async function actualizarClienteService(cliente: Cliente) {
 
 export async function retornarClienteService(idCliente: string) {
   try {
-    const cliente = await db.cliente.findUnique({
+    const cliente: Omit<Cliente, "password"> = await db.cliente.findUnique({
       where: {
         id: idCliente,
       },
-      include: {
+      select: {
         atividades: true,
+        nome: true,
+        bi: true,
+        id: true,
+        email: true,
+        morada: true,
+        dataNasc: true,
+        telefone: true,
       },
     });
     log.info(`Cliente retorando: ${cliente?.email}`);

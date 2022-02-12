@@ -1,10 +1,7 @@
 import db from "../database/uservices.database";
 import Prestador from "../models/prestador.models";
 import { log } from "../libs/log";
-import {
-  encryptData,
-  compareEncryptedData,
-} from "../libs/encryption";
+import { encryptData, compareEncryptedData } from "../libs/encryption";
 import { gerarToken } from "../libs/generateToken";
 import { gerarRefreshTokenPrestador } from "../libs/generateRefreshToken";
 import dayjs from "dayjs";
@@ -102,23 +99,24 @@ export async function actualizarPrestadorService(prestador: Prestador) {
 
 export async function retornarPrestadorService(idPrestador: string) {
   try {
-    const prestador = await db.prestador.findUnique({
-      where: {
-        id: idPrestador,
-      },
-      include: {
-        atividades: {
-          where: {
-            estado: {
-              in: ["PENDENTE", "ATIVA"],
+    const prestador: Omit<Prestador, "password"> =
+      await db.prestador.findUnique({
+        where: {
+          id: idPrestador,
+        },
+        include: {
+          atividades: {
+            where: {
+              estado: {
+                in: ["PENDENTE", "ATIVA"],
+              },
+            },
+            include: {
+              Cliente: true,
             },
           },
-          include: {
-            Cliente: true,
-          },
         },
-      },
-    });
+      });
     log.info(`prestador retorando: ${prestador?.email}`);
     return prestador;
   } catch (e) {
