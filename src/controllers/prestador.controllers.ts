@@ -97,7 +97,6 @@ export const adicionarCategoriasProvedor = async (
   res: Response
 ) => {
   const { idCategorias } = req.body;
-  console.log(idCategorias);
 
   const response = await adicionarCategoriasService(req.id, idCategorias);
 
