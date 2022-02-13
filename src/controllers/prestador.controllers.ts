@@ -9,6 +9,7 @@ import {
   refreshTokenPrestadorService,
   adicionarCategoriasService,
 } from "../services/prestador.services";
+import { log } from "../libs/log";
 
 export const criarPrestador = async (req: CustomRequest, res: Response) => {
   const prestador: Prestador = req.body;
@@ -97,6 +98,8 @@ export const adicionarCategoriasProvedor = async (
   res: Response
 ) => {
   const { idCategorias } = req.body;
+
+  log.info(`Lista de categorias: ${idCategorias}`);
 
   const response = await adicionarCategoriasService(req.id, idCategorias);
 
