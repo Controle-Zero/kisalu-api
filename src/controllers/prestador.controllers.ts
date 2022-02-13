@@ -96,7 +96,9 @@ export const adicionarCategoriasProvedor = async (
   req: CustomRequest,
   res: Response
 ) => {
-  const idCategorias: string[] = req.body;
+  const { idCategorias } = req.body;
+  console.log(idCategorias);
+
   const response = await adicionarCategoriasService(req.id, idCategorias);
 
   if (response) {

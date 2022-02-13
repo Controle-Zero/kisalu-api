@@ -26,7 +26,7 @@ export const criarCliente = async (req: CustomRequest, res: Response) => {
 };
 
 export const retornarCliente = async (req: CustomRequest, res: Response) => {
-  const cliente: Omit<Cliente, "password"> = await retornarClienteService(
+  const cliente = await retornarClienteService(
     req.id
   );
   if (cliente) {
