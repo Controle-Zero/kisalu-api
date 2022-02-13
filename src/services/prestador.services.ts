@@ -99,7 +99,7 @@ export async function actualizarPrestadorService(prestador: Prestador) {
 
 export async function retornarPrestadorService(idPrestador: string) {
   try {
-    const prestador: Omit<Prestador, "password" | "idCategorias"> =
+    const prestador: Omit<Prestador, "password"> =
       await db.prestador.findUnique({
         where: {
           id: idPrestador,
@@ -107,6 +107,11 @@ export async function retornarPrestadorService(idPrestador: string) {
         select: {
           nome: true,
           bi: true,
+          categorias: {
+            select: {
+              idCategoria: true,
+            },
+          },
           dataNasc: true,
           classificacao: true,
           descricao: true,
