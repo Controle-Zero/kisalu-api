@@ -1,3 +1,4 @@
+import Atividade from "./atividade.models";
 import Cliente from "./cliente.models";
 
 export default interface Prestador extends Cliente {
@@ -8,5 +9,9 @@ export default interface Prestador extends Cliente {
   numAvaliacoes: number;
   rate: number;
   descricao: string;
-  idCategorias?: string[];
+  idCategorias? : string[];
+  categorias?: {
+    idCategoria: string;
+  }[];
+  atividades?: Atividade[];
 }
