@@ -77,12 +77,32 @@ export async function actualizarClienteService(cliente: Cliente) {
 
 export async function retornarClienteService(idCliente: string) {
   try {
-    const cliente: Omit<Cliente, "password"> = await db.cliente.findUnique({
+    const cliente = await db.cliente.findUnique({
       where: {
         id: idCliente,
       },
       select: {
-        atividades: true,
+        atividades: {
+          select: {
+            Prestador: {
+              select: {
+                bi: true,
+                nome: true,
+                rate: true,
+                email: true,
+                telefone: true,
+                iban: true,
+                id: true,
+              },
+            },
+            Categoria: {
+              select: {
+                titulo: true,
+                id: true,
+              },
+            },
+          },
+        },
         nome: true,
         bi: true,
         id: true,

@@ -126,6 +126,12 @@ export async function retornarPrestadorService(idPrestador: string) {
             },
             include: {
               Cliente: true,
+              Categoria: {
+                select: {
+                  id: true,
+                  titulo: true,
+                },
+              },
             },
           },
         },
