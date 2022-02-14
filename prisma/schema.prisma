@@ -19,6 +19,7 @@ model Cliente {
   email               String               @unique
   telefone            String
   password            String
+  token               String?               @unique
   refreshTokenCliente RefreshTokenCliente?
   atividades          Atividade[]
 
@@ -40,6 +41,7 @@ model Prestador {
   numAvaliacoes         Int                    @default(0)
   rate                  Float                  @default(0)
   descricao             String?                @db.Text
+  token                 String?                 @unique
   refreshTokenPrestador RefreshTokenPrestador?
   atividades            Atividade[]
   categorias            PrestadorCategoria[]

@@ -5,7 +5,6 @@ import {
   actualizarClienteService,
   autenticarClienteService,
   criarClienteService,
-  refreshTokenClienteService,
   retornarClienteService,
 } from "../services/cliente.services";
 
@@ -26,9 +25,7 @@ export const criarCliente = async (req: CustomRequest, res: Response) => {
 };
 
 export const retornarCliente = async (req: CustomRequest, res: Response) => {
-  const cliente = await retornarClienteService(
-    req.id
-  );
+  const cliente = await retornarClienteService(req.id);
   if (cliente) {
     res.status(200).json({ cliente, sucesso: true });
   } else {
@@ -66,7 +63,7 @@ export const autenticarCliente = async (req: CustomRequest, res: Response) => {
   }
 };
 
-export const refreshTokenCliente = async (
+/*export const refreshTokenCliente = async (
   req: CustomRequest,
   res: Response
 ) => {
@@ -81,4 +78,4 @@ export const refreshTokenCliente = async (
       .status(400)
       .json({ mensagem: "Refresh token inválido", sucesso: false });
   }
-};
+};*/

@@ -6,10 +6,8 @@ import {
   actualizarPrestadorService,
   retornarPrestadorService,
   autenticarPrestadorService,
-  refreshTokenPrestadorService,
   adicionarCategoriasService,
 } from "../services/prestador.services";
-import { log } from "../libs/log";
 
 export const criarPrestador = async (req: CustomRequest, res: Response) => {
   const prestador: Prestador = req.body;
@@ -76,7 +74,7 @@ export const autenticarPrestador = async (
   }
 };
 
-export const refreshTokenPrestador = async (
+/*export const refreshTokenPrestador = async (
   req: CustomRequest,
   res: Response
 ) => {
@@ -91,15 +89,13 @@ export const refreshTokenPrestador = async (
       .status(400)
       .json({ mensagem: "Refresh token inválido", sucesso: false });
   }
-};
+};*/
 
 export const adicionarCategoriasProvedor = async (
   req: CustomRequest,
   res: Response
 ) => {
   const { idCategorias } = req.body;
-
-  log.info(`Lista de categorias: ${idCategorias}`);
 
   const response = await adicionarCategoriasService(req.id, idCategorias);
 

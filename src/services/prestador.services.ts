@@ -3,8 +3,6 @@ import Prestador from "../models/prestador.models";
 import { log } from "../libs/log";
 import { encryptData, compareEncryptedData } from "../libs/encryption";
 import { gerarToken } from "../libs/generateToken";
-import { gerarRefreshTokenPrestador } from "../libs/generateRefreshToken";
-import dayjs from "dayjs";
 
 export async function criarPrestadorService(prestador: Prestador) {
   try {
@@ -99,7 +97,7 @@ export async function actualizarPrestadorService(prestador: Prestador) {
 
 export async function retornarPrestadorService(idPrestador: string) {
   try {
-    const prestador: Omit<Prestador, "password"> =
+    const prestador: Omit<Prestador, "password" | "token"> =
       await db.prestador.findUnique({
         where: {
           id: idPrestador,
@@ -174,14 +172,25 @@ export async function autenticarPrestadorService(
     return undefined;
   }
 
-  const token = gerarToken(prestadorExiste.id);
+  const generatedToken = gerarToken(prestadorExiste.id);
 
-  const refreshToken = await gerarRefreshTokenPrestador(prestadorExiste.id);
+  if (!prestadorExiste.token) {
+    await db.prestador.update({
+      where: {
+        id: prestadorExiste.id,
+      },
+      data: {
+        token: generatedToken,
+      },
+    });
+  }
 
-  return { token, refreshToken };
+  //const refreshToken = await gerarRefreshTokenPrestador(prestadorExiste.id);
+
+  return { generatedToken };
 }
 
-export async function refreshTokenPrestadorService(refreshTokenId: string) {
+/*export async function refreshTokenPrestadorService(refreshTokenId: string) {
   const refreshToken = await db.refreshTokenPrestador.findFirst({
     where: {
       id: refreshTokenId,
@@ -211,7 +220,7 @@ export async function refreshTokenPrestadorService(refreshTokenId: string) {
   }
 
   return { token };
-}
+}*/
 
 export async function adicionarCategoriasService(
   idPrestador: string,

@@ -13,5 +13,4 @@ export default interface Prestador extends Cliente {
   categorias?: {
     idCategoria: string;
   }[];
-  atividades?: Atividade[];
 }

@@ -2,9 +2,7 @@ import Cliente from "../models/cliente.models";
 import { log } from "../libs/log";
 import db from "../database/uservices.database";
 import { compareEncryptedData, encryptData } from "../libs/encryption";
-import { gerarRefreshTokenCliente } from "../libs/generateRefreshToken";
 import { gerarToken } from "../libs/generateToken";
-import dayjs from "dayjs";
 
 export async function criarClienteService(cliente: Cliente) {
   try {
@@ -144,15 +142,26 @@ export async function autenticarClienteService(
     return undefined;
   }
 
-  const token = gerarToken(clienteExiste.id);
+  const generatedToken = gerarToken(clienteExiste.id);
 
-  const refreshToken = await gerarRefreshTokenCliente(clienteExiste.id);
+  if (!clienteExiste.token) {
+    await db.cliente.update({
+      where: {
+        id: clienteExiste.id,
+      },
+      data: {
+        token: generatedToken,
+      },
+    });
+  }
+
+  //const refreshToken = await gerarRefreshTokenCliente(clienteExiste.id);
 
   log.info(`Login feito com sucesso!!`);
-  return { token, refreshToken };
+  return { generatedToken };
 }
 
-export async function refreshTokenClienteService(refreshTokenId: string) {
+/*export async function refreshTokenClienteService(refreshTokenId: string) {
   const refreshToken = await db.refreshTokenCliente.findFirst({
     where: {
       id: refreshTokenId,
@@ -182,4 +191,4 @@ export async function refreshTokenClienteService(refreshTokenId: string) {
   }
 
   return { token };
-}
+}*/
