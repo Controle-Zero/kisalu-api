@@ -144,16 +144,14 @@ export async function autenticarClienteService(
 
   const generatedToken = gerarToken(clienteExiste.id);
 
-  if (!clienteExiste.token) {
-    await db.cliente.update({
-      where: {
-        id: clienteExiste.id,
-      },
-      data: {
-        token: generatedToken,
-      },
-    });
-  }
+  await db.cliente.update({
+    where: {
+      id: clienteExiste.id,
+    },
+    data: {
+      token: generatedToken,
+    },
+  });
 
   //const refreshToken = await gerarRefreshTokenCliente(clienteExiste.id);
 

@@ -1,7 +1,7 @@
 import Cliente from "../models/cliente.models";
 import Prestador from "../models/prestador.models";
 import { NextFunction, Response } from "express";
-import getClienteOrProvedor from "./functions/getClienteOrProvedor";
+import getClienteOrProvedor from "./utils/getClienteOrProvedor";
 import CustomRequest from "./models/customRequest.models";
 import { log } from "../libs/log";
 
@@ -16,6 +16,6 @@ export default async function checkAuthenticatedToken(
     return next();
   } else {
     log.error("O token informado está na blacklist");
-    return res.status(500).json({ mensagem: "Token inválido" });
+    return res.status(400).json({ mensagem: "Token inválido" });
   }
 }

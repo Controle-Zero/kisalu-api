@@ -174,16 +174,14 @@ export async function autenticarPrestadorService(
 
   const generatedToken = gerarToken(prestadorExiste.id);
 
-  if (!prestadorExiste.token) {
-    await db.prestador.update({
-      where: {
-        id: prestadorExiste.id,
-      },
-      data: {
-        token: generatedToken,
-      },
-    });
-  }
+  await db.prestador.update({
+    where: {
+      id: prestadorExiste.id,
+    },
+    data: {
+      token: generatedToken,
+    },
+  });
 
   //const refreshToken = await gerarRefreshTokenPrestador(prestadorExiste.id);
 
