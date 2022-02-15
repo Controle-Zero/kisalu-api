@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { gerarDocumentoService } from "../services/atividade.services";
+import { gerarDocumentoService } from "../services/atividade/gerarDocumentoService";
 import pdf from "html-pdf";
 import { log } from "../libs/log";
 

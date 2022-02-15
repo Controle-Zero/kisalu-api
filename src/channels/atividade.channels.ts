@@ -1,8 +1,8 @@
 import { Server, Socket } from "socket.io";
 import { log } from "../libs/log";
 import Atividade from "../models/atividade.models";
-import { atividadeService } from "../services/atividade.services";
-import { retornarClienteService } from "../services/cliente.services";
+import { atividadeService } from "../services/atividade/atividadeService";
+import { retornarClienteService } from "../services/cliente/retornarClienteService";
 
 interface CustomSocket extends Socket {
   idCliente: string;

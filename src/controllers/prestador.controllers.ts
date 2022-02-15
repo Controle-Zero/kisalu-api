@@ -1,13 +1,11 @@
 import { Response } from "express";
 import CustomRequest from "../middleware/models/customRequest.models";
 import Prestador from "../models/prestador.models";
-import {
-  criarPrestadorService,
-  actualizarPrestadorService,
-  retornarPrestadorService,
-  autenticarPrestadorService,
-  adicionarCategoriasService,
-} from "../services/prestador.services";
+import { adicionarCategoriasService } from "../services/prestador/adicionarCategoriasService";
+import { autenticarPrestadorService } from "../services/prestador/autenticarPrestadorService";
+import { retornarPrestadorService } from "../services/prestador/retornarPrestadorService";
+import { actualizarPrestadorService } from "../services/prestador/actualizarPrestadorService";
+import { criarPrestadorService } from "../services/prestador/criarPrestadorService";
 
 export const criarPrestador = async (req: CustomRequest, res: Response) => {
   const prestador: Prestador = req.body;
@@ -28,9 +26,7 @@ export const criarPrestador = async (req: CustomRequest, res: Response) => {
 };
 
 export const retornarPrestador = async (req: CustomRequest, res: Response) => {
-  const prestador = await retornarPrestadorService(
-    req.id
-  );
+  const prestador = await retornarPrestadorService(req.id);
   if (prestador) {
     res.status(200).json({ prestador, sucesso: true });
   } else {
