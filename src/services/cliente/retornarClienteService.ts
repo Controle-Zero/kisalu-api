@@ -1,7 +1,6 @@
 import { log } from "../../libs/log";
 import db from "../../database/uservices.database";
 
-
 export async function retornarClienteService(idCliente: string) {
   try {
     const cliente = await db.cliente.findUnique({
@@ -10,6 +9,11 @@ export async function retornarClienteService(idCliente: string) {
       },
       select: {
         atividades: {
+          where: {
+            estado: {
+              in: ["PENDENTE", "ATIVA"],
+            },
+          },
           select: {
             Prestador: {
               select: {
