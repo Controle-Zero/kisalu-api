@@ -27,6 +27,7 @@ export async function atividadeService(atividade: Atividade) {
         clienteId: atividade.clienteId,
         prestadorId: atividade.prestadorId,
         categoriaId: atividade.categoriaId,
+        descricao: atividade.descricao,
       },
     });
     return dbResponse;
