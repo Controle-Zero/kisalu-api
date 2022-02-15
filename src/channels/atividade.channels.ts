@@ -28,6 +28,7 @@ export async function atividadeChannel(io: Server) {
       }
 
       socket.on(`request:${idProvedor}`, (atividade: Atividade) => {
+        log.info("Request event");
         const atividadeDB = atividadeService(atividade);
 
         const payload = {
@@ -40,10 +41,13 @@ export async function atividadeChannel(io: Server) {
       });
     } else {
       socket.on(`response`, (atividade: Atividade) => {
+        log.info("Response event");
         atividadeService(atividade);
         const to =
           sockets.length > 0
-            ? sockets.find((f) => f[atividade.clienteId])[atividade.categoriaId]
+            ? sockets.find((f) => f[atividade.cliente.id])[
+                atividade.categoria.id
+              ]
             : "";
         log.info(to);
         socket.to(to).emit(`response`, atividade);

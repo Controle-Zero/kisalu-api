@@ -1,3 +1,6 @@
+import Categoria from "./categoria.model";
+import Cliente from "./cliente.models";
+
 export default interface Atividade {
   id: string;
   dataCriado: Date;
@@ -9,4 +12,6 @@ export default interface Atividade {
   clienteId: string;
   categoriaId: string;
   descricao?: string;
+  cliente?: Cliente
+  categoria?: Categoria
 }
