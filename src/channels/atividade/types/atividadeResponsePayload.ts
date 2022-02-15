@@ -1,7 +1,7 @@
 import Categoria from "../../../models/categoria.model";
 import Cliente from "../../../models/cliente.models";
 
-export default interface AtividadePayload {
+export default interface AtividadeResponsePayload {
   id: string;
   dataCriado: Date;
   dataFinalizado: Date;

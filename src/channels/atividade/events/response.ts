@@ -1,12 +1,15 @@
 import { log } from "../../../libs/log";
 import { updateAtividadeService } from "../../../services/atividade/updateAtividade";
-import AtividadePayload from "../types/atividadePayload";
+import AtividadeResponsePayload from "../types/atividadeResponsePayload";
 import { ResponseEventContext } from "../types/responseEventContext";
 
-export async function responseEventHandler({ socket, sockets }: ResponseEventContext) {
-  socket.on(`response`, (atividade: AtividadePayload) => {
+export async function responseEventHandler({
+  socket,
+  sockets,
+}: ResponseEventContext) {
+  socket.on(`response`, (atividade: AtividadeResponsePayload) => {
     log.info(`Response event`);
-    
+
     updateAtividadeService(atividade);
 
     const to =
