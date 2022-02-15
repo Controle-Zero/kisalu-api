@@ -2,12 +2,9 @@ import db from "../../database/uservices.database";
 import { log } from "../../libs/log";
 import Atividade from "../../models/atividade.models";
 
-
 export async function atividadeService(atividade: Atividade) {
   try {
-    log.info(
-      `Trabalhando na atividade entre ${atividade.clienteId} e ${atividade.prestadorId}`
-    );
+    log.info(`Atividade service`);
     const dbResponse = await db.atividade.upsert({
       where: {
         id: atividade.id ?? "",

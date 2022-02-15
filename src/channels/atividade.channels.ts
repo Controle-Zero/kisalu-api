@@ -16,7 +16,7 @@ export async function atividadeChannel(io: Server) {
   io.of("atividadeNsp").on("connection", (socket: CustomSocket) => {
     log.info(`Socket ${socket.id} connected`);
     const { idCliente, idProvedor } = socket.handshake.auth;
-
+    log.info(idCliente);
     if (idCliente && idProvedor) {
       const clienteExiste =
         sockets.length > 0 ? sockets.find((f) => f[idCliente]) : undefined;
