@@ -3,7 +3,8 @@ import { log } from "../libs/log";
 import Atividade from "../models/atividade.models";
 import Categoria from "../models/categoria.model";
 import Cliente from "../models/cliente.models";
-import { atividadeService } from "../services/atividade/atividadeService";
+import { criarAtividadeService } from "../services/atividade/criarAtividadeService";
+import { updateAtividadeService } from "../services/atividade/updateAtividadeService";
 import { retornarClienteService } from "../services/cliente/retornarClienteService";
 
 interface CustomSocket extends Socket {
@@ -41,7 +42,7 @@ export async function atividadeChannel(io: Server) {
 
       socket.on(`request:${idProvedor}`, (atividade: Atividade) => {
         log.info("Request event");
-        const atividadeDB = atividadeService(atividade);
+        const atividadeDB = criarAtividadeService(atividade);
 
         const payload = {
           cliente: retornarClienteService(atividade.clienteId),
@@ -54,7 +55,7 @@ export async function atividadeChannel(io: Server) {
     } else {
       socket.on(`response`, (atividade: AtividadePayload) => {
         log.info(`Response event, payload- ${JSON.stringify(atividade)}`);
-        atividadeService(atividade);
+        updateAtividadeService(atividade);
         const to =
           sockets.length > 0
             ? sockets.find((f) => f[atividade.Cliente.id])[
