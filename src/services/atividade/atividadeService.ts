@@ -7,7 +7,7 @@ export async function atividadeService(atividade) {
     log.info(`Atividade service- ${atividade.id}`);
     const dbResponse = await db.atividade.upsert({
       where: {
-        id: atividade.id ?? "",
+        id: atividade.id,
       },
       update: {
         dataFinalizado: atividade.dataFinalizado,
