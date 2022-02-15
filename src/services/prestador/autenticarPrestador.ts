@@ -1,4 +1,4 @@
-import db from "../../database/uservices.database";
+import db from "../../configs/db";
 import { compareEncryptedData } from "../../libs/encryption";
 import { gerarToken } from "../../libs/generateToken";
 

@@ -1,4 +1,4 @@
-import db from "../../database/uservices.database";
+import db from "../../configs/db";
 import { log } from "../../libs/log";
 import atividadeTemplate, { AtividadeTemplateContext } from "../../libs/document_generator/renders/atividade.renders";
 import Atividade from "../../models/atividade.models";

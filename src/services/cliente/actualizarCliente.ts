@@ -1,6 +1,6 @@
 import Cliente from "../../models/cliente.models";
 import { log } from "../../libs/log";
-import db from "../../database/uservices.database";
+import db from "../../configs/db";
 import { encryptData } from "../../libs/encryption";
 
 export async function actualizarClienteService(cliente: Cliente) {

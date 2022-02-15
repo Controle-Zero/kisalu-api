@@ -1,4 +1,4 @@
-import db from "../database/uservices.database";
+import db from "../configs/db";
 import dayjs from "dayjs";
 
 export async function gerarRefreshTokenCliente(idCliente: string) {

@@ -1,4 +1,4 @@
-import db from "../../database/uservices.database";
+import db from "../../configs/db";
 import { log } from "../../libs/log";
 
 export async function retornarPrestadorService(idPrestador: string) {

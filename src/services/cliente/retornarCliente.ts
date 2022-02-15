@@ -1,5 +1,5 @@
 import { log } from "../../libs/log";
-import db from "../../database/uservices.database";
+import db from "../../configs/db";
 
 export async function retornarClienteService(idCliente: string) {
   try {

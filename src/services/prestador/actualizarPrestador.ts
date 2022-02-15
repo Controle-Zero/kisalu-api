@@ -1,4 +1,4 @@
-import db from "../../database/uservices.database";
+import db from "../../configs/db";
 import Prestador from "../../models/prestador.models";
 import { log } from "../../libs/log";
 import { encryptData } from "../../libs/encryption";

@@ -1,4 +1,4 @@
-import db from "../../database/uservices.database";
+import db from "../../configs/db";
 
 export default async function getClienteOrProvedor(ID: string) {
   const cliente = await db.cliente.findUnique({

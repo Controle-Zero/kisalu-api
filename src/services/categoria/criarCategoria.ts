@@ -1,4 +1,4 @@
-import db from "../../database/uservices.database";
+import db from "../../configs/db";
 import Categoria from "../../models/categoria.model";
 import { log } from "../../libs/log";
 
