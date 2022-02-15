@@ -40,7 +40,7 @@ export async function atividadeChannel(io: Server) {
       });
     } else {
       socket.on(`response`, (atividade: Atividade) => {
-        log.info(`Response event, payload- ${atividade}`);
+        log.info(`Response event, payload- ${JSON.stringify(atividade)}`);
         atividadeService(atividade);
         const to =
           sockets.length > 0
@@ -48,8 +48,10 @@ export async function atividadeChannel(io: Server) {
                 atividade.categoria.id
               ]
             : "";
-        log.info(to);
-        socket.to(to).emit(`response`, atividade);
+        if (to) {
+          log.info(to);
+          socket.to(to).emit(`response`, atividade);
+        }
       });
     }
   });
