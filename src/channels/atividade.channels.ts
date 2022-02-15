@@ -1,12 +1,25 @@
 import { Server, Socket } from "socket.io";
 import { log } from "../libs/log";
 import Atividade from "../models/atividade.models";
+import Categoria from "../models/categoria.model";
+import Cliente from "../models/cliente.models";
 import { atividadeService } from "../services/atividade/atividadeService";
 import { retornarClienteService } from "../services/cliente/retornarClienteService";
 
 interface CustomSocket extends Socket {
   idCliente: string;
   idProvedor: string;
+}
+
+interface AtividadePayload {
+  id: string;
+  dataCriado: Date;
+  dataFinalizado: Date;
+  valorAssociado: number;
+  numRef: number;
+  estado: string;
+  Categoria: Omit<Categoria, "imageUrl">;
+  Cliente: Omit<Cliente, "password" | "token" | "atividades">;
 }
 
 //Real time interaction (notification system)
@@ -39,13 +52,13 @@ export async function atividadeChannel(io: Server) {
         io.emit(`request:${idProvedor}`, payload);
       });
     } else {
-      socket.on(`response`, (atividade: Atividade) => {
+      socket.on(`response`, (atividade: AtividadePayload) => {
         log.info(`Response event, payload- ${JSON.stringify(atividade)}`);
         atividadeService(atividade);
         const to =
           sockets.length > 0
-            ? sockets.find((f) => f[atividade.cliente.id])[
-                atividade.categoria.id
+            ? sockets.find((f) => f[atividade.Cliente.id])[
+                atividade.Categoria.id
               ]
             : "";
         if (to) {

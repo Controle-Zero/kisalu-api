@@ -12,6 +12,4 @@ export default interface Atividade {
   clienteId: string;
   categoriaId: string;
   descricao?: string;
-  cliente?: Cliente
-  categoria?: Categoria
 }

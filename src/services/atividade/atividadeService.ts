@@ -2,9 +2,9 @@ import db from "../../database/uservices.database";
 import { log } from "../../libs/log";
 import Atividade from "../../models/atividade.models";
 
-export async function atividadeService(atividade: Atividade) {
+export async function atividadeService(atividade) {
   try {
-    log.info(`Atividade service`);
+    log.info(`Atividade service- ${atividade.id}`);
     const dbResponse = await db.atividade.upsert({
       where: {
         id: atividade.id ?? "",
