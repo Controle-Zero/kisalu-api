@@ -40,7 +40,7 @@ export async function atividadeChannel(io: Server) {
       });
     } else {
       socket.on(`response`, (atividade: Atividade) => {
-        log.info("Response event");
+        log.info(`Response event, payload- ${atividade}`);
         atividadeService(atividade);
         const to =
           sockets.length > 0
