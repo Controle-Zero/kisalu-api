@@ -1,6 +1,6 @@
 import { NextFunction, Response } from "express";
 import { decode, verify } from "jsonwebtoken";
-import CustomRequest from "./models/customRequest.models";
+import CustomRequest from "./types/customRequest";
 import dotenv from "dotenv";
 import { log } from "../libs/log";
 

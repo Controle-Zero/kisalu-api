@@ -1,6 +1,6 @@
-import { retornarCategoriasService } from "../services/categoria/retornarCategoriasService";
+import { retornarCategoriasService } from "../services/categoria/retornarCategorias";
 import { Request, Response } from "express";
-import { criarCategoriaService } from "../services/categoria/criarCategoriaService";
+import { criarCategoriaService } from "../services/categoria/criarCategoria";
 import Categoria from "../models/categoria.model";
 
 export const criarCategoria = async (req: Request, res: Response) => {

@@ -1,8 +1,8 @@
 import Cliente from "../models/cliente.models";
 import Prestador from "../models/prestador.models";
 import { NextFunction, Response } from "express";
-import getClienteOrProvedor from "./utils/getClienteOrProvedor";
-import CustomRequest from "./models/customRequest.models";
+import getClienteOrProvedor from "./helpers";
+import CustomRequest from "./types/customRequest";
 import { log } from "../libs/log";
 
 export default async function checkAuthenticatedToken(

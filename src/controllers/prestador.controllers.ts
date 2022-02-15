@@ -1,11 +1,11 @@
 import { Response } from "express";
-import CustomRequest from "../middleware/models/customRequest.models";
+import CustomRequest from "../middleware/types/customRequest";
 import Prestador from "../models/prestador.models";
-import { adicionarCategoriasService } from "../services/prestador/adicionarCategoriasService";
-import { autenticarPrestadorService } from "../services/prestador/autenticarPrestadorService";
-import { retornarPrestadorService } from "../services/prestador/retornarPrestadorService";
-import { actualizarPrestadorService } from "../services/prestador/actualizarPrestadorService";
-import { criarPrestadorService } from "../services/prestador/criarPrestadorService";
+import { adicionarCategoriasService } from "../services/prestador/adicionarCategorias";
+import { autenticarPrestadorService } from "../services/prestador/autenticarPrestador";
+import { retornarPrestadorService } from "../services/prestador/retornarPrestador";
+import { actualizarPrestadorService } from "../services/prestador/actualizarPrestador";
+import { criarPrestadorService } from "../services/prestador/criarPrestador";
 
 export const criarPrestador = async (req: CustomRequest, res: Response) => {
   const prestador: Prestador = req.body;

@@ -1,10 +1,10 @@
 import { Response } from "express";
-import CustomRequest from "../middleware/models/customRequest.models";
+import CustomRequest from "../middleware/types/customRequest";
 import Cliente from "../models/cliente.models";
-import { autenticarClienteService } from "../services/cliente/autenticarClienteService";
-import { retornarClienteService } from "../services/cliente/retornarClienteService";
-import { actualizarClienteService } from "../services/cliente/actualizarClienteService";
-import { criarClienteService } from "../services/cliente/criarClienteService";
+import { autenticarClienteService } from "../services/cliente/autenticarCliente";
+import { retornarClienteService } from "../services/cliente/retornarCliente";
+import { actualizarClienteService } from "../services/cliente/actualizarCliente";
+import { criarClienteService } from "../services/cliente/criarCliente";
 
 export const criarCliente = async (req: CustomRequest, res: Response) => {
   const cliente: Cliente = req.body;
