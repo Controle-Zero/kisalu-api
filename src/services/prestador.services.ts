@@ -128,13 +128,32 @@ export async function retornarPrestadorService(idPrestador: string) {
               },
             },
             include: {
-              Cliente: true,
+              Cliente: {
+                select: {
+                  bi: true,
+                  nome: true,
+                  morada: true,
+                  dataNasc: true,
+                  email: true,
+                  id: true,
+                  telefone: true,
+                },
+              },
               Categoria: {
                 select: {
                   id: true,
                   titulo: true,
                 },
               },
+            },
+            select: {
+              dataCriado: true,
+              numRef: true,
+              descricao: true,
+              id: true,
+              estado: true,
+              valorAssociado: true,
+              dataFinalizado: true,
             },
           },
         },

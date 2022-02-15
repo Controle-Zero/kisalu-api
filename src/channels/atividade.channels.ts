@@ -27,8 +27,6 @@ export async function atividadeChannel(io: Server) {
         sockets.push({ [idCliente]: socket.id });
       }
 
-      log.info(sockets);
-
       socket.on(`request:${idProvedor}`, (atividade: Atividade) => {
         const atividadeDB = atividadeService(atividade);
 
