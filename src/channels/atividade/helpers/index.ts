@@ -1,4 +1,4 @@
-import { ResponseEventContext } from "../types/responseEventContext";
+import { ResponseEventContext } from "../interfaces/responseEventContext";
 
 export function handleSocketsArray(
   id: string,

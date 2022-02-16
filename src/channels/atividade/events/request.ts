@@ -2,7 +2,7 @@ import { log } from "../../../libs/log";
 import Atividade from "../../../models/atividade.models";
 import { criarAtividadeService } from "../../../services/atividade/criarAtividade";
 import { retornarClienteService } from "../../../services/cliente/retornarCliente";
-import RequestEventContext from "../types/requestEventContext";
+import RequestEventContext from "../interfaces/requestEventContext";
 
 export async function requestEventHandler({
   socket,

@@ -1,7 +1,7 @@
-import db from "../../configs/db";
+import db from "../../libs/configs/db";
 import Prestador from "../../models/prestador.models";
 import { log } from "../../libs/log";
-import { encryptData } from "../../libs/encryption";
+import { encryptData } from "../../libs/utils/encryption";
 
 export async function criarPrestadorService(prestador: Prestador) {
   try {

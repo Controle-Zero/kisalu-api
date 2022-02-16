@@ -1,21 +1,18 @@
-import db from "../../configs/db";
+import db from "../../libs/configs/db";
 
-export default async function getClienteOrProvedor(ID: string) {
-  const cliente = await db.cliente.findUnique({
+export default async function verifyTokenDB(ID: string, token: string) {
+  const tokenExists = await db.token.findUnique({
     where: {
-      id: ID,
+      id: token,
     },
   });
 
-  if (cliente) {
-    return cliente;
+  if (
+    tokenExists &&
+    (tokenExists.clienteId || tokenExists.prestadorId) === ID
+  ) {
+    return true;
   } else {
-    const prestador = await db.prestador.findUnique({
-      where: {
-        id: ID,
-      },
-    });
-
-    return prestador;
+    return false;
   }
 }

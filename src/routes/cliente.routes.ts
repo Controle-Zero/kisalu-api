@@ -9,13 +9,14 @@ import {
 import bodyParser from "body-parser";
 import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
 import checkAuthenticatedToken from "../middleware/checkAuthenticatedToken";
+import detectDevice from "../middleware/detectDevice";
 
 const jsonParser = bodyParser.json();
 
 const clienteRoutes = Router();
 
 clienteRoutes.post("/", jsonParser, criarCliente);
-clienteRoutes.post("/login", jsonParser, autenticarCliente);
+clienteRoutes.post("/login", detectDevice, jsonParser, autenticarCliente);
 //clienteRoutes.post("/refresh-token", jsonParser, refreshTokenCliente);
 clienteRoutes.put(
   "/",

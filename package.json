@@ -26,6 +26,7 @@
     "html-pdf": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "mustache": "^4.2.0",
+    "node-device-detector": "^1.4.3",
     "pino": "^7.2.0",
     "pino-pretty": "^7.2.0",
     "prisma": "^3.6.0",

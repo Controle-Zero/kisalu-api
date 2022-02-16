@@ -1,7 +1,7 @@
 import { retornarCategoriasService } from "../services/categoria/retornarCategorias";
 import { Request, Response } from "express";
 import { criarCategoriaService } from "../services/categoria/criarCategoria";
-import Categoria from "../models/categoria.model";
+import Categoria from "../models/categoria.models";
 
 export const criarCategoria = async (req: Request, res: Response) => {
   const categoria: Categoria = req.body;

@@ -1,6 +1,6 @@
-import db from "../../configs/db";
-import { compareEncryptedData } from "../../libs/encryption";
-import { gerarToken } from "../../libs/generateToken";
+import db from "../../libs/configs/db";
+import { compareEncryptedData } from "../../libs/utils/encryption";
+import { gerarToken } from "../../libs/utils/generateToken";
 
 
 export async function autenticarPrestadorService(

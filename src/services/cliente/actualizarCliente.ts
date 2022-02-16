@@ -1,7 +1,7 @@
 import Cliente from "../../models/cliente.models";
 import { log } from "../../libs/log";
-import db from "../../configs/db";
-import { encryptData } from "../../libs/encryption";
+import db from "../../libs/configs/db";
+import { encryptData } from "../../libs/utils/encryption";
 
 export async function actualizarClienteService(cliente: Cliente) {
   try {

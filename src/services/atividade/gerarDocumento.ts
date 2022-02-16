@@ -1,11 +1,12 @@
-import db from "../../configs/db";
+import db from "../../libs/configs/db";
 import { log } from "../../libs/log";
-import atividadeTemplate, { AtividadeTemplateContext } from "../../libs/document_generator/renders/atividade.renders";
+import atividadeTemplate, {
+  AtividadeTemplateContext,
+} from "../../libs/document_generator/renders/atividade.renders";
 import Atividade from "../../models/atividade.models";
-import Categoria from "../../models/categoria.model";
+import Categoria from "../../models/categoria.models";
 import Cliente from "../../models/cliente.models";
 import Prestador from "../../models/prestador.models";
-
 
 export async function gerarDocumentoService(idAtividade: string) {
   try {
@@ -16,12 +17,14 @@ export async function gerarDocumentoService(idAtividade: string) {
     });
 
     if (atividade) {
-      const cliente: Cliente = await db.cliente.findUnique({
+      const cliente: Omit<Cliente, "tokens"> = await db.cliente.findUnique({
         where: { id: atividade.clienteId },
       });
-      const provedor: Prestador = await db.prestador.findUnique({
-        where: { id: atividade.prestadorId },
-      });
+      const provedor: Omit<Prestador, "tokens"> = await db.prestador.findUnique(
+        {
+          where: { id: atividade.prestadorId },
+        }
+      );
       const categoria: Categoria = await db.categoria.findUnique({
         where: {
           id: atividade.categoriaId,

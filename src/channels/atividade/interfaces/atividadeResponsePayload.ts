@@ -1,4 +1,4 @@
-import Categoria from "../../../models/categoria.model";
+import Categoria from "../../../models/categoria.models";
 import Cliente from "../../../models/cliente.models";
 
 export default interface AtividadeResponsePayload {
