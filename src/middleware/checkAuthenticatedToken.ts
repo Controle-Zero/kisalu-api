@@ -8,7 +8,10 @@ export default async function checkAuthenticatedToken(
   res: Response,
   next: NextFunction
 ) {
-  const tokenExists = await verifyTokenDB(req.id, req.headers.authorization.split(" ")[1]);
+  const tokenExists: boolean = await verifyTokenDB(
+    req.id,
+    req.headers.authorization.split(" ")[1]
+  );
 
   if (tokenExists) {
     return next();

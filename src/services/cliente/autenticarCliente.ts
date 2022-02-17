@@ -2,13 +2,13 @@ import { log } from "../../libs/log";
 import db from "../../libs/configs/db";
 import { compareEncryptedData } from "../../libs/utils/encryption";
 import { gerarToken } from "../../libs/utils/generateToken";
-import Token from "../../models/token.models";
-import tokenHandler from "../../libs/utils/tokenHandler";
+import { LoginInfo } from "../../models/cliente.models";
+import dayjs from "dayjs";
 
 export async function autenticarClienteService(
   email: string,
   password: string,
-  device: Pick<Token, "device">
+  device
 ) {
   const clienteExiste = await db.cliente.findFirst({
     where: {
@@ -30,7 +30,20 @@ export async function autenticarClienteService(
 
   const generatedToken = gerarToken(clienteExiste.id);
 
-  tokenHandler(generatedToken, device, clienteExiste.id);
+  const loginInfo: LoginInfo = {
+    token: generatedToken,
+    device,
+    createdAt: dayjs().format(),
+  };
+
+  await db.cliente.update({
+    where: {
+      id: clienteExiste.id,
+    },
+    data: {
+      loginInfo: JSON.stringify(loginInfo),
+    },
+  });
 
   //const refreshToken = await gerarRefreshTokenCliente(clienteExiste.id);
   log.info(`Login feito com sucesso!!`);

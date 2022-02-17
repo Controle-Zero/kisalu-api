@@ -1,5 +1,4 @@
 import Atividade from "./atividade.models";
-import Token from "./token.models";
 
 export default interface Cliente {
   id: string;
@@ -10,6 +9,15 @@ export default interface Cliente {
   email: string;
   telefone: string;
   password: string;
-  tokens: Token[];
+  loginInfo: LoginInfo;
   atividades?: Atividade[];
+}
+
+export interface LoginInfo {
+  token: string;
+  device: {
+    brand: string;
+    model: string;
+  };
+  createdAt: string;
 }

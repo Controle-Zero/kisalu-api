@@ -22,7 +22,7 @@ model Cliente {
   token               String?              @unique
   refreshTokenCliente RefreshTokenCliente?
   atividades          Atividade[]
-  tokens              Token[]
+  loginInfo           String
 
   @@map("clientes")
 }
@@ -46,7 +46,7 @@ model Prestador {
   refreshTokenPrestador RefreshTokenPrestador?
   atividades            Atividade[]
   categorias            PrestadorCategoria[]
-  tokens                Token[]
+  loginInfo             String
 
   @@map("prestadores")
 }
@@ -77,18 +77,6 @@ model Categoria {
   prestadores PrestadorCategoria[]
 
   @@map("categorias")
-}
-
-model Token {
-  id     String @id
-  device Json
-
-  clienteId   String?
-  prestadorId String?
-  Cliente     Cliente?   @relation(fields: [clienteId], references: [id])
-  Prestador   Prestador? @relation(fields: [prestadorId], references: [id])
-
-  @@map("tokens")
 }
 
 model PrestadorCategoria {
