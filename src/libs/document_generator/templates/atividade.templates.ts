@@ -27,7 +27,12 @@ export function atividadeTemplateFile() {
                   <div class="row">
                     <div class="col-sm-6">
                       <span>Referência da transacção</span>
+                      {{#atividade.numRef}}
                       <strong>{{atividade.numRef}}</strong>
+                      {{/atividade.numRef}}
+                      {{^atividade.numRef}}
+                      <strong>Não informada</strong>
+                      {{/atividade.numRed}}
                     </div>
                     <div class="col-sm-6 text-right">
                       <span>Data</span>
