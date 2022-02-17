@@ -9,7 +9,7 @@ export default interface Cliente {
   email: string;
   telefone: string;
   password: string;
-  loginInfo: LoginInfo;
+  loginInfo?: LoginInfo;
   atividades?: Atividade[];
 }
 

@@ -17,14 +17,13 @@ export async function gerarDocumentoService(idAtividade: string) {
     });
 
     if (atividade) {
-      const cliente: Omit<Cliente, "tokens"> = await db.cliente.findUnique({
+      const cliente: Omit<Cliente, "loginInfo"> = await db.cliente.findUnique({
         where: { id: atividade.clienteId },
       });
-      const provedor: Omit<Prestador, "tokens"> = await db.prestador.findUnique(
-        {
+      const provedor: Omit<Prestador, "loginInfo"> =
+        await db.prestador.findUnique({
           where: { id: atividade.prestadorId },
-        }
-      );
+        });
       const categoria: Categoria = await db.categoria.findUnique({
         where: {
           id: atividade.categoriaId,
