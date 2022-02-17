@@ -36,7 +36,7 @@ export async function autenticarPrestadorService(
     createdAt: dayjs().format(),
   };
 
-  await db.cliente.update({
+  await db.prestador.update({
     where: {
       id: prestadorExiste.id,
     },
