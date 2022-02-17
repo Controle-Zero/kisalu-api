@@ -4,23 +4,35 @@ import db from "../configs/db";
 export default async function tokenHandler(
   token: string,
   device: Pick<Token, "device">,
-  idCliente?: string,
-  idPrestador?: string
+  clienteId?: string,
+  prestadorId?: string
 ) {
-  if (idCliente) {
-    await db.token.create({
-      data: {
+  if (clienteId) {
+    await db.token.upsert({
+      where: {
+        id: token,
+      },
+      update: {
+        id: token,
+      },
+      create: {
         id: token,
         device,
-        clienteId: idCliente,
+        clienteId,
       },
     });
   } else {
-    await db.token.create({
-      data: {
+    await db.token.upsert({
+      where: {
+        id: token,
+      },
+      update: {
+        id: token,
+      },
+      create: {
         id: token,
         device,
-        prestadorId: idPrestador,
+        prestadorId,
       },
     });
   }

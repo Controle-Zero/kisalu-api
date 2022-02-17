@@ -2,7 +2,8 @@ import { log } from "../../libs/log";
 import db from "../../libs/configs/db";
 import { compareEncryptedData } from "../../libs/utils/encryption";
 import { gerarToken } from "../../libs/utils/generateToken";
-import { Token } from "@prisma/client";
+import Token from "../../models/token.models";
+import tokenHandler from "../../libs/utils/tokenHandler";
 
 export async function autenticarClienteService(
   email: string,
@@ -29,13 +30,7 @@ export async function autenticarClienteService(
 
   const generatedToken = gerarToken(clienteExiste.id);
 
-  await db.token.create({
-    data: {
-      id: generatedToken,
-      device,
-      clienteId: clienteExiste.id,
-    },
-  });
+  tokenHandler(generatedToken, device, clienteExiste.id);
 
   //const refreshToken = await gerarRefreshTokenCliente(clienteExiste.id);
   log.info(`Login feito com sucesso!!`);
