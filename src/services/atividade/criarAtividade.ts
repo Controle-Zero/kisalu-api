@@ -1,4 +1,4 @@
-import db from "../../configs/db";
+import db from "../../libs/configs/db";
 import { log } from "../../libs/log";
 import Atividade from "../../models/atividade.models";
 

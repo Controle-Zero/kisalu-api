@@ -1,5 +1,5 @@
-import db from "../../configs/db";
-import Categoria from "../../models/categoria.model";
+import db from "../../libs/configs/db";
+import Categoria from "../../models/categoria.models";
 import { log } from "../../libs/log";
 
 

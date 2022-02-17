@@ -9,6 +9,15 @@ export default interface Cliente {
   email: string;
   telefone: string;
   password: string;
-  token?: string;
+  loginInfo?: LoginInfo;
   atividades?: Atividade[];
+}
+
+export interface LoginInfo {
+  token: string;
+  device: {
+    brand: string;
+    model: string;
+  };
+  createdAt: string;
 }

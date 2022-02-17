@@ -59,9 +59,9 @@ export const autenticarPrestador = async (
   req: CustomRequest,
   res: Response
 ) => {
-  const { email, password } = req.body;
+  const { email, password, deviceData } = req.body;
 
-  const token = await autenticarPrestadorService(email, password);
+  const token = await autenticarPrestadorService(email, password, deviceData);
 
   if (token) {
     res.status(200).json(token);

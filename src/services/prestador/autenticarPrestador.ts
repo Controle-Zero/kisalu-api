@@ -1,11 +1,13 @@
-import db from "../../configs/db";
-import { compareEncryptedData } from "../../libs/encryption";
-import { gerarToken } from "../../libs/generateToken";
-
+import dayjs from "dayjs";
+import db from "../../libs/configs/db";
+import { compareEncryptedData } from "../../libs/utils/encryption";
+import { gerarToken } from "../../libs/utils/generateToken";
+import { LoginInfo } from "../../models/cliente.models";
 
 export async function autenticarPrestadorService(
   email: string,
-  password: string
+  password: string,
+  device
 ) {
   const prestadorExiste = await db.prestador.findFirst({
     where: {
@@ -28,12 +30,18 @@ export async function autenticarPrestadorService(
 
   const generatedToken = gerarToken(prestadorExiste.id);
 
+  const loginInfo: LoginInfo = {
+    token: generatedToken,
+    device,
+    createdAt: dayjs().format(),
+  };
+
   await db.prestador.update({
     where: {
       id: prestadorExiste.id,
     },
     data: {
-      token: generatedToken,
+      loginInfo: JSON.stringify(loginInfo),
     },
   });
 

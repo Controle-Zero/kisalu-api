@@ -1,7 +1,7 @@
 import { log } from "../../../libs/log";
 import { updateAtividadeService } from "../../../services/atividade/updateAtividade";
-import AtividadeResponsePayload from "../types/atividadeResponsePayload";
-import { ResponseEventContext } from "../types/responseEventContext";
+import AtividadeResponsePayload from "../interfaces/atividadeResponsePayload";
+import { ResponseEventContext } from "../interfaces/responseEventContext";
 
 export async function responseEventHandler({
   socket,
@@ -14,7 +14,7 @@ export async function responseEventHandler({
 
     const to =
       sockets.length > 0
-        ? sockets.find((f) => f[atividade.Cliente.id])[atividade.Categoria.id]
+        ? sockets.find((f) => f[atividade.Cliente.id])[atividade.Cliente.id]
         : "";
 
     if (to) {

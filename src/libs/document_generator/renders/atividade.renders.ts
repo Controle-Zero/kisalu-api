@@ -1,5 +1,5 @@
 import Atividade from "../../../models/atividade.models";
-import Categoria from "../../../models/categoria.model";
+import Categoria from "../../../models/categoria.models";
 import Cliente from "../../../models/cliente.models";
 import Prestador from "../../../models/prestador.models";
 import Mustache from "mustache";

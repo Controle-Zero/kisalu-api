@@ -50,9 +50,9 @@ export const actualizarCliente = async (req: CustomRequest, res: Response) => {
 export const apagarCliente = async (req: CustomRequest, res: Response) => {};
 
 export const autenticarCliente = async (req: CustomRequest, res: Response) => {
-  const { email, password } = req.body;
+  const { email, password, deviceData } = req.body;
 
-  const token = await autenticarClienteService(email, password);
+  const token = await autenticarClienteService(email, password, deviceData);
 
   if (token) {
     res.status(200).json(token);
