@@ -14,7 +14,7 @@ export async function responseEventHandler({
 
     const to =
       sockets.length > 0
-        ? sockets.find((f) => f[atividade.Cliente.id])[atividade.Categoria.id]
+        ? sockets.find((f) => f[atividade.Cliente.id])[atividade.Cliente.id]
         : "";
 
     if (to) {
