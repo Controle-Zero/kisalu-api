@@ -32,7 +32,7 @@ export function atividadeTemplateFile() {
                       {{/atividade.numRef}}
                       {{^atividade.numRef}}
                       <strong>Não informada</strong>
-                      {{/atividade.numRed}}
+                      {{/atividade.numRef}}
                     </div>
                     <div class="col-sm-6 text-right">
                       <span>Data</span>
