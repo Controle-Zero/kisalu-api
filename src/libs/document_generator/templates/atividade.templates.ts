@@ -83,12 +83,6 @@ export function atividadeTemplateFile() {
                       </div>
                     </div>
                   </div>
-                  <div class="print">
-                    <a href="#">
-                      <i class="fa fa-print"></i>
-                      UNION SERVICES
-                    </a>
-                  </div>
                 </div>
               </div>
   
