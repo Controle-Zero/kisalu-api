@@ -10,7 +10,7 @@ export const criarCliente = async (req: CustomRequest, res: Response) => {
   const cliente: Cliente = req.body;
   const response = await criarClienteService(cliente);
   if (response) {
-    if (response.sucesso) {
+    if (response.success) {
       res.status(201).json(response);
     } else {
       res.status(400).json(response);
@@ -18,18 +18,18 @@ export const criarCliente = async (req: CustomRequest, res: Response) => {
   } else {
     res
       .status(400)
-      .json({ mensagem: "Erro ao criar o cliente", sucesso: false });
+      .json({ message: "An error occured creating the customer", success: false });
   }
 };
 
 export const retornarCliente = async (req: CustomRequest, res: Response) => {
   const cliente = await retornarClienteService(req.id);
   if (cliente) {
-    res.status(200).json({ cliente, sucesso: true });
+    res.status(200).json({ cliente, success: true });
   } else {
     res
       .status(404)
-      .json({ mensagem: "O cliente não foi encontrado", sucesso: false });
+      .json({ message: "Customer wasn't found", success: false });
   }
 };
 
@@ -41,8 +41,8 @@ export const actualizarCliente = async (req: CustomRequest, res: Response) => {
     res.status(200).json(response);
   } else {
     res.status(400).json({
-      mensagem: "Erro ao atualizar os dados do cliente",
-      sucesso: false,
+      message: "An error occured updating the customer",
+      success: false,
     });
   }
 };
@@ -57,7 +57,7 @@ export const autenticarCliente = async (req: CustomRequest, res: Response) => {
   if (token) {
     res.status(200).json(token);
   } else {
-    res.status(400).json({ mensagem: "Dados incorretos", sucesso: false });
+    res.status(400).json({ message: "Incorrect data", success: false });
   }
 };
 

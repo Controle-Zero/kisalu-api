@@ -17,6 +17,6 @@ export default async function checkAuthenticatedToken(
     return next();
   } else {
     log.error("O token informado está na blacklist");
-    return res.status(400).json({ mensagem: "Token inválido" });
+    return res.status(400).json({ message: "Invalid Token" });
   }
 }

@@ -41,10 +41,10 @@ export async function actualizarPrestadorService(prestador: Prestador) {
       });
 
       log.info("Os dados foram atualizados");
-      return { mensagem: "Os dados foram atualizados", sucesso: true };
+      return { message: "Provider data have been updated", success: true };
     } else {
       log.info("Prestador não existe");
-      return { mensagem: "O prestador não existe", sucesso: false };
+      return { message: "Customer doesn't exist", success: false };
     }
   } catch (e) {
     log.error(`Erro ao atualizar os dados do prestador- ${e}`);

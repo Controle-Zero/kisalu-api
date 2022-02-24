@@ -56,8 +56,8 @@ export async function adicionarCategoriasService(
       `As categorias foram adicionadas com sucesso ao perfil do provedor ${idPrestador}`
     );
     return {
-      mensagem: "As categorias foram adicionadas com sucesso",
-      sucesso: true,
+      message: "Categories have been added",
+      success: true,
     };
   } catch (e) {
     log.error(

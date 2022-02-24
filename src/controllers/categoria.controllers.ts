@@ -8,9 +8,9 @@ export const criarCategoria = async (req: Request, res: Response) => {
   const response = await criarCategoriaService(categoria);
 
   if (response) {
-    res.status(200).json({ mensagem: "Categoria criada" });
+    res.status(200).json({ message: "Category created" });
   } else {
-    res.status(400).json({ mensagem: "Erro ao criar a categoria" });
+    res.status(400).json({ message: "An error occured creating the category" });
   }
 };
 
@@ -18,10 +18,10 @@ export const retornarCategorias = async (req: Request, res: Response) => {
   const response = await retornarCategoriasService();
 
   if (response) {
-    res.status(200).json({ categorias: response, sucesso: true });
+    res.status(200).json({ categorias: response, success: true });
   } else {
     res
       .status(400)
-      .json({ mensagem: "Erro ao retornar as categorias", sucesso: false });
+      .json({ message: "An error occured returning the categories", success: false });
   }
 };

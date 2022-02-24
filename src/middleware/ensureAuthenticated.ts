@@ -15,22 +15,22 @@ export function ensureAuthenticated(
 
   if (!authToken) {
     return res.status(401).json({
-      mensagem: "Token não informado",
+      message: "The token wasn't informed",
     });
   }
 
   try {
     log.info("Verificando o token...");
     verify(authToken.split(" ")[1], process.env.SECRET!!);
-    log.info("Token aprovado");
+    log.info("Token aprovado!");
 
     const { sub: id } = decode(authToken.split(" ")[1]);
     req.id = String(id);
     return next();
   } catch (e) {
-    log.error("Token reprovado...");
+    log.error("Token reprovado!");
     return res.status(401).json({
-      mensagem: "Token inválido",
+      message: "Invalid Token",
     });
   }
 }

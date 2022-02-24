@@ -16,7 +16,7 @@ export async function criarAtividadeService(atividade: Atividade) {
     });
     return dbResponse;
   } catch (e) {
-    log.error(`Erro ao criar- ${e}`);
+    log.error(`Erro ao criar a atividade- ${e}`);
     return undefined;
   }
 }

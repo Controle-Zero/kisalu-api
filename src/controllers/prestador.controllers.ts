@@ -13,7 +13,7 @@ export const criarPrestador = async (req: CustomRequest, res: Response) => {
   const response = await criarPrestadorService(prestador);
 
   if (response) {
-    if (response.sucesso) {
+    if (response.success) {
       res.status(201).json(response);
     } else {
       res.status(400).json(response);
@@ -21,18 +21,16 @@ export const criarPrestador = async (req: CustomRequest, res: Response) => {
   } else {
     res
       .status(400)
-      .json({ mensagem: "Erro ao criar o prestador", sucesso: false });
+      .json({ message: "Error creating the provider", success: false });
   }
 };
 
 export const retornarPrestador = async (req: CustomRequest, res: Response) => {
   const prestador = await retornarPrestadorService(req.id);
   if (prestador) {
-    res.status(200).json({ prestador, sucesso: true });
+    res.status(200).json({ prestador, success: true });
   } else {
-    res
-      .status(404)
-      .json({ mensagem: "O prestador não foi encontrado", sucesso: false });
+    res.status(404).json({ message: "Provider wasn't found", success: false });
   }
 };
 
@@ -47,8 +45,8 @@ export const actualizarPrestador = async (
     res.status(200).json(response);
   } else {
     res.status(400).json({
-      mensagem: "Erro ao atualizar os dados do prestador",
-      sucesso: false,
+      message: "An error occured updating the provider",
+      success: false,
     });
   }
 };
@@ -66,7 +64,7 @@ export const autenticarPrestador = async (
   if (token) {
     res.status(200).json(token);
   } else {
-    res.status(400).json({ mensagem: "Dados incorretos", sucesso: false });
+    res.status(400).json({ message: "Incorrect data", success: false });
   }
 };
 
@@ -100,6 +98,6 @@ export const adicionarCategoriasProvedor = async (
   } else {
     res
       .status(400)
-      .json({ mensagem: "Erro ao adicionar as categorias", sucesso: false });
+      .json({ message: "An error occured adding categories", success: false });
   }
 };

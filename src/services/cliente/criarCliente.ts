@@ -14,7 +14,7 @@ export async function criarClienteService(cliente: Cliente) {
 
     if (clienteExiste) {
       log.info(`Email já existe no sistema ${cliente.email}`);
-      return { mensagem: "O email já se encontra no sistema", sucesso: false };
+      return { message: "The entered email is being used", success: false };
     } else {
       await db.cliente.create({
         data: {
@@ -29,7 +29,7 @@ export async function criarClienteService(cliente: Cliente) {
       });
 
       log.info(`Cliente ${cliente.nome} criado com sucesso!!`);
-      return { mensagem: "Cliente criado com sucesso!!", sucesso: true };
+      return { message: "Customer has been created!", success: true };
     }
   } catch (e) {
     log.error(`${e}- Falha ao criar o cliente: ${cliente.nome}`);

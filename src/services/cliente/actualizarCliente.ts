@@ -28,10 +28,10 @@ export async function actualizarClienteService(cliente: Cliente) {
       });
 
       log.info("Os dados foram atualizados");
-      return { mensagem: "Os dados foram atualizados", sucesso: true };
+      return { message: "Customer data have been updated", success: true };
     } else {
       log.info("Cliente não existe");
-      return { mensagem: "O cliente não existe" };
+      return { message: "Customer doesn't exist", success: false };
     }
   } catch (e) {
     log.error(`Erro ao atualizar os dados do cliente- ${e}`);

@@ -9,15 +9,15 @@ export const gerarDocumentoPDF = async (req: Request, res: Response) => {
   if (response) {
     pdf.create(response, { format: "Letter" }).toBuffer((err, buffer) => {
       if (err) {
-        log.error(`${err}- Erro ao criar o arquivo PDF`);
+        log.error(`${err}- An error occured creating the PDF`);
         return res
           .status(500)
-          .json({ mensagem: "Ocorreu um erro ao criar o documento" });
+          .json({ message: "An error occured creating the document" });
       }
       return res.end(buffer);
     });
   } else {
-    res.status(500).json({ mensagem: "Erro ao gerar o arquivo!" });
+    res.status(500).json({ message: "An error occured creating the document" });
   }
 };
 
@@ -27,6 +27,6 @@ export const verDocumento = async (req: Request, res: Response) => {
   if (response) {
     res.status(200).send(response);
   } else {
-    res.status(500).json({ mensagem: "Erro ao exibir o documento" });
+    res.status(500).json({ message: "An error occured loading the document" });
   }
 };
