@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import db from "../../libs/configs/db";
 import { compareEncryptedData } from "../../libs/utils/encryption";
 import { gerarToken } from "../../libs/utils/generateToken";
@@ -33,7 +32,6 @@ export async function autenticarPrestadorService(
   const loginInfo: LoginInfo = {
     token: generatedToken,
     device,
-    createdAt: dayjs().format(),
   };
 
   await db.prestador.update({
@@ -41,7 +39,12 @@ export async function autenticarPrestadorService(
       id: prestadorExiste.id,
     },
     data: {
-      loginInfo: JSON.stringify(loginInfo),
+      loginInfo: {
+        create: {
+          token: loginInfo.token,
+          device: loginInfo.device,
+        },
+      },
     },
   });
 

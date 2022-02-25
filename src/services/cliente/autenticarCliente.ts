@@ -3,7 +3,6 @@ import db from "../../libs/configs/db";
 import { compareEncryptedData } from "../../libs/utils/encryption";
 import { gerarToken } from "../../libs/utils/generateToken";
 import { LoginInfo } from "../../models/cliente.models";
-import dayjs from "dayjs";
 
 export async function autenticarClienteService(
   email: string,
@@ -33,7 +32,6 @@ export async function autenticarClienteService(
   const loginInfo: LoginInfo = {
     token: generatedToken,
     device,
-    createdAt: dayjs().format(),
   };
 
   await db.cliente.update({
@@ -41,7 +39,12 @@ export async function autenticarClienteService(
       id: clienteExiste.id,
     },
     data: {
-      loginInfo: JSON.stringify(loginInfo),
+      loginInfo: {
+        create: {
+          token: loginInfo.token,
+          device: loginInfo.device,
+        },
+      },
     },
   });
 

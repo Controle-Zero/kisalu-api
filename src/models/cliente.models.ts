@@ -18,6 +18,7 @@ export interface LoginInfo {
   device: {
     brand: string;
     model: string;
+    ipAddress: string;
   };
-  createdAt: string;
+  createdAt?: string;
 }
