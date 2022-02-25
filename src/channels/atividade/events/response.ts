@@ -1,5 +1,6 @@
 import { log } from "../../../libs/log";
 import { updateAtividadeService } from "../../../services/atividade/updateAtividade";
+import { handleSocketsArray } from "../helpers";
 import AtividadeResponsePayload from "../interfaces/atividadeResponsePayload";
 import { ResponseEventContext } from "../interfaces/responseEventContext";
 
@@ -21,6 +22,7 @@ export async function responseEventHandler(
             ]
           : "";
     } else {
+      handleSocketsArray(atividade.Prestador.id, { socket, sockets });
       to =
         sockets.length > 0
           ? sockets.find((f) => f[atividade.Cliente.id])[atividade.Cliente.id]

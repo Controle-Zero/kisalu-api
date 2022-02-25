@@ -21,12 +21,11 @@ export async function atividadeChannel(io: Server) {
       if (idCliente && idProvedor) {
         handleSocketsArray(idCliente, { socket, sockets });
         requestEventHandler({ socket, io, idProvedor });
-      } else if (idProvedor) {
-        handleSocketsArray(idProvedor, { socket, sockets });
-        responseEventHandler({ socket, sockets });
       } else if (idCliente) {
         handleSocketsArray(idCliente, { socket, sockets });
         responseEventHandler({ socket, sockets }, idCliente);
+      } else {
+        responseEventHandler({ socket, sockets });
       }
     }
   );
