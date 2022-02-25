@@ -6,20 +6,26 @@ export default async function verifyTokenDB(ID: string, token: string) {
     where: {
       id: ID,
     },
+    include: {
+      loginInfo: true,
+    },
   });
 
   if (cliente) {
-    loginInfo = JSON.parse(cliente.loginInfo);
+    loginInfo = cliente.loginInfo.find((f) => f.token === token);
   } else {
     const prestador = await db.prestador.findUnique({
       where: {
         id: ID,
       },
+      include: {
+        loginInfo: true,
+      },
     });
-    loginInfo = JSON.parse(prestador.loginInfo);
+    loginInfo = prestador.loginInfo.find((f) => f.token === token);
   }
 
-  if (loginInfo.token === token) {
+  if (loginInfo.token) {
     return true;
   } else {
     return false;
