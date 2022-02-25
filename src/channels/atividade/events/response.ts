@@ -3,19 +3,29 @@ import { updateAtividadeService } from "../../../services/atividade/updateAtivid
 import AtividadeResponsePayload from "../interfaces/atividadeResponsePayload";
 import { ResponseEventContext } from "../interfaces/responseEventContext";
 
-export async function responseEventHandler({
-  socket,
-  sockets,
-}: ResponseEventContext) {
+export async function responseEventHandler(
+  { socket, sockets }: ResponseEventContext,
+  idCliente?: string
+) {
   socket.on(`response`, (atividade: AtividadeResponsePayload) => {
     log.info(`Response event`);
+    let to: string;
 
     updateAtividadeService(atividade);
 
-    const to =
-      sockets.length > 0
-        ? sockets.find((f) => f[atividade.Cliente.id])[atividade.Cliente.id]
-        : "";
+    if (idCliente) {
+      to =
+        sockets.length > 0
+          ? sockets.find((f) => f[atividade.Prestador.id])[
+              atividade.Prestador.id
+            ]
+          : "";
+    } else {
+      to =
+        sockets.length > 0
+          ? sockets.find((f) => f[atividade.Cliente.id])[atividade.Cliente.id]
+          : "";
+    }
 
     if (to) {
       log.info(to);
