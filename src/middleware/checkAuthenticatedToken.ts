@@ -9,7 +9,6 @@ export default async function checkAuthenticatedToken(
   next: NextFunction
 ) {
   const tokenExists: boolean = await verifyTokenDB(
-    req.id,
     req.headers.authorization.split(" ")[1]
   );
 

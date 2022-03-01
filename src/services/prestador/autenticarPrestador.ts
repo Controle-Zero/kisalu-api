@@ -30,6 +30,7 @@ export async function autenticarPrestadorService(
   const generatedToken = gerarToken(prestadorExiste.id);
 
   const loginInfo: LoginInfo = {
+    uniqueID: device.uniqueID,
     token: generatedToken,
     device,
   };
@@ -40,9 +41,19 @@ export async function autenticarPrestadorService(
     },
     data: {
       loginInfo: {
-        create: {
-          token: loginInfo.token,
-          device: loginInfo.device,
+        upsert: {
+          where: {
+            id: loginInfo.uniqueID,
+          },
+          update: {
+            token: loginInfo.token,
+            device: loginInfo.device,
+          },
+          create: {
+            id: loginInfo.uniqueID,
+            token: loginInfo.token,
+            device: loginInfo.device,
+          },
         },
       },
     },

@@ -1,31 +1,13 @@
 import db from "../../libs/configs/db";
 
-export default async function verifyTokenDB(ID: string, token: string) {
-  let loginInfo;
-  const cliente = await db.cliente.findUnique({
+export default async function verifyTokenDB(token: string) {
+  const loginInfo = await db.loginInfo.findUnique({
     where: {
-      id: ID,
-    },
-    include: {
-      loginInfo: true,
+      token: token,
     },
   });
 
-  if (cliente) {
-    loginInfo = cliente.loginInfo.find((f) => f.token === token);
-  } else {
-    const prestador = await db.prestador.findUnique({
-      where: {
-        id: ID,
-      },
-      include: {
-        loginInfo: true,
-      },
-    });
-    loginInfo = prestador.loginInfo.find((f) => f.token === token);
-  }
-
-  if (loginInfo.token) {
+  if (loginInfo) {
     return true;
   } else {
     return false;

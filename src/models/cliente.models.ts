@@ -14,6 +14,7 @@ export default interface Cliente {
 }
 
 export interface LoginInfo {
+  uniqueID: string;
   token: string;
   device: {
     brand: string;
