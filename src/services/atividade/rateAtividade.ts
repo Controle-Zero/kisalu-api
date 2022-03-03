@@ -12,7 +12,7 @@ export async function rateAtividade(id: string, rate: number) {
       },
     });
 
-    log.info("Atividade ${id} foi avaliada com sucesso");
+    log.info(`Atividade ${id} foi avaliada com sucesso`);
     return { message: "Activity has been rated successfully" };
   } catch (e) {
     log.error(`Ocorreu um erro ao avaliar a atividade ${e}`);
