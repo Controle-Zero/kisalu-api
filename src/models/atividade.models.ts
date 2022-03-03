@@ -9,4 +9,5 @@ export default interface Atividade {
   clienteId: string;
   categoriaId: string;
   descricao?: string;
+  avaliacao?: number;
 }
