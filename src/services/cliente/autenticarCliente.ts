@@ -35,29 +35,33 @@ export async function autenticarClienteService(
     device,
   };
 
-  await db.cliente.update({
-    where: {
-      id: clienteExiste.id,
-    },
-    data: {
-      loginInfo: {
-        upsert: {
-          where: {
-            id: loginInfo.uniqueID,
-          },
-          update: {
-            token: loginInfo.token,
-            device: loginInfo.device,
-          },
-          create: {
-            id: loginInfo.uniqueID,
-            token: loginInfo.token,
-            device: loginInfo.device,
+  try {
+    await db.cliente.update({
+      where: {
+        id: clienteExiste.id,
+      },
+      data: {
+        loginInfo: {
+          upsert: {
+            where: {
+              id: loginInfo.uniqueID,
+            },
+            update: {
+              token: loginInfo.token,
+              device: loginInfo.device,
+            },
+            create: {
+              id: loginInfo.uniqueID,
+              token: loginInfo.token,
+              device: loginInfo.device,
+            },
           },
         },
       },
-    },
-  });
+    });
+  } catch (e) {
+    log.error(`Erro ao criar a informação do login- ${e}`);
+  }
 
   //const refreshToken = await gerarRefreshTokenCliente(clienteExiste.id);
   log.info(`Login feito com sucesso!!`);

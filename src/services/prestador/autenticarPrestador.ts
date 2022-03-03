@@ -1,4 +1,5 @@
 import db from "../../libs/configs/db";
+import { log } from "../../libs/log";
 import { compareEncryptedData } from "../../libs/utils/encryption";
 import { gerarToken } from "../../libs/utils/generateToken";
 import { LoginInfo } from "../../models/cliente.models";
@@ -35,29 +36,33 @@ export async function autenticarPrestadorService(
     device,
   };
 
-  await db.prestador.update({
-    where: {
-      id: prestadorExiste.id,
-    },
-    data: {
-      loginInfo: {
-        upsert: {
-          where: {
-            id: loginInfo.uniqueID,
-          },
-          update: {
-            token: loginInfo.token,
-            device: loginInfo.device,
-          },
-          create: {
-            id: loginInfo.uniqueID,
-            token: loginInfo.token,
-            device: loginInfo.device,
+  try {
+    await db.prestador.update({
+      where: {
+        id: prestadorExiste.id,
+      },
+      data: {
+        loginInfo: {
+          upsert: {
+            where: {
+              id: loginInfo.uniqueID,
+            },
+            update: {
+              token: loginInfo.token,
+              device: loginInfo.device,
+            },
+            create: {
+              id: loginInfo.uniqueID,
+              token: loginInfo.token,
+              device: loginInfo.device,
+            },
           },
         },
       },
-    },
-  });
+    });
+  } catch (e) {
+    log.error(`Erro ao criar a informação do login- ${e}`);
+  }
 
   //const refreshToken = await gerarRefreshTokenPrestador(prestadorExiste.id);
   return { generatedToken };
