@@ -11,5 +11,5 @@ export function getRate(atividades: CustomAtividade) {
 
   return atividades.atividades.length > 0
     ? sum / atividades.atividades.length
-    : null;
+    : undefined;
 }
