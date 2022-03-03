@@ -1,4 +1,3 @@
-import Atividade from "./atividade.models";
 import Cliente from "./cliente.models";
 
 export default interface Prestador extends Cliente {
