@@ -7,7 +7,9 @@ export async function retornarPrestadorService(idPrestador: string) {
   try {
     const atividades = await getAtividadesCompletas(idPrestador);
 
-    await prestadorRateUpdate(idPrestador, atividades);
+    if (atividades) {
+      await prestadorRateUpdate(idPrestador, atividades);
+    }
 
     const prestador = await db.prestador.findUnique({
       where: {
