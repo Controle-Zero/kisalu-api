@@ -2,7 +2,7 @@ import db from "../../libs/configs/db";
 import Prestador from "../../models/prestador.models";
 import { log } from "../../libs/log";
 import { encryptData } from "../../libs/utils/encryption";
-
+import { getRate } from "../../libs/utils/ratingSystem";
 
 export async function actualizarPrestadorService(prestador: Prestador) {
   try {
@@ -27,7 +27,6 @@ export async function actualizarPrestadorService(prestador: Prestador) {
           nome: prestador.nome,
           iban: prestador.iban,
           descricao: prestador.descricao,
-          classificacao: prestador.classificacao,
           estado: prestador.estado,
           categorias: {
             createMany: {
@@ -36,7 +35,6 @@ export async function actualizarPrestadorService(prestador: Prestador) {
               }),
             },
           },
-          //numAvaliacoes: prestadorExiste.numAvaliacoes + 1,
         },
       });
 
@@ -45,6 +43,32 @@ export async function actualizarPrestadorService(prestador: Prestador) {
     } else {
       log.info("Prestador não existe");
       return { message: "Customer doesn't exist", success: false };
+    }
+  } catch (e) {
+    log.error(`Erro ao atualizar os dados do prestador- ${e}`);
+    return undefined;
+  }
+}
+
+export async function prestadorRateUpdate(id: string, atividades) {
+  try {
+    const prestadorExiste = await db.prestador.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (prestadorExiste) {
+      await db.prestador.update({
+        where: {
+          id: prestadorExiste.id,
+        },
+        data: {
+          rate: getRate(atividades),
+        },
+      });
+    } else {
+      log.info("Prestador não existe");
     }
   } catch (e) {
     log.error(`Erro ao atualizar os dados do prestador- ${e}`);
