@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { gerarDocumentoService } from "../services/atividade/gerarDocumento";
 import pdf from "html-pdf";
 import { log } from "../libs/log";
+import { rateAtividade } from "../services/atividade/rateAtividade";
 
 export const gerarDocumentoPDF = async (req: Request, res: Response) => {
   const response = await gerarDocumentoService(req.params.id);
@@ -28,5 +29,15 @@ export const verDocumento = async (req: Request, res: Response) => {
     res.status(200).send(response);
   } else {
     res.status(500).json({ message: "An error occured loading the document" });
+  }
+};
+
+export const avaliarPerformance = async (req: Request, res: Response) => {
+  const response = await rateAtividade(req.params.id, +req.params.rate);
+
+  if (response) {
+    res.status(200).send(response);
+  } else {
+    res.status(400).json({ message: "An error occured rating the activity" });
   }
 };
