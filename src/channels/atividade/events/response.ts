@@ -23,6 +23,7 @@ export async function responseEventHandler(
           : "";
     } else {
       //handleSocketsArray(atividade.Prestador.id, { socket, sockets });
+      log.info(atividade.Cliente.id);
       to =
         sockets.length > 0
           ? sockets.find((f) => f[atividade.Cliente.id])[atividade.Cliente.id]
