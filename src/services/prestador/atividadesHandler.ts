@@ -8,7 +8,7 @@ export async function getAtividadesCompletas(id: string) {
     select: {
       atividades: {
         where: {
-          estado: "COMPLETA",
+          estado: "FINALIZADA",
         },
       },
     },
