@@ -11,7 +11,7 @@ export async function retornarClienteService(idCliente: string) {
         atividades: {
           where: {
             estado: {
-              in: ["PENDENTE", "ATIVA"],
+              in: ["PENDENTE", "ATIVA", "FINALIZADA"],
             },
           },
           select: {

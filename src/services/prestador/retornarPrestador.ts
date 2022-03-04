@@ -35,7 +35,7 @@ export async function retornarPrestadorService(idPrestador: string) {
         atividades: {
           where: {
             estado: {
-              in: ["PENDENTE", "ATIVA", "COMPLETA"],
+              in: ["PENDENTE", "ATIVA", "FINALIZADA"],
             },
           },
           select: {
