@@ -1,10 +1,11 @@
+import { Estados } from "@prisma/client";
 export default interface Atividade {
   id: string;
   dataCriado: Date;
   dataFinalizado: Date;
   valorAssociado: number;
   numRef: number;
-  estado: string;
+  estado: Estados;
   prestadorId: string;
   clienteId: string;
   categoriaId: string;

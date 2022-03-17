@@ -10,6 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Estados {
+  PENDENTE
+  FINALIZADA
+  ATIVA
+}
+
 model Cliente {
   id                  String               @id @default(uuid())
   bi                  String               @unique
@@ -53,7 +59,7 @@ model Atividade {
   dataFinalizado DateTime?
   valorAssociado Float?
   numRef         Int?
-  estado         String    @default("PENDENTE")
+  estado         Estados   @default(PENDENTE)
   prestadorId    String
   clienteId      String
   categoriaId    String

@@ -9,11 +9,6 @@ export async function retornarClienteService(idCliente: string) {
       },
       select: {
         atividades: {
-          where: {
-            estado: {
-              in: ["PENDENTE", "ATIVA", "FINALIZADA"],
-            },
-          },
           select: {
             Prestador: {
               select: {
