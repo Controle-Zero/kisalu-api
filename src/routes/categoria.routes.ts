@@ -4,11 +4,12 @@ import {
   criarCategoria,
   retornarCategorias,
 } from "../controllers/categoria.controllers";
+import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
 
 const categoriaRoutes = Router();
 const jsonParser = bodyParser.json();
 
-categoriaRoutes.get("/", retornarCategorias);
+categoriaRoutes.get("/", ensureAuthenticated, retornarCategorias);
 categoriaRoutes.post("/", jsonParser, criarCategoria);
 
 export { categoriaRoutes };
