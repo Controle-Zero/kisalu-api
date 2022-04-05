@@ -1,7 +1,7 @@
 
-# USERVICEs (Back-end)🌐
+# KISALU's (Back-end)🌐
 
-Uservices server-side structure
+Kisalu server-side structure
 
 
 ## Authors
