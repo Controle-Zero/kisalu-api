@@ -6,6 +6,7 @@ import { autenticarPrestadorService } from "../services/prestador/autenticarPres
 import { retornarPrestadorService } from "../services/prestador/retornarPrestador";
 import { actualizarPrestadorService } from "../services/prestador/actualizarPrestador";
 import { criarPrestadorService } from "../services/prestador/criarPrestador";
+import { removerCategoria } from "../services/prestador/removerCategoria";
 
 export const criarPrestador = async (req: CustomRequest, res: Response) => {
   const prestador: Prestador = req.body;
@@ -99,5 +100,25 @@ export const adicionarCategoriasProvedor = async (
     res
       .status(400)
       .json({ message: "An error occured adding categories", success: false });
+  }
+};
+
+export const removerCategoriaProvedor = async (
+  req: CustomRequest,
+  res: Response
+) => {
+  const { idCategoria } = req.body;
+
+  const response = await removerCategoria(req.id, idCategoria);
+
+  if (response) {
+    res.status(200).json(response);
+  } else {
+    res
+      .status(400)
+      .json({
+        message: "An error occured removing the selected category",
+        success: false,
+      });
   }
 };

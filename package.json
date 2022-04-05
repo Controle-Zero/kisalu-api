@@ -1,7 +1,7 @@
 {
-  "name": "uservices-api",
+  "name": "kisalu-api",
   "version": "1.0.0",
-  "description": "uServices Back-End",
+  "description": "Kisalu Back-End",
   "main": "dist/server.js",
   "engines": {
     "node": "14.17.6"

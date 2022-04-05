@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 import {
   criarPrestador,
   retornarPrestador,
@@ -6,6 +6,7 @@ import {
   actualizarPrestador,
   autenticarPrestador,
   adicionarCategoriasProvedor,
+  removerCategoriaProvedor,
 } from "../controllers/prestador.controllers";
 import bodyParser from "body-parser";
 import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
@@ -45,6 +46,13 @@ prestadorRoutes.put(
   checkAuthenticatedToken,
   jsonParser,
   adicionarCategoriasProvedor
+);
+prestadorRoutes.delete(
+  "/categorias",
+  ensureAuthenticated,
+  checkAuthenticatedToken,
+  jsonParser,
+  removerCategoriaProvedor
 );
 
 export { prestadorRoutes };
