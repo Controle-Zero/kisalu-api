@@ -2,7 +2,7 @@ import { ResponseEventContext } from "../interfaces/responseEventContext";
 
 export function handleSocketsArray(
   id: string,
-  { socket, sockets }: ResponseEventContext
+  { socket, sockets }: Omit<ResponseEventContext, "payload">
 ) {
   const idExiste = sockets.length > 0 ? sockets.find((f) => f[id]) : undefined;
   if (idExiste) {

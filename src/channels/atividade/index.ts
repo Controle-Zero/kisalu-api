@@ -1,9 +1,11 @@
 import { Server, Socket } from "socket.io";
 import { log } from "../../libs/log";
-import { requestEventHandler } from "./events/request";
-import { responseEventHandler } from "./events/response";
-import { handleSocketsArray } from "./helpers";
+import { requestEventHandler } from "./events/functions/request";
 import dotenv from "dotenv";
+import { RequestPayload, ResponsePayload } from "./interfaces/payload";
+import { handleSocketsArray } from "./helpers/index";
+import { responseEventHandler } from "./events/functions/response";
+import { Events } from "./events/types";
 
 dotenv.config();
 
@@ -16,17 +18,15 @@ export async function atividadeChannel(io: Server) {
     (socket: Socket) => {
       log.info(`Socket ${socket.id} connected`);
 
-      const { idCliente, idProvedor } = socket.handshake.auth;
+      socket.on(Events.REQUEST, (payload: RequestPayload) => {
+        handleSocketsArray(payload.TriggeredBy.id, { socket, sockets });
+        requestEventHandler({ payload, io });
+      });
 
-      if (idCliente && idProvedor) {
-        handleSocketsArray(idCliente, { socket, sockets });
-        requestEventHandler({ socket, io, idProvedor });
-      } else if (idCliente) {
-        handleSocketsArray(idCliente, { socket, sockets });
-        responseEventHandler({ socket, sockets }, idCliente);
-      } else {
-        responseEventHandler({ socket, sockets });
-      }
+      socket.on(Events.RESPONSE, (payload: ResponsePayload) => {
+        handleSocketsArray(payload.TriggeredBy.id, { socket, sockets });
+        responseEventHandler({ payload, socket, sockets });
+      });
     }
   );
 }
