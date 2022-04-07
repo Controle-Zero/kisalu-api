@@ -16,6 +16,8 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^3.6.0",
+    "@socket.io/cluster-adapter": "^0.1.0",
+    "@socket.io/sticky": "^1.0.1",
     "@types/node": "^16.11.12",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -26,7 +28,6 @@
     "html-pdf": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "mustache": "^4.2.0",
-    "node-device-detector": "^1.4.3",
     "pino": "^7.2.0",
     "pino-pretty": "^7.2.0",
     "prisma": "^3.6.0",
@@ -43,7 +44,6 @@
     "@types/http-build-query": "^0.7.3",
     "@types/jsonwebtoken": "^8.5.6",
     "@types/mustache": "^4.1.2",
-    "@types/uuid": "^8.3.3",
     "ts-node-dev": "^1.1.8"
   }
 }
