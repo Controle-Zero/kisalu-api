@@ -5,32 +5,14 @@ import dotenv from "dotenv";
 import webSocketApp from "../apps/webSocketApp";
 import cluster from "cluster";
 import { cpus } from "os";
-import { setupMaster } from "@socket.io/sticky";
-import { setupPrimary } from "@socket.io/cluster-adapter";
 
 dotenv.config();
 
-const numCPUs = cpus.length;
+const numCPUs = cpus().length;
+
+const httpServer = http.createServer(app);
 
 if (cluster.isPrimary) {
-  log.info(
-    `Server (Primary) ${process.pid} is running on port ${process.env.PORT}`
-  );
-
-  const primaryHttpServer = http.createServer(app);
-
-  setupMaster(primaryHttpServer, {
-    loadBalancingMethod: "least-connection",
-  });
-
-  setupPrimary();
-
-  cluster.setupPrimary({
-    args: ["--use", "http"],
-  });
-
-  primaryHttpServer.listen(process.env.PORT || 8080);
-
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
@@ -40,8 +22,11 @@ if (cluster.isPrimary) {
     cluster.fork();
   });
 } else {
-  log.info(`Server (Worker) ${process.pid} is running`);
+  httpServer.listen(process.env.PORT || 8080, () => {
+    log.info(
+      `Server ${process.pid} is running on port ${process.env.PORT || 8080}`
+    );
+  });
 
-  const workerHttpServer = http.createServer(app);
-  webSocketApp(workerHttpServer);
+  webSocketApp(httpServer);
 }

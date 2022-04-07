@@ -4,7 +4,7 @@
   "description": "Kisalu Back-End",
   "main": "dist/server.js",
   "engines": {
-    "node": "14.17.6"
+    "node": "16.14.2"
   },
   "scripts": {
     "migrate-dev": "prisma migrate dev",
@@ -16,8 +16,6 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^3.6.0",
-    "@socket.io/cluster-adapter": "^0.1.0",
-    "@socket.io/sticky": "^1.0.1",
     "@types/node": "^16.11.12",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
