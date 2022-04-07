@@ -1,6 +1,7 @@
 import { log } from "../../../../libs/log";
 import { criarAtividadeService } from "../../../../services/atividade/criarAtividade";
 import { retornarClienteService } from "../../../../services/cliente/retornarCliente";
+import { Roles } from "../../interfaces/payload";
 import RequestEventContext from "../../interfaces/requestEventContext";
 import { Events } from "../types";
 
@@ -10,7 +11,7 @@ export async function requestEventHandler({
 }: RequestEventContext) {
   log.info("Request event");
 
-  if (payload.TriggeredBy.role === "CLIENTE") {
+  if (payload.TriggeredBy.role === Roles.CLIENTE) {
     const atividadeDB = criarAtividadeService(payload.atividade);
 
     const returnPayload = {
