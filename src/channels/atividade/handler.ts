@@ -3,9 +3,9 @@ import { log } from "../../libs/log";
 import { requestEventHandler } from "./events/functions/request";
 import dotenv from "dotenv";
 import { RequestPayload, ResponsePayload } from "./interfaces/payload";
-import { handleSocketsArray, verifyToken } from "./helpers/index";
+import { handleSocketsArray, verifyToken } from "./helpers/functions";
 import { responseEventHandler } from "./events/functions/response";
-import { Events } from "./events/types";
+import { Events } from "./events/types/events.types";
 import verifyTokenDB from "../../middleware/helpers";
 
 dotenv.config();
