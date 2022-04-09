@@ -3,12 +3,12 @@ import http from "http";
 import { Server } from "socket.io";
 import Client from "socket.io-client";
 import { Events } from "../channels/atividade/events/types/events.types";
+import { ResponsePayload } from "../channels/atividade/interfaces/payload";
 import {
-  RequestPayload,
-  ResponsePayload,
-  Roles,
-} from "../channels/atividade/interfaces/payload";
-import { getRequestPayload, getResponsePayload } from "../mocks/events/handler";
+  ClientRequestPayload,
+  getClientRequestPayload,
+  getResponsePayload,
+} from "../mocks/events/handler";
 
 describe("WebSockets Test", () => {
   let io, serverSocket, clientSocket, httpServer;
@@ -36,11 +36,12 @@ describe("WebSockets Test", () => {
   });
 
   test("Request Event", (done) => {
-    clientSocket.on(Events.REQUEST, (payload: RequestPayload) => {
-      expect(payload.TriggeredBy.role).toBe(Roles.CLIENTE);
+    clientSocket.on(Events.REQUEST, (payload: ClientRequestPayload) => {
+      expect(payload.atividade.id).toBe("43a961ba-42ba-448f-af47-826c9e8bf46b");
       done();
     });
-    serverSocket.emit(Events.REQUEST, getRequestPayload());
+
+    io.emit(Events.REQUEST, getClientRequestPayload());
   });
 
   test("Response Event", (done) => {

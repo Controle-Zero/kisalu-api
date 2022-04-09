@@ -3,7 +3,15 @@ import {
   ResponsePayload,
   Roles,
 } from "../../channels/atividade/interfaces/payload";
+import Atividade from "../../models/atividade.models";
+import Cliente from "../../models/cliente.models";
 import { DataHandlerContext, getData } from "../helpers/dataHandler";
+
+export interface ClientRequestPayload {
+  cliente: Cliente;
+  categoria: string;
+  atividade: Atividade;
+}
 
 const data: DataHandlerContext = getData();
 
@@ -23,6 +31,14 @@ export function getResponsePayload(): ResponsePayload {
       id: data.cliente.id,
       role: Roles.PRESTADOR,
     },
+    atividade: data.atividade,
+  };
+}
+
+export function getClientRequestPayload(): ClientRequestPayload {
+  return {
+    cliente: data.cliente,
+    categoria: data.categoria.id,
     atividade: data.atividade,
   };
 }
