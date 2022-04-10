@@ -36,8 +36,8 @@
 
 ## Requirements
 
-[**Node JS 16.X**](http://nodejs.org)
-[**Docker**](https://www.docker.com/get-started/)
+- [**Node JS 16.X**](http://nodejs.org)
+- [**Docker**](https://www.docker.com/get-started/)
 
 ## Installation
 
