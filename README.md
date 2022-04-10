@@ -1,5 +1,3 @@
-# KISALU's (Back-end)🌐
-
 <div align="center">
   <a href="https://github.com/Controle-Zero/kisalu-api">
     <img src="https://i.imgur.com/y2m1PiH.png" alt="Logo" width="300">
@@ -43,8 +41,6 @@
 <a href = "http://nodejs.org">Node JS v16.X</a>
 ·
 <a href = "https://www.docker.com/get-started/">Docker</a>
-
-<br />
 
 ## Installation
 
