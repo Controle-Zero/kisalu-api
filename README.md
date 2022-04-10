@@ -34,13 +34,10 @@
 <br />
 <hr></hr>
 
-<center>
-
 ## Requirements
 
-<a href = "http://nodejs.org">Node JS v16.X</a>
-·
-<a href = "https://www.docker.com/get-started/">Docker</a>
+[**Node JS 16.X**](http://nodejs.org)
+[**Docker**](https://www.docker.com/get-started/)
 
 ## Installation
 
@@ -75,5 +72,3 @@ npm run dev
 ```bash
 npm test
 ```
-
-</center>
