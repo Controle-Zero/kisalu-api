@@ -1,24 +1,50 @@
 # KISALU's (Back-end)🌐
 
-Kisalu server-side structure
+<div align="center">
+  <a href="https://github.com/Controle-Zero/kisalu-api">
+    <img src="https://i.imgur.com/y2m1PiH.png" alt="Logo" width="300">
+  </a>
 
-## Authors
+  <h3 align="center">Kisalu Server Side</h3>
 
-- [@Reginaldo Reis](https://www.github.com/RegiReis7)
-- [@Rafael Willen](https://github.com/rafaelwillen)
-- [@Roberto Lemos](https://github.com/roblemos1)
+  <p align="center">
+    Kisalu's back-end source code readme file
+    <br />
+    <a href="https://github.com/Controle-Zero/kisalu"><strong>Explore the front-end repo »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/Controle-Zero/kisalu-api/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Controle-Zero/kisalu-api/issues">Request Feature</a>
+  </p>
+</div>
 
-## Tech Stack
+<hr></hr>
 
-- [**Node JS**](https://nodejs.org)
-- [**Express**](https://expressjs.com/)
-- [**Socket.io**](https://socket.io/)
-- [**Prisma**](https://www.prisma.io/)
+<div align=center>
+    <h2>Tech Stack</h2>
+    <br />
+
+<a href = "https://expressjs.com/">Express JS <img src="https://img.shields.io/node/v/express" alt="Logo" width="70"> </a>
+·
+<a href = "https://socket.io/">Socket Io <img src="https://img.shields.io/node/v/socket.io" alt="Logo" width="70"></a>
+·
+<a href = "https://www.prisma.io/">Prisma <img src="https://img.shields.io/node/v/prisma" alt="Logo" width="70"></a>
+
+</div>
+
+<br />
+<hr></hr>
+
+<center>
 
 ## Requirements
 
-- [NodeJS v16.X +](http://nodejs.org)
-- [Docker](https://www.docker.com/get-started/)
+<a href = "http://nodejs.org">Node JS v16.X</a>
+·
+<a href = "https://www.docker.com/get-started/">Docker</a>
+
+<br />
 
 ## Installation
 
@@ -53,3 +79,5 @@ npm run dev
 ```bash
 npm test
 ```
+
+</center>
