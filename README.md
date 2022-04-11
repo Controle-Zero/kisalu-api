@@ -41,7 +41,7 @@
 
 ## Installation
 
-First of all, install the dependencies using de command below
+First of all, install the dependencies using the command below
 
 ```bash
 npm install
@@ -67,7 +67,7 @@ npm run migrate-dev
 npm run dev
 ```
 
-### Websockets Tets
+### Websockets Tests
 
 ```bash
 npm test
