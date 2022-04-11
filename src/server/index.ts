@@ -29,13 +29,13 @@ if (cluster.isPrimary) {
     cluster.fork();
   }
 
+  httpServer.listen(process.env.PORT || 8080);
+
   cluster.on("exit", (worker) => {
     log.info(`Worker ${worker.process.pid} died`);
     cluster.fork();
   });
 } else {
   log.info(`Worker ${process.pid} started`);
-
   webSocketApp(httpServer);
-  httpServer.listen(process.env.PORT || 8080);
 }

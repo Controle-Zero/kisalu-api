@@ -28,6 +28,8 @@
 <a href = "https://socket.io/">Socket Io <img src="https://img.shields.io/node/v/socket.io" alt="Logo" width="70"></a>
 ·
 <a href = "https://www.prisma.io/">Prisma <img src="https://img.shields.io/node/v/prisma" alt="Logo" width="70"></a>
+·
+<a href = "https://jwt.io/">JWT <img src="https://img.shields.io/node/v/jsonwebtoken" alt="Logo" width="60"></a>
 
 </div>
 
@@ -61,14 +63,29 @@ Once all images have been installed and started running, execute the command
 npm run migrate-dev
 ```
 
-### API Tests
+### Live Test
+
+Use the command below to start the server
 
 ```bash
 npm run dev
 ```
 
-### Websockets Tests
+### Unit Tests
 
 ```bash
 npm test
+```
+
+### Local Data Base
+
+To interact with the data base use (recommended) open-source clients such as:
+
+- [BeeKeeper Studio](https://www.beekeeperstudio.io/)
+- [DBeaver](https://dbeaver.io/)
+
+Or, run the following command
+
+```bash
+prisma studio
 ```

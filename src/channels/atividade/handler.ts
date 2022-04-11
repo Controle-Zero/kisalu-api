@@ -7,12 +7,14 @@ import { handleSocketsArray, verifyToken } from "./helpers/functions";
 import { responseEventHandler } from "./events/functions/response";
 import { Events } from "./events/types/events.types";
 import verifyTokenDB from "../../middleware/helpers";
+import SocketUserInfo from "../types/socketUserInfo";
+import { disconnectEventHandler } from "./events/functions/disconnect";
 
 dotenv.config();
 
 //Real time interaction (notification system)
 export async function atividadeChannel(io: Server) {
-  let sockets = [];
+  let sockets: SocketUserInfo[] = [];
 
   io.of(process.env.SOCKETS_NAMESPACE).on("connection", (socket: Socket) => {
     log.info(`Socket ${socket.id} connected`);
@@ -21,7 +23,7 @@ export async function atividadeChannel(io: Server) {
 
     if (!token) {
       log.info("Token hasn't been informed...");
-      socket.disconnect();
+      socket.disconnect(true);
     }
 
     const userID = verifyToken(token);
@@ -36,8 +38,13 @@ export async function atividadeChannel(io: Server) {
       socket.on(Events.RESPONSE, (payload: ResponsePayload) => {
         responseEventHandler({ payload, socket, sockets });
       });
+
+      socket.on(Events.DISCONNECT, async () => {
+        disconnectEventHandler(io, userID, sockets);
+      });
+      
     } else {
-      socket.disconnect();
+      socket.disconnect(true);
     }
   });
 }

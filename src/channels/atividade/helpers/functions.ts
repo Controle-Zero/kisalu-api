@@ -12,9 +12,15 @@ export function handleSocketsArray(
   const idExiste = sockets.length > 0 ? sockets.find((f) => f[id]) : undefined;
   if (idExiste) {
     const index = sockets.findIndex((fi) => fi[id]);
-    sockets[index][id] = socket.id;
+    sockets[index][id].socketID = socket.id;
+    sockets[index][id].connected = true;
   } else {
-    sockets.push({ [id]: socket.id });
+    sockets.push({
+      [id]: {
+        socketID: socket.id,
+        connected: true,
+      },
+    });
   }
 }
 
