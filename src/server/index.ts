@@ -36,6 +36,6 @@ if (cluster.isPrimary) {
 } else {
   log.info(`Worker ${process.pid} started`);
 
-  httpServer.listen(process.env.PORT || 8080);
   webSocketApp(httpServer);
+  httpServer.listen(process.env.PORT || 8080);
 }
