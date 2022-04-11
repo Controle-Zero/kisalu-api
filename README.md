@@ -6,7 +6,7 @@
   <h3 align="center">Kisalu Server Side</h3>
 
   <p align="center">
-    Kisalu's back-end source code readme file
+    Kisalu's back-end readme file
     <br />
     <a href="https://github.com/Controle-Zero/kisalu"><strong>Explore the front-end repo »</strong></a>
     <br />
