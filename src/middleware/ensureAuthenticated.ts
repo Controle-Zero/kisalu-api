@@ -12,7 +12,7 @@ export function ensureAuthenticated(
   next: NextFunction
 ) {
   const authToken = req.headers.authorization;
-
+  
   if (!authToken) {
     return res.status(401).json({
       message: "The token wasn't informed",

@@ -1,39 +1,91 @@
+<div align="center">
+  <a href="https://github.com/Controle-Zero/kisalu-api">
+    <img src="https://i.imgur.com/y2m1PiH.png" alt="Logo" width="300">
+  </a>
 
-# KISALU's (Back-end)🌐
+  <h3 align="center">Kisalu Server Side</h3>
 
-Kisalu server-side structure
+  <p align="center">
+    Kisalu's back-end readme file
+    <br />
+    <a href="https://github.com/Controle-Zero/kisalu"><strong>Explore the front-end repo »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/Controle-Zero/kisalu-api/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Controle-Zero/kisalu-api/issues">Request Feature</a>
+  </p>
+</div>
 
+<hr></hr>
 
-## Authors
+<div align=center>
+    <h2>Tech Stack</h2>
+    <br />
 
-- [@Reginaldo Reis](https://www.github.com/RegiReis7)
-- [@Rafael Willen](https://github.com/rafaelwillen)
-- [@Roberto Lemos](https://github.com/roblemos1) 
+<a href = "https://expressjs.com/">Express JS <img src="https://img.shields.io/node/v/express" alt="Logo" width="70"> </a>
+·
+<a href = "https://socket.io/">Socket Io <img src="https://img.shields.io/node/v/socket.io" alt="Logo" width="70"></a>
+·
+<a href = "https://www.prisma.io/">Prisma <img src="https://img.shields.io/node/v/prisma" alt="Logo" width="70"></a>
+·
+<a href = "https://jwt.io/">JWT <img src="https://img.shields.io/node/v/jsonwebtoken" alt="Logo" width="60"></a>
 
+</div>
 
-## Tech Stack
-
-- [**Node JS**](https://nodejs.org) 
-- [**Express**](https://expressjs.com/)
-- [**Socket.io**](https://socket.io/)
-- [**Prisma**](https://www.prisma.io/)
-
+<br />
+<hr></hr>
 
 ## Requirements
 
-- [NodeJS v14.x](http://nodejs.org)
+- [**Node JS 16.X**](http://nodejs.org)
+- [**Docker**](https://www.docker.com/get-started/)
+
 ## Installation
 
-First of all, install the dependencies using de command below
+First of all, install the dependencies using the command below
 
 ```bash
 npm install
 ```
-    
-## Execution
 
-After installing all dependencies, run the app using the command below
+## Local Tests
+
+Make sure you have docker installed, then run
 
 ```bash
-npm start
+docker-compose up -d db redis
+```
+
+Once all images have been installed and started running, execute the command
+
+```bash
+npm run migrate-dev
+```
+
+### Live Test
+
+Use the command below to start the server
+
+```bash
+npm run dev
+```
+
+### Unit Tests
+
+```bash
+npm test
+```
+
+### Local Data Base
+
+To interact with the data base use (recommended) open-source clients such as:
+
+- [BeeKeeper Studio](https://www.beekeeperstudio.io/)
+- [DBeaver](https://dbeaver.io/)
+
+Or, run the following command
+
+```bash
+prisma studio
 ```

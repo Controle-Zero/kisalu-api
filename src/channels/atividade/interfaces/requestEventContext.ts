@@ -1,7 +1,7 @@
-import { Server, Socket } from "socket.io";
+import { Server } from "socket.io";
+import { RequestPayload } from "./payload";
 
 export default interface RequestEventContext {
-  socket: Socket;
+  payload: RequestPayload;
   io: Server;
-  idProvedor: string;
 }

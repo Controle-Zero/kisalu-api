@@ -22,6 +22,9 @@ export const retornarCategorias = async (req: Request, res: Response) => {
   } else {
     res
       .status(400)
-      .json({ message: "An error occured returning the categories", success: false });
+      .json({
+        message: "An error occured returning the categories",
+        success: false,
+      });
   }
 };
