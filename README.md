@@ -54,7 +54,7 @@ npm install
 Make sure you have docker installed, then run
 
 ```bash
-docker-compose up -d db redis
+docker-compose up -d
 ```
 
 Once all images have been installed and started running, execute the command
