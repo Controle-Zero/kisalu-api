@@ -9,6 +9,7 @@
   "scripts": {
     "migrate-dev": "prisma migrate dev",
     "dev": "tsnd --respawn --ignore-watch node_modules ./src/server",
+    "data-base" : "prisma studio",
     "start": "ts-node ./src/server",
     "test": "jest"
   },
