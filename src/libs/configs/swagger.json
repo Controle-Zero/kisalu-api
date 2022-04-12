@@ -338,7 +338,7 @@
         }
       },
       "delete": {
-        "summary": "Deattach Categories On Providers",
+        "summary": "Detach Categories On Providers",
         "description": "Pass a valid category id to be removed from a provider profile",
         "security": [{ "bearerAuth": [] }],
         "tags": ["Provider"],
@@ -358,7 +358,7 @@
         },
         "responses": {
           "200": {
-            "description": "The categories were deattached"
+            "description": "The categories were detached"
           },
           "400": {
             "description": "Something went wrong while handling this operation. Verify the category id, it might not exist"

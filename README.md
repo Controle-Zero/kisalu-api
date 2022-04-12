@@ -71,6 +71,12 @@ Use the command below to start the server
 npm run dev
 ```
 
+Checkout the API's documentation (interactive)
+
+```url
+http://localhost:8080/api/doc
+```
+
 ### Unit Tests
 
 ```bash
