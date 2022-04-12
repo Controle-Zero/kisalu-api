@@ -4,18 +4,21 @@ import { log } from "../../libs/log";
 import { encryptData } from "../../libs/utils/encryption";
 import { getRate } from "../../libs/utils/ratingSystem";
 
-export async function actualizarPrestadorService(prestador: Prestador) {
+export async function actualizarPrestadorService(
+  id: string,
+  prestador: Prestador
+) {
   try {
     const prestadorExiste = await db.prestador.findUnique({
       where: {
-        email: prestador.email,
+        id,
       },
     });
 
     if (prestadorExiste) {
       await db.prestador.update({
         where: {
-          email: prestador.email,
+          id,
         },
         data: {
           bi: prestador.bi,

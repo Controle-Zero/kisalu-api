@@ -1,0 +1,446 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Kisalu API",
+    "version": "1.0.0",
+    "description": "Kisalu's interactive API documentation built using Swagger",
+    "contact": {
+      "name": "Controle Zero",
+      "url": "https://github.com/Controle-Zero",
+      "email": "ccontrolezero@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Development Server"
+    },
+    {
+      "url": "https://uservices-api-teste.herokuapp.com/",
+      "description": "Production Server"
+    }
+  ],
+  "paths": {
+    "/cliente": {
+      "post": {
+        "summary": "Create Customer",
+        "description": "That endpoit is responsible for the customers creation",
+        "tags": ["Customer"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              },
+              "examples": {
+                "cliente": {
+                  "value": {
+                    "nome": "Afonso Lafon",
+                    "bi": "0002505BA012",
+                    "dataNasc": "1992-05-15",
+                    "morada": "Luanda, Centralidade Do Kilamba, E30/7º/72",
+                    "email": "afonsolafon@controlezero.com",
+                    "telefone": "924586978",
+                    "password": "morrer_é_daqui_pra_qui"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "The customer already exists or something went wrong processing the data that have been sent"
+          },
+          "201": {
+            "description": "The customer has been created"
+          }
+        }
+      },
+      "get": {
+        "summary": "Retrieve Customer Data",
+        "description": "That endpoit is responsible for returning customer data by a given token",
+        "tags": ["Customer"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "The token was accepted and a customer data were returned",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Customer Data",
+        "description": "That endpoit is responsible for update customer data",
+        "tags": ["Customer"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              },
+              "examples": {
+                "cliente": {
+                  "value": {
+                    "nome": "Jorge Lafon",
+                    "bi": "0002505BA012",
+                    "dataNasc": "1992-05-15",
+                    "morada": "Luanda, Centralidade Do Kilamba, E30/7º/72",
+                    "email": "afonsolafon@controlezero.com",
+                    "telefone": "924586978",
+                    "password": "morrer_é_daqui_pra_qui"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "The customer doesn't exists or something went wrong processing the data that have been sent"
+          },
+          "201": {
+            "description": "The customer data has been updated"
+          }
+        }
+      }
+    },
+    "/cliente/login": {
+      "post": {
+        "summary": "Get A Token Key",
+        "description": "Using valid credentials to retrieve a token key for subsequent API calls",
+        "tags": ["Customer"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password"
+                  },
+                  "deviceData": {
+                    "type": "object",
+                    "properties": {
+                      "uniqueID": {
+                        "type": "string"
+                      },
+                      "brand": {
+                        "type": "string"
+                      },
+                      "model": {
+                        "type": "string"
+                      },
+                      "ipAddress": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The credentials were accepted and a token was generated"
+          },
+          "400": {
+            "description": "There's something wrong with the credentials"
+          }
+        }
+      }
+    },
+    "/prestador": {
+      "post": {
+        "summary": "Create Provider",
+        "description": "That endpoit is responsible for the providers creation",
+        "tags": ["Provider"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Prestador"
+              },
+              "examples": {
+                "cliente": {
+                  "value": {
+                    "nome": "Alice Moreira",
+                    "bi": "0002455LA012",
+                    "dataNasc": "1998-03-15",
+                    "morada": "Luanda, Centralidade Do Kilamba, A7/2º/20",
+                    "email": "alicemoreira@controlezero.com",
+                    "telefone": "924859687",
+                    "password": "morrer_é_daqui_pra_qui",
+                    "iban": "AO06.1111.1111.1111.1111.1111.1",
+                    "descricao": "Decoradora Chateada"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "The provider already exists or something went wrong processing the data that have been sent"
+          },
+          "201": {
+            "description": "The provider has been created"
+          }
+        }
+      },
+      "get": {
+        "summary": "Retrieve Provider Data",
+        "description": "That endpoit is responsible for returning provider data by a given token",
+        "tags": ["Provider"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "The token was accepted and a provider data were returned",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Provider Data",
+        "description": "That endpoit is responsible for update provider data",
+        "security": [{ "bearerAuth": [] }],
+        "tags": ["Provider"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Prestador"
+              },
+              "examples": {
+                "cliente": {
+                  "value": {
+                    "nome": "Arminda Moreira",
+                    "bi": "0002455LA012",
+                    "dataNasc": "1998-03-15",
+                    "morada": "Luanda, Centralidade Do Kilamba, A7/2º/20",
+                    "email": "armindamoreira@controlezero.com",
+                    "telefone": "924859687",
+                    "password": "morrer_é_daqui_pra_qui",
+                    "iban": "AO06.1111.1111.1111.1111.1111.1",
+                    "descricao": "Decoradora Chateada"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "The provider doesn't exists or something went wrong processing the data that have been sent"
+          },
+          "201": {
+            "description": "The provider data has been updated"
+          }
+        }
+      }
+    },
+    "/prestador/login": {
+      "post": {
+        "summary": "Get A Token Key",
+        "description": "Using valid credentials to retrieve a token key for subsequent API calls",
+        "tags": ["Provider"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password"
+                  },
+                  "deviceData": {
+                    "type": "object",
+                    "properties": {
+                      "uniqueID": {
+                        "type": "string"
+                      },
+                      "brand": {
+                        "type": "string"
+                      },
+                      "model": {
+                        "type": "string"
+                      },
+                      "ipAddress": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The credentials were accepted and a token was generated"
+          },
+          "400": {
+            "description": "There's something wrong with the credentials"
+          }
+        }
+      }
+    },
+    "/prestador/categoria": {
+      "put": {
+        "summary": "Attach Categories To Providers",
+        "description": "Pass an array of strings representing the categories' ids to be attached into a given provider profile",
+        "security": [{ "bearerAuth": [] }],
+        "tags": ["Provider"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "idCategorias": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The categories were added"
+          },
+          "400": {
+            "description": "Something went wrong while handling this operation. Verify the categories' ids, one of them might not exist"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deattach Categories On Providers",
+        "description": "Pass a valid category id to be removed from a provider profile",
+        "security": [{ "bearerAuth": [] }],
+        "tags": ["Provider"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "idCategoria": {
+                  "type": "string"
+                }
+              },
+              "examples": {
+                "idCategoria": "vefe56464641-1v56ew4vev-e51v61weve"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The categories were deattached"
+          },
+          "400": {
+            "description": "Something went wrong while handling this operation. Verify the category id, it might not exist"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Cliente": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "bi": {
+            "type": "string"
+          },
+          "dataNasc": {
+            "type": "string",
+            "format": "date"
+          },
+          "morada": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "telefone": {
+            "type": "number"
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          }
+        }
+      },
+      "Prestador": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "bi": {
+            "type": "string"
+          },
+          "dataNasc": {
+            "type": "string",
+            "format": "date"
+          },
+          "morada": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "telefone": {
+            "type": "number"
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          },
+          "estado": {
+            "type": "string"
+          },
+          "iban": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
