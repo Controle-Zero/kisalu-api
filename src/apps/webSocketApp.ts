@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import { atividadeChannel } from "../channels/atividade/handler";
+import { mainChannel } from "../channels/handler";
 import http from "http";
 import { createAdapter as createClusterAdapter } from "@socket.io/cluster-adapter";
 import { createAdapter as createRedisAdapter } from "@socket.io/redis-adapter";
@@ -23,5 +23,5 @@ export default function webSocketApp(httpServer: http.Server) {
 
   setupWorker(io);
 
-  atividadeChannel(io);
+  mainChannel(io);
 }
