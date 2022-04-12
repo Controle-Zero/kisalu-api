@@ -87,5 +87,5 @@ To interact with the data base use (recommended) open-source clients such as:
 Or, run the following command
 
 ```bash
-prisma studio
+npm run data-base
 ```

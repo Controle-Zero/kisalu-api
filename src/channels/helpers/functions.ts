@@ -1,6 +1,6 @@
 import { decode, verify } from "jsonwebtoken";
 import { ResponseEventContext } from "../interfaces/responseEventContext";
-import { log } from "../../../libs/log";
+import { log } from "../../libs/log";
 import dotenv from "dotenv";
 
 dotenv.config();

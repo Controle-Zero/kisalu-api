@@ -3,18 +3,18 @@ import { log } from "../../libs/log";
 import db from "../../libs/configs/db";
 import { encryptData } from "../../libs/utils/encryption";
 
-export async function actualizarClienteService(cliente: Cliente) {
+export async function actualizarClienteService(id: string, cliente: Cliente) {
   try {
     const clienteExiste = await db.cliente.findMany({
       where: {
-        email: cliente.email,
+        id,
       },
     });
 
     if (clienteExiste) {
       await db.cliente.update({
         where: {
-          email: cliente.email,
+          id,
         },
         data: {
           bi: cliente.bi,

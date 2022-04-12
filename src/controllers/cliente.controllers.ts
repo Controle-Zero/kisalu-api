@@ -18,7 +18,10 @@ export const criarCliente = async (req: CustomRequest, res: Response) => {
   } else {
     res
       .status(400)
-      .json({ message: "An error occured creating the customer", success: false });
+      .json({
+        message: "An error occured creating the customer",
+        success: false,
+      });
   }
 };
 
@@ -27,15 +30,12 @@ export const retornarCliente = async (req: CustomRequest, res: Response) => {
   if (cliente) {
     res.status(200).json({ cliente, success: true });
   } else {
-    res
-      .status(404)
-      .json({ message: "Customer wasn't found", success: false });
+    res.status(404).json({ message: "Customer wasn't found", success: false });
   }
 };
 
 export const actualizarCliente = async (req: CustomRequest, res: Response) => {
-  const cliente = req.body;
-  const response = await actualizarClienteService(cliente);
+  const response = await actualizarClienteService(req.id, req.body);
 
   if (response) {
     res.status(200).json(response);

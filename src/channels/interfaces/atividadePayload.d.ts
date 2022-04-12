@@ -1,7 +1,7 @@
-import Atividade from "../../../models/atividade.models";
-import Categoria from "../../../models/categoria.models";
-import Cliente from "../../../models/cliente.models";
-import Prestador from "../../../models/prestador.models";
+import Atividade from "../../models/atividade.models";
+import Categoria from "../../models/categoria.models";
+import Cliente from "../../models/cliente.models";
+import Prestador from "../../models/prestador.models";
 
 export interface AtividadeResponsePayload {
   id: string;

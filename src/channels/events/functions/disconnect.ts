@@ -1,5 +1,5 @@
 import { Server, Socket } from "socket.io";
-import SocketUserInfo from "../../../types/socketUserInfo";
+import SocketUserInfo from "../../interfaces/socketUserInfo";
 
 export async function disconnectEventHandler(
   io: Server,

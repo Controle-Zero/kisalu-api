@@ -40,7 +40,7 @@ export const actualizarPrestador = async (
   res: Response
 ) => {
   const prestador: Prestador = req.body;
-  const response = await actualizarPrestadorService(prestador);
+  const response = await actualizarPrestadorService(req.id, prestador);
 
   if (response) {
     res.status(200).json(response);
@@ -114,11 +114,9 @@ export const removerCategoriaProvedor = async (
   if (response) {
     res.status(200).json(response);
   } else {
-    res
-      .status(400)
-      .json({
-        message: "An error occured removing the selected category",
-        success: false,
-      });
+    res.status(400).json({
+      message: "An error occured removing the selected category",
+      success: false,
+    });
   }
 };
