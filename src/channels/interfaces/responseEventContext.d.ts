@@ -1,5 +1,5 @@
 import { Socket } from "socket.io";
-import SocketUserInfo from "../types/socketUserInfo";
+import SocketUserInfo from "./socketUserInfo";
 import { ResponsePayload } from "./payload";
 
 export interface ResponseEventContext {

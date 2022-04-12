@@ -7,7 +7,7 @@ import { handleSocketsArray, verifyToken } from "./helpers/functions";
 import { responseEventHandler } from "./events/functions/response";
 import { Events } from "./events/types/events.types";
 import verifyTokenDB from "../middleware/helpers";
-import SocketUserInfo from "./types/socketUserInfo";
+import SocketUserInfo from "./interfaces/socketUserInfo";
 import { disconnectEventHandler } from "./events/functions/disconnect";
 
 dotenv.config();

@@ -1,5 +1,5 @@
-import { log } from "../../../../libs/log";
-import { updateAtividadeService } from "../../../../services/atividade/updateAtividade";
+import { log } from "../../../libs/log";
+import { updateAtividadeService } from "../../../services/atividade/updateAtividade";
 import { Roles } from "../../interfaces/payload";
 import { ResponseEventContext } from "../../interfaces/responseEventContext";
 import { Events } from "../types/events.types";
