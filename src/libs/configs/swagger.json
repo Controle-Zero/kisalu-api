@@ -23,9 +23,9 @@
   "paths": {
     "/cliente": {
       "post": {
-        "summary": "Create Customer",
-        "description": "That endpoit is responsible for the customers creation",
-        "tags": ["Customer"],
+        "summary": "Create A Client",
+        "description": "That endpoit is responsible for the clients creation",
+        "tags": ["Client"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -50,21 +50,21 @@
         },
         "responses": {
           "400": {
-            "description": "The customer already exists or something went wrong processing the data that have been sent"
+            "description": "The client already exists or something went wrong processing the data that have been sent"
           },
           "201": {
-            "description": "The customer has been created"
+            "description": "The client has been created"
           }
         }
       },
       "get": {
-        "summary": "Retrieve Customer Data",
-        "description": "That endpoit is responsible for returning customer data by a given token",
-        "tags": ["Customer"],
+        "summary": "Retrieve Client Data",
+        "description": "That endpoit is responsible for returning client data by a given token",
+        "tags": ["Client"],
         "security": [{ "bearerAuth": [] }],
         "responses": {
           "200": {
-            "description": "The token was accepted and a customer data were returned",
+            "description": "The token was accepted and a client data were returned",
             "content": {
               "application/json": {}
             }
@@ -75,9 +75,9 @@
         }
       },
       "put": {
-        "summary": "Update Customer Data",
-        "description": "That endpoit is responsible for update customer data",
-        "tags": ["Customer"],
+        "summary": "Update Client Data",
+        "description": "That endpoit is responsible for update client data",
+        "tags": ["Client"],
         "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
@@ -103,10 +103,10 @@
         },
         "responses": {
           "400": {
-            "description": "The customer doesn't exists or something went wrong processing the data that have been sent"
+            "description": "The client doesn't exists or something went wrong processing the data that have been sent"
           },
           "201": {
-            "description": "The customer data has been updated"
+            "description": "The client data has been updated"
           }
         }
       }
@@ -115,7 +115,7 @@
       "post": {
         "summary": "Get A Token Key",
         "description": "Using valid credentials to retrieve a token key for subsequent API calls",
-        "tags": ["Customer"],
+        "tags": ["Client"],
         "requestBody": {
           "content": {
             "application/json": {
