@@ -105,7 +105,7 @@
           "400": {
             "description": "The client doesn't exists or something went wrong processing the data that have been sent"
           },
-          "201": {
+          "200": {
             "description": "The client data has been updated"
           }
         }
@@ -238,7 +238,8 @@
                     "telefone": "924859687",
                     "password": "morrer_é_daqui_pra_qui",
                     "iban": "AO06.1111.1111.1111.1111.1111.1",
-                    "descricao": "Decoradora Chateada"
+                    "descricao": "Decoradora Chateada",
+                    "idCategorias": []
                   }
                 }
               }
@@ -249,7 +250,7 @@
           "400": {
             "description": "The provider doesn't exists or something went wrong processing the data that have been sent"
           },
-          "201": {
+          "200": {
             "description": "The provider data has been updated"
           }
         }
@@ -338,7 +339,7 @@
         }
       },
       "delete": {
-        "summary": "Detach Categories On Providers",
+        "summary": "Detach Categories From Providers",
         "description": "Pass a valid category id to be removed from a provider profile",
         "security": [{ "bearerAuth": [] }],
         "tags": ["Provider"],
@@ -392,6 +393,72 @@
           }
         }
       }
+    },
+    "/atividade/{id}/doc": {
+      "get": {
+        "summary": "Get The Activity Invoice",
+        "description": "That endpoint returns an invoice of a given activity id",
+        "tags": ["Activity"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Invoice returned successfully",
+            "content": {
+              "text/html": {}
+            }
+          },
+          "400": {
+            "description": "An error occured...Verify the id"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "The activity ID",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/atividade/{id}/{rate}": {
+      "put": {
+        "summary": "Performance Evaluation",
+        "description": "That endpoint is used to evaluate the provider's performance related to an activity represented by its id",
+        "tags": ["Activity"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "The activity was evaluated"
+          },
+          "400": {
+            "description": "An error occured...Verify the activity id or the given rate value"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "The activity ID",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "rate",
+          "in": "path",
+          "description": "The grade value from 0 to 5",
+          "required": true,
+          "schema": {
+            "type": "number"
+          }
+        }
+      ]
     }
   },
   "components": {
