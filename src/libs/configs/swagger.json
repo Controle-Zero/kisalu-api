@@ -351,17 +351,44 @@
                 }
               },
               "examples": {
-                "idCategoria": "vefe56464641-1v56ew4vev-e51v61weve"
+                "categoria": {
+                  "value": {
+                    "idCategoria": "vefe56464641-1v56ew4vev-e51v61weve"
+                  }
+                }
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "The categories were detached"
+            "description": "The category was detached"
           },
           "400": {
             "description": "Something went wrong while handling this operation. Verify the category id, it might not exist"
+          }
+        }
+      }
+    },
+    "/categoria": {
+      "get": {
+        "summary": "Get A List Of All Categories",
+        "description": "Get a list of all categories with their respective providers",
+        "tags": ["Category"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Categories returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Categoria"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Something went wrong while getting the categories"
           }
         }
       }
@@ -431,6 +458,60 @@
           },
           "descricao": {
             "type": "string"
+          }
+        }
+      },
+      "Categoria": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "titulo": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "prestadores": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string"
+                },
+                "bi": {
+                  "type": "string"
+                },
+                "dataNasc": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "morada": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "telefone": {
+                  "type": "number"
+                },
+                "password": {
+                  "type": "string",
+                  "format": "password"
+                },
+                "estado": {
+                  "type": "string"
+                },
+                "iban": {
+                  "type": "string"
+                },
+                "descricao": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
