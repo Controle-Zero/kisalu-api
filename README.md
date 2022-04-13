@@ -66,7 +66,6 @@ Make sure you have docker installed, then run
 
 ```bash
 # This command will pull images (if not pulled yet) and iniate docker containers
-
 docker-compose up -d
 ```
 **NOTE**: There's no need to run that command every time you going to run the server, run the command to verify the docker containers currently running instead
@@ -81,7 +80,6 @@ Once all images have been installed and started running, execute the command
 
 ```bash
 # This command will create the whole data base structure based on the schema.prisma file
-
 npm run migrate-dev
 ```
 
