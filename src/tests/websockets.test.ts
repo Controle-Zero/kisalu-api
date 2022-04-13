@@ -2,8 +2,8 @@ import { Estados } from "@prisma/client";
 import http from "http";
 import { Server } from "socket.io";
 import Client from "socket.io-client";
-import { Events } from "../channels/atividade/events/types/events.types";
-import { ResponsePayload } from "../channels/atividade/interfaces/payload";
+import { Events } from "../channels/events/types/events.types";
+import { ResponsePayload } from "../channels/interfaces/payload";
 import {
   ClientRequestPayload,
   getClientRequestPayload,

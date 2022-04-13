@@ -2,7 +2,7 @@ import {
   RequestPayload,
   ResponsePayload,
   Roles,
-} from "../../channels/atividade/interfaces/payload";
+} from "../../channels/interfaces/payload";
 import Atividade from "../../models/atividade.models";
 import Cliente from "../../models/cliente.models";
 import { DataHandlerContext, getData } from "../helpers/dataHandler";
