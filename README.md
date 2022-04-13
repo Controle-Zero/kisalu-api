@@ -68,7 +68,6 @@ Make sure you have docker installed, then run
 # This command will pull images (if not pulled yet) and iniate docker containers
 docker-compose up -d
 ```
-**NOTE**: There's no need to run that command every time you going to run the server, run the command to verify the docker containers currently running instead
 
 ```bash
 #Show all running containers
