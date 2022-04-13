@@ -41,25 +41,47 @@
 - [**Node JS 16.X**](http://nodejs.org)
 - [**Docker**](https://www.docker.com/get-started/)
 
-## Installation
+## Local Development
 
 First of all, install the dependencies using the command below
 
 ```bash
 npm install
 ```
+### Setup the environment
+Create a .env in the root with the following structure
 
-## Local Tests
+```sh
+DATABASE_URL="postgresql://postgres:docker@localhost:5432/kisalu_local?schema=public"
+
+REDIS_URL = "redis://localhost:6379"
+
+SECRET= "30b9dce7-08c2-4c22-8204-b9e41d624ab9"
+
+SOCKETS_NAMESPACE = MainRoom
+```
 
 Make sure you have docker installed, then run
 
+
 ```bash
+# This command will pull images (if not pulled yet) and iniate docker containers
+
 docker-compose up -d
 ```
+**NOTE**: There's no need to run that command every time you going to run the server, run the command to verify the docker containers currently running instead
+
+```bash
+#Show all running containers
+docker ps
+```
+
 
 Once all images have been installed and started running, execute the command
 
 ```bash
+# This command will create the whole data base structure based on the schema.prisma file
+
 npm run migrate-dev
 ```
 
