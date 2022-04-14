@@ -49,7 +49,7 @@ First of all, install the dependencies using the command below
 npm install
 ```
 ### Setup the environment
-Create a .env in the root with the following structure
+Create a .env file in the root with the following structure
 
 ```sh
 DATABASE_URL="postgresql://postgres:docker@localhost:5432/kisalu_local?schema=public"
