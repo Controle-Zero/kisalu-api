@@ -10,10 +10,10 @@ import { setupPrimary } from "@socket.io/cluster-adapter";
 
 dotenv.config();
 
-const httpServer = http.createServer(app);
-
 if (cluster.isPrimary) {
   const numCPUs = cpus().length;
+
+  const httpServer = http.createServer(app);
 
   setupMaster(httpServer, {
     loadBalancingMethod: "least-connection",
@@ -24,6 +24,8 @@ if (cluster.isPrimary) {
   cluster.setupPrimary({
     serialization: "advanced",
   });
+
+  httpServer.listen(process.env.PORT || 8080);
 
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
@@ -36,6 +38,6 @@ if (cluster.isPrimary) {
 
   log.info("All Clusters Are Running");
 } else {
+  const httpServer = http.createServer(app);
   webSocketApp(httpServer);
-  httpServer.listen(process.env.PORT || 8080);
 }
