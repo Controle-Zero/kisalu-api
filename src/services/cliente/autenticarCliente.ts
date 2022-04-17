@@ -61,6 +61,7 @@ export async function autenticarClienteService(
     });
   } catch (e) {
     log.error(`Erro ao criar a informação do login- ${e}`);
+    return undefined;
   }
 
   //const refreshToken = await gerarRefreshTokenCliente(clienteExiste.id);
