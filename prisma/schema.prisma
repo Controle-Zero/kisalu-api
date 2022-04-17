@@ -43,7 +43,7 @@ model Prestador {
   telefone              String
   password              String
   estado                String                 @default("DISPONIVEL")
-  iban                  String
+  iban                  String                 @unique
   rate                  Float                  @default(0)
   descricao             String?                @db.Text
   refreshTokenPrestador RefreshTokenPrestador?
