@@ -173,7 +173,7 @@
                 "$ref": "#/components/schemas/Prestador"
               },
               "examples": {
-                "cliente": {
+                "prestador": {
                   "value": {
                     "nome": "Alice Moreira",
                     "bi": "0002455LA012",
@@ -183,7 +183,8 @@
                     "telefone": "924859687",
                     "password": "morrer_é_daqui_pra_qui",
                     "iban": "AO06.1111.1111.1111.1111.1111.1",
-                    "descricao": "Decoradora Chateada"
+                    "descricao": "Decoradora Chateada",
+                    "idCategorias": []
                   }
                 }
               }
@@ -228,7 +229,7 @@
                 "$ref": "#/components/schemas/Prestador"
               },
               "examples": {
-                "cliente": {
+                "prestador": {
                   "value": {
                     "nome": "Arminda Moreira",
                     "bi": "0002455LA012",
@@ -525,6 +526,12 @@
           },
           "descricao": {
             "type": "string"
+          },
+          "idCategorias": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
