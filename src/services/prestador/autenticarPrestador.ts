@@ -62,6 +62,7 @@ export async function autenticarPrestadorService(
     });
   } catch (e) {
     log.error(`Erro ao criar a informação do login- ${e}`);
+    return undefined;
   }
 
   //const refreshToken = await gerarRefreshTokenPrestador(prestadorExiste.id);
