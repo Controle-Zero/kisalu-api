@@ -1,8 +1,8 @@
-import app from "../apps/httpApp";
+import app from "../apps/http";
 import { log } from "../libs/log";
 import http from "http";
 import dotenv from "dotenv";
-import webSocketApp from "../apps/webSocketApp";
+import webSocket from "../apps/websocket";
 import cluster from "cluster";
 import { cpus } from "os";
 import { setupMaster } from "@socket.io/sticky";
@@ -39,5 +39,5 @@ if (cluster.isPrimary) {
   log.info("All Clusters Are Running");
 } else {
   const httpServer = http.createServer(app);
-  webSocketApp(httpServer);
+  webSocket(httpServer);
 }

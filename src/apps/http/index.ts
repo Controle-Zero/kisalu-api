@@ -1,12 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
-import { clienteRoutes } from "../routes/cliente.routes";
-import { prestadorRoutes } from "../routes/prestador.routes";
-import { categoriaRoutes } from "../routes/categoria.routes";
+import { clienteRoutes } from "../../routes/cliente.routes";
+import { prestadorRoutes } from "../../routes/prestador.routes";
+import { categoriaRoutes } from "../../routes/categoria.routes";
 import cors from "cors";
-import { atividadeRoutes } from "../routes/atividade.routes";
+import { atividadeRoutes } from "../../routes/atividade.routes";
 import swaggerUI from "swagger-ui-express";
-import swaggerConfig from "../libs/configs/swagger.json";
+import swaggerConfig from "../../libs/configs/swagger.json";
 
 dotenv.config();
 
