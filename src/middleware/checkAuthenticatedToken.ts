@@ -15,7 +15,7 @@ export default async function checkAuthenticatedToken(
   if (tokenExists) {
     return next();
   } else {
-    log.error("O token informado está na blacklist");
+    log.error("O token informado está na blacklist (Kisalu Scope)");
     return res.status(400).json({ message: "Invalid Token" });
   }
 }
