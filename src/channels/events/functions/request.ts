@@ -1,7 +1,7 @@
 import { log } from "../../../libs/log";
 import { criarAtividadeService } from "../../../services/atividade/criarAtividade";
 import { retornarClienteService } from "../../../services/cliente/retornarCliente";
-import { Roles } from "../../interfaces/payload";
+import { Roles } from "../../interfaces/payloads";
 import RequestEventContext from "../../interfaces/requestEventContext";
 import { Events } from "../types/events.types";
 

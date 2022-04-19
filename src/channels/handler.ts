@@ -2,7 +2,7 @@ import { Server, Socket } from "socket.io";
 import { log } from "../libs/log";
 import { requestEventHandler } from "./events/functions/request";
 import dotenv from "dotenv";
-import { RequestPayload, ResponsePayload } from "./interfaces/payload";
+import { RequestPayload, ResponsePayload } from "./interfaces/payloads";
 import { handleSocketsArray, verifyToken } from "./helpers/functions";
 import { responseEventHandler } from "./events/functions/response";
 import { Events } from "./events/types/events.types";

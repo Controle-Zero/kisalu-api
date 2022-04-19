@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import { RequestPayload } from "./payload";
+import { RequestPayload } from "./payloads";
 
 export default interface RequestEventContext {
   payload: RequestPayload;

@@ -28,5 +28,5 @@ export default interface MessagePayload {
   from: string;
   to: string;
   content: string;
-  atividade;
+  sentAt: Date;
 }

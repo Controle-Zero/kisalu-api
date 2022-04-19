@@ -1,6 +1,6 @@
 import { log } from "../../../libs/log";
 import { updateAtividadeService } from "../../../services/atividade/updateAtividade";
-import { Roles } from "../../interfaces/payload";
+import { Roles } from "../../interfaces/payloads";
 import { ResponseEventContext } from "../../interfaces/responseEventContext";
 import { Events } from "../types/events.types";
 
