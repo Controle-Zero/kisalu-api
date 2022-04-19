@@ -108,6 +108,8 @@ npm test
 
 ### Local Data Base
 
+### Relational
+
 To interact with the data base use (recommended) open-source clients such as:
 
 - [BeeKeeper Studio](https://www.beekeeperstudio.io/)
@@ -117,4 +119,12 @@ Or, run the following command
 
 ```bash
 npm run data-base
+```
+
+### Non-Relational
+
+Open the following link to access Mongo-Express interface
+
+```url
+localhost:8081
 ```
