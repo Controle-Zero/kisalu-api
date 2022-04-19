@@ -30,6 +30,8 @@
 <a href = "https://www.prisma.io/">Prisma <img src="https://img.shields.io/node/v/prisma" alt="Logo" width="70"></a>
 ·
 <a href = "https://jwt.io/">JWT <img src="https://img.shields.io/node/v/jsonwebtoken" alt="Logo" width="60"></a>
+·
+<a href = "https://www.typescriptlang.org/">TypeScript <img src="https://img.shields.io/node/v/typescript" alt="Logo" width="60"></a>
 
 </div>
 
@@ -48,7 +50,9 @@ First of all, install the dependencies using the command below
 ```bash
 npm install
 ```
+
 ### Setup the environment
+
 Create a .env file in the root with the following structure
 
 ```sh
@@ -63,7 +67,6 @@ SOCKETS_NAMESPACE = MainRoom
 
 Make sure you have docker installed, then run
 
-
 ```bash
 # This command will pull images (if not pulled yet) and iniate docker containers
 docker-compose up -d
@@ -73,7 +76,6 @@ docker-compose up -d
 #Show all running containers
 docker ps
 ```
-
 
 Once all images have been installed and started running, execute the command
 

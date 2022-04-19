@@ -23,3 +23,10 @@ export interface ResponsePayload {
   };
   atividade: AtividadeResponsePayload;
 }
+
+export default interface MessagePayload {
+  from: string;
+  to: string;
+  content: string;
+  atividade;
+}

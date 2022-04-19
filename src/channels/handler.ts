@@ -24,6 +24,7 @@ export async function mainChannel(io: Server) {
     if (!token) {
       log.info("Token hasn't been informed...");
       socket.disconnect(true);
+      return;
     }
 
     const userID = verifyToken(token);
@@ -44,6 +45,7 @@ export async function mainChannel(io: Server) {
       });
     } else {
       socket.disconnect(true);
+      return;
     }
   });
 }
