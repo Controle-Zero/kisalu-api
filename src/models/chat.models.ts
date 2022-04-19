@@ -1,30 +1,31 @@
 import mongoose from "mongoose";
+import { Roles } from "../channels/interfaces/payloads";
 
 const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema(
   {
+    from: {
+      type: String
+    },
     clienteID: {
       type: String,
-      required: true,
     },
     prestadorID: {
       type: String,
-      required: true,
     },
     atividadeID: {
       type: String,
-      required: true,
     },
     content: {
       type: String,
-      required: true,
     },
   },
   { timestamps: true }
 );
 
 export interface MessageIU {
+  from: Roles;
   clienteID: string;
   prestadorID: string;
   atividadeID: string;

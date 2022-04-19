@@ -1,16 +1,19 @@
 import mongoose from "mongoose";
 import { getData } from "../mocks/helpers/dataHandler";
+import dotenv from "dotenv";
 
-jest.setTimeout(20000);
+dotenv.config();
 
 describe("MongoDB Tests", () => {
   beforeAll(async () => {
-    return await mongoose.connect("mongodb://localhost:27017/kisalu_local");
+    return await mongoose.connect(process.env.MONGO_URL);
   });
 
   afterAll(() => {
     mongoose.disconnect();
   });
 
-  test.todo("Test mongo connection");
+  test("Test mongo connection", () => {
+    expect(mongoose.STATES).toBeTruthy();
+  });
 });

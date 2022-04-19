@@ -60,7 +60,7 @@ DATABASE_URL="postgresql://postgres:docker@localhost:5432/kisalu_local?schema=pu
 
 REDIS_URL = "redis://localhost:6379"
 
-MONGO_URL = "mongodb://localhost:27017/kisalu_local"
+MONGO_URL = "mongodb://kisalu_mongo:docker@127.0.0.1:27017/admin"
 
 SECRET= "30b9dce7-08c2-4c22-8204-b9e41d624ab9"
 
