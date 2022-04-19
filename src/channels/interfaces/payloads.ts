@@ -23,11 +23,3 @@ export interface ResponsePayload {
   };
   atividade: AtividadeResponsePayload;
 }
-
-export interface MessagePayload {
-  from: string;
-  to: string;
-  atividadeId: string;
-  content: string;
-  sentAt: Date;
-}

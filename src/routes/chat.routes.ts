@@ -1,21 +1,18 @@
 import bodyParser from "body-parser";
 import { Router } from "express";
-import {
-  criarCategoria,
-  retornarCategorias,
-} from "../controllers/categoria.controllers";
+import { getMensagens } from "../controllers/mensagem.controllers";
 import checkAuthenticatedToken from "../middleware/checkAuthenticatedToken";
 import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
 
-const categoriaRoutes = Router();
+const chatRoutes = Router();
 const jsonParser = bodyParser.json();
 
-categoriaRoutes.get(
-  "/",
+chatRoutes.get(
+  "/mensagens",
+  jsonParser,
   ensureAuthenticated,
   checkAuthenticatedToken,
-  retornarCategorias
+  getMensagens
 );
-categoriaRoutes.post("/", jsonParser, criarCategoria);
 
-export { categoriaRoutes };
+export { chatRoutes };

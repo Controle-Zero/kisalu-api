@@ -7,6 +7,7 @@ import cors from "cors";
 import { atividadeRoutes } from "../../routes/atividade.routes";
 import swaggerUI from "swagger-ui-express";
 import swaggerConfig from "../../libs/configs/swagger.json";
+import { chatRoutes } from "../../routes/chat.routes";
 
 dotenv.config();
 
@@ -18,5 +19,6 @@ app.use("/cliente", clienteRoutes);
 app.use("/prestador", prestadorRoutes);
 app.use("/categoria", categoriaRoutes);
 app.use("/atividade", atividadeRoutes);
+app.use("/chat", chatRoutes);
 
 export default app;
