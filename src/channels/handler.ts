@@ -2,20 +2,21 @@ import { Server, Socket } from "socket.io";
 import { log } from "../libs/log";
 import { requestEventHandler } from "./events/functions/request";
 import dotenv from "dotenv";
-import { RequestPayload, ResponsePayload } from "./interfaces/payloads";
-import { handleSocketsArray, verifyToken } from "./helpers/functions";
+import {
+  MessagePayload,
+  RequestPayload,
+  ResponsePayload,
+} from "./interfaces/payloads";
+import { handleSocketsInfo, verifyToken } from "./helpers/functions";
 import { responseEventHandler } from "./events/functions/response";
 import { Events } from "./events/types/events.types";
 import verifyTokenDB from "../middleware/helpers";
-import SocketUserInfo from "./interfaces/socketUserInfo";
+import { UserStatus } from "./interfaces/socketUserInfo";
 import { disconnectEventHandler } from "./events/functions/disconnect";
 
 dotenv.config();
 
-//Real time interaction (notification system)
 export async function mainChannel(io: Server) {
-  let sockets: SocketUserInfo[] = [];
-
   io.of(process.env.SOCKETS_NAMESPACE).on("connection", (socket: Socket) => {
     log.info(`Socket ${socket.id} connected`);
 
@@ -30,18 +31,20 @@ export async function mainChannel(io: Server) {
     const userID = verifyToken(token);
 
     if (userID && verifyTokenDB(token)) {
-      handleSocketsArray(userID, { socket, sockets });
+      handleSocketsInfo(userID, socket, UserStatus.CONNECTED);
 
       socket.on(Events.REQUEST, (payload: RequestPayload) => {
-        requestEventHandler({ payload, io });
+        requestEventHandler(payload, io);
       });
 
       socket.on(Events.RESPONSE, (payload: ResponsePayload) => {
-        responseEventHandler({ payload, socket, sockets });
+        responseEventHandler(payload, socket);
       });
 
+      socket.on(Events.PRIVATE_MESSAGE, (payload: MessagePayload) => {});
+
       socket.on(Events.DISCONNECT, async () => {
-        disconnectEventHandler(io, userID, sockets);
+        disconnectEventHandler(io, userID);
       });
     } else {
       socket.disconnect(true);

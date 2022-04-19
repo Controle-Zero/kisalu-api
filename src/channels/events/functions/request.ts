@@ -1,14 +1,11 @@
+import { Server } from "socket.io";
 import { log } from "../../../libs/log";
 import { criarAtividadeService } from "../../../services/atividade/criarAtividade";
 import { retornarClienteService } from "../../../services/cliente/retornarCliente";
-import { Roles } from "../../interfaces/payloads";
-import RequestEventContext from "../../interfaces/requestEventContext";
+import { RequestPayload, Roles } from "../../interfaces/payloads";
 import { Events } from "../types/events.types";
 
-export async function requestEventHandler({
-  payload,
-  io,
-}: RequestEventContext) {
+export async function requestEventHandler(payload: RequestPayload, io: Server) {
   log.info("Request event");
 
   if (payload.TriggeredBy.role === Roles.CLIENTE) {

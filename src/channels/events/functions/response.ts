@@ -1,27 +1,27 @@
 import { log } from "../../../libs/log";
 import { updateAtividadeService } from "../../../services/atividade/updateAtividade";
-import { Roles } from "../../interfaces/payloads";
-import { ResponseEventContext } from "../../interfaces/responseEventContext";
+import { ResponsePayload, Roles } from "../../interfaces/payloads";
 import { Events } from "../types/events.types";
+import { getUserSocketData } from "../../helpers/functions";
+import { Socket } from "socket.io";
+import SocketUserInfo from "../../interfaces/socketUserInfo";
 
-export async function responseEventHandler({
-  payload,
-  socket,
-  sockets,
-}: ResponseEventContext) {
+export async function responseEventHandler(
+  payload: ResponsePayload,
+  socket: Socket
+) {
   log.info(`Response event`);
   let to: string;
+  let user: SocketUserInfo;
 
   updateAtividadeService(payload.atividade);
 
   if (payload.TriggeredBy.role === Roles.CLIENTE) {
-    to = sockets.find((f) => f[payload.atividade.Prestador.id])[
-      payload.atividade.Prestador.id
-    ].socketID;
+    user = await getUserSocketData(payload.atividade.Prestador.id);
+    to = user[payload.atividade.Prestador.id].socketID;
   } else if (payload.TriggeredBy.role === Roles.PRESTADOR) {
-    to = sockets.find((f) => f[payload.atividade.Cliente.id])[
-      payload.atividade.Cliente.id
-    ].socketID;
+    user = await getUserSocketData(payload.atividade.Cliente.id);
+    to = user[payload.atividade.Cliente.id].socketID;
   }
 
   if (to) {
