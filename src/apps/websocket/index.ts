@@ -25,3 +25,14 @@ export default function webSocketApp(httpServer: http.Server) {
 
   mainChannel(io);
 }
+
+export function singleServerWebSocket(httpServer: http.Server) {
+  const io = new Server(httpServer, {
+    cors: {
+      origin: "*",
+    },
+    path: "/websocket",
+  });
+
+  mainChannel(io);
+}

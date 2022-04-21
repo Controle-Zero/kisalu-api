@@ -28,7 +28,7 @@ export async function getUserSocketData(
     "status"
   );
 
-  return { userID: { socketID, status } };
+  return { [userID]: { socketID, status } };
 }
 
 export function verifyToken(token: string) {
