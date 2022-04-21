@@ -7,8 +7,10 @@ import cluster from "cluster";
 import { cpus } from "os";
 import { setupMaster } from "@socket.io/sticky";
 import { setupPrimary } from "@socket.io/cluster-adapter";
+import { initMongoDB } from "../libs/configs/mongodb";
 
 dotenv.config();
+initMongoDB();
 
 if (cluster.isPrimary) {
   const numCPUs = cpus().length;

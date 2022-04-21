@@ -75,7 +75,7 @@ docker-compose up -d
 ```
 
 ```bash
-#Show all running containers
+# Show all running containers
 docker ps
 ```
 
