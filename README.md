@@ -31,7 +31,7 @@
 ·
 <a href = "https://jwt.io/">JWT <img src="https://img.shields.io/node/v/jsonwebtoken" alt="Logo" width="60"></a>
 ·
-<a href = "https://www.typescriptlang.org/">TypeScript <img src="https://img.shields.io/node/v/typescript" alt="Logo" width="60"></a>
+<a href = "https://www.typescriptlang.org/">TypeScript <img src="https://img.shields.io/node/v/typescript" alt="Logo" width="70"></a>
 
 </div>
 
