@@ -18,9 +18,6 @@ export async function responseEventHandler(
   } else if (payload.TriggeredBy.role === Roles.PRESTADOR) {
     to = payload.atividade.Cliente.id;
   }
-
-  if (to) {
-    log.info(to);
-    socket.to(to).emit(Events.RESPONSE, payload.atividade);
-  }
+  
+  socket.to(to).emit(Events.RESPONSE, payload.atividade);
 }

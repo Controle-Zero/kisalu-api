@@ -64,7 +64,7 @@ MONGO_URL = "mongodb://kisalu_mongo:docker@127.0.0.1:27017/admin"
 
 SECRET= "30b9dce7-08c2-4c22-8204-b9e41d624ab9"
 
-SOCKETS_NAMESPACE = MainRoom
+SOCKETS_NAMESPACE = "Kisalu"
 ```
 
 Make sure you have docker installed, then run

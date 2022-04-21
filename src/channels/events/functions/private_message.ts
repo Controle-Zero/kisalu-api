@@ -10,19 +10,12 @@ export async function messageEventHandler(
 ) {
   log.info("Private Message Event");
 
-  let to: string;
-
   payload.messageInfo.from = payload.TriggeredBy.role;
 
   guardarMensagem(payload.messageInfo);
 
-  if (payload.TriggeredBy.role === Roles.CLIENTE) {
-    to = payload.messageInfo.prestadorID;
-  } else if (payload.TriggeredBy.role === Roles.PRESTADOR) {
-    to = payload.messageInfo.clienteID;
-  }
-
-  if (to) {
-    socket.to(to).emit(Events.PRIVATE_MESSAGE, payload);
-  }
+  socket
+    .to(payload.messageInfo.clienteID)
+    .to(payload.messageInfo.prestadorID)
+    .emit(Events.PRIVATE_MESSAGE, payload);
 }
