@@ -1,11 +1,14 @@
-import { Server } from "socket.io";
+import { Socket } from "socket.io";
 import { log } from "../../../libs/log";
 import { criarAtividadeService } from "../../../services/atividade/criarAtividade";
 import { retornarClienteService } from "../../../services/cliente/retornarCliente";
 import { RequestPayload, Roles } from "../../interfaces/payloads";
 import { Events } from "../types/events.types";
 
-export async function requestEventHandler(payload: RequestPayload, io: Server) {
+export async function requestEventHandler(
+  payload: RequestPayload,
+  socket: Socket
+) {
   log.info("Request event");
 
   if (payload.TriggeredBy.role === Roles.CLIENTE) {
@@ -17,7 +20,7 @@ export async function requestEventHandler(payload: RequestPayload, io: Server) {
       atividadeDB,
     };
 
-    io.emit(
+    socket.emit(
       `${Events.REQUEST}:${payload.atividade.prestadorId}`,
       returnPayload
     );

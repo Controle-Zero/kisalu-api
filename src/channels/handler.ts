@@ -33,9 +33,10 @@ export async function mainChannel(io: Server) {
 
     if (userID && verifyTokenDB(token)) {
       handleSocketsInfo(userID, socket, UserStatus.CONNECTED);
+      socket.join(userID);
 
       socket.on(Events.REQUEST, (payload: RequestPayload) => {
-        requestEventHandler(payload, io);
+        requestEventHandler(payload, socket);
       });
 
       socket.on(Events.RESPONSE, (payload: ResponsePayload) => {
