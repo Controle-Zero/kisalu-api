@@ -8,11 +8,10 @@ import webSocketApp from "../apps/websocket";
 dotenv.config();
 initMongoDB();
 
-initMongoDB();
 const httpServer = http.createServer(app);
 
 webSocketApp(httpServer);
 
-httpServer.listen(8080, async () => {
-  log.info("App is running on a single cluster");
+httpServer.listen(8080 || process.env.PORT, () => {
+  log.info("Server is running");
 });

@@ -8,9 +8,9 @@
   },
   "scripts": {
     "migrate-dev": "prisma migrate dev",
-    "dev": "tsnd --respawn --ignore-watch node_modules ./src/server/singleClusterServer",
+    "dev": "tsnd --respawn --ignore-watch node_modules ./src/server",
     "data-base": "prisma studio",
-    "start": "ts-node ./src/server/singleClusterServer",
+    "start": "ts-node ./src/server",
     "test": "jest"
   },
   "author": "3R",
