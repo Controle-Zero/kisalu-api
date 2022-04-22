@@ -12,6 +12,6 @@ const httpServer = http.createServer(app);
 
 webSocketApp(httpServer);
 
-httpServer.listen(8080 || process.env.PORT, () => {
+httpServer.listen(process.env.PORT, () => {
   log.info("Server is running");
 });
