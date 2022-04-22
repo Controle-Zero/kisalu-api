@@ -1,8 +1,8 @@
 import { Server } from "socket.io";
 import { mainChannel } from "../../channels/handler";
 import http from "http";
-import { createAdapter as createClusterAdapter } from "@socket.io/cluster-adapter";
-import { createAdapter as createRedisAdapter } from "@socket.io/redis-adapter";
+import { createAdapter as createClusterAdapter } from "../../../node_modules/@socket.io/cluster-adapter";
+import { createAdapter as createRedisAdapter } from "../../../node_modules/@socket.io/redis-adapter";
 import { setupWorker } from "@socket.io/sticky";
 import redisConfig from "../../libs/configs/redis";
 
