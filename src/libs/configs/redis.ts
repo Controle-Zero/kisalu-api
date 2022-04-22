@@ -1,4 +1,4 @@
-import IORedis, { RedisOptions } from "ioredis";
+import IORedis from "ioredis";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -6,7 +6,7 @@ dotenv.config();
 const url: string =
   process.env.NODE_ENV === "DEVELOPMENT"
     ? ""
-    : `redis://:${process.env.REDIS_PASSWORD}@${process.env.REDIS_URL}:${process.env.REDIS_PORT}/${process.env.REDIS_DB}`;
+    : `redis://:8fYiS412QAfVUsNchI7fE1tAi6xazOT3@redis-15023.c245.us-east-1-3.ec2.cloud.redislabs.com:15023/`;
 
 const redis = new IORedis(url);
 

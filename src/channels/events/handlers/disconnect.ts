@@ -6,6 +6,8 @@ import { getUserSocketData } from "../../helpers/functions";
 export async function disconnectEventHandler(io: Server, userID: string) {
   const socketInfo: SocketUserInfo = await getUserSocketData(userID);
 
+  console.log(socketInfo[userID]);
+
   const socketInRoom = await io.in(userID).allSockets();
   const isDisconnected: Boolean = socketInRoom.size === 0;
 
