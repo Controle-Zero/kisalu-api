@@ -10,7 +10,7 @@
     "migrate-dev": "prisma migrate dev",
     "dev": "tsnd --respawn --ignore-watch node_modules ./src/server/singleClusterServer",
     "data-base": "prisma studio",
-    "start": "ts-node ./src/server",
+    "start": "ts-node ./src/server/singleClusterServer",
     "test": "jest"
   },
   "author": "3R",

@@ -15,7 +15,7 @@ export async function messageEventHandler(
   guardarMensagem(payload.messageInfo);
 
   socket
-    .to(payload.messageInfo.clienteID)
     .to(payload.messageInfo.prestadorID)
+    .to(payload.messageInfo.clienteID)
     .emit(Events.PRIVATE_MESSAGE, payload);
 }
