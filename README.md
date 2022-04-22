@@ -58,8 +58,6 @@ Create a .env file in the root with the following structure
 ```sh
 DATABASE_URL="postgresql://postgres:docker@localhost:5432/kisalu_local?schema=public"
 
-REDIS_URL = "redis://localhost:6379"
-
 MONGO_URL = "mongodb://kisalu_mongo:docker@127.0.0.1:27017/admin"
 
 SECRET= "30b9dce7-08c2-4c22-8204-b9e41d624ab9"
