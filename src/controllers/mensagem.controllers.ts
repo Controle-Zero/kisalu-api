@@ -1,8 +1,7 @@
-import { Response } from "express";
-import CustomRequest from "../middleware/types/customRequest";
+import { Response, Request } from "express";
 import retornarMensagens from "../services/chat/retornarMensagens";
 
-export const getMensagens = async (req: CustomRequest, res: Response) => {
+export const getMensagens = async (req: Request, res: Response) => {
   console.log(req.params.clienteID, req.params.prestadorID);
   const response = await retornarMensagens(
     req.params.clienteID,
