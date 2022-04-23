@@ -35,10 +35,10 @@ export function verifyToken(token: string) {
   try {
     verify(token, process.env.SECRET!!);
     const { sub: id } = decode(token);
-    log.info("Token Approved (WebSocket Scope)");
+    log.info("Token Approved By JWT (WebSocket Scope)");
     return String(id);
   } catch (e) {
-    log.info("Token Not Approved (WebSocket Scope)");
+    log.info("Token Not Approved By JWT (WebSocket Scope)");
     return undefined;
   }
 }

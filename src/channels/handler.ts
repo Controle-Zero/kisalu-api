@@ -54,6 +54,7 @@ export async function mainChannel(io: Server) {
           disconnectEventHandler(io, userID);
         });
       } else {
+        log.info("The given token is in the blacklist")
         socket.disconnect(true);
         return;
       }
