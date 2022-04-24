@@ -5,6 +5,7 @@ import { autenticarClienteService } from "../services/cliente/autenticarCliente"
 import { retornarClienteService } from "../services/cliente/retornarCliente";
 import { actualizarClienteService } from "../services/cliente/actualizarCliente";
 import { criarClienteService } from "../services/cliente/criarCliente";
+import retornarAtividadesService from "../services/cliente/retornarAtividades";
 
 export const criarCliente = async (req: CustomRequest, res: Response) => {
   const cliente: Cliente = req.body;
@@ -58,6 +59,18 @@ export const autenticarCliente = async (req: CustomRequest, res: Response) => {
     res.status(200).json(token);
   } else {
     res.status(400).json({ message: "Incorrect data", success: false });
+  }
+};
+
+export const retornarAtividades = async (req: CustomRequest, res: Response) => {
+  const response = await retornarAtividadesService(req.id);
+
+  if (response) {
+    res.status(200).json(response);
+  } else {
+    res
+      .status(400)
+      .json({ message: "An error occurred while getting the activities" });
   }
 };
 

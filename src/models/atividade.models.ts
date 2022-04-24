@@ -11,4 +11,5 @@ export default interface Atividade {
   categoriaId: string;
   descricao?: string;
   avaliacao?: number;
+  localizacao?: string;
 }

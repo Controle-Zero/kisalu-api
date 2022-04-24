@@ -66,6 +66,7 @@ model Atividade {
   categoriaId    String
   descricao      String?
   avaliacao      Int?
+  localizacao    String?
   Cliente        Cliente   @relation(fields: [clienteId], references: [id])
   Prestador      Prestador @relation(fields: [prestadorId], references: [id])
   Categoria      Categoria @relation(fields: [categoriaId], references: [id])

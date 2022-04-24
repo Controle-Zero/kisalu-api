@@ -158,6 +158,97 @@
         }
       }
     },
+    "/cliente/atividades": {
+      "get": {
+        "summary": "Activities List",
+        "description": "Returns a list of all activities related to a client",
+        "tags": ["Client"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "The activities were returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Prestador": {
+                        "type": "object",
+                        "properties": {
+                          "bi": {
+                            "type": "string"
+                          },
+                          "nome": {
+                            "type": "string"
+                          },
+                          "rate": {
+                            "type": "number"
+                          },
+                          "email": {
+                            "type": "string"
+                          },
+                          "telefone": {
+                            "type": "number"
+                          },
+                          "iban": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "Categoria": {
+                        "type": "object",
+                        "properties": {
+                          "titulo": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "dataCriado": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "dataFinalizado": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "descricao": {
+                        "type": "string"
+                      },
+                      "estado": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "numRef": {
+                        "type": "number"
+                      },
+                      "valorAssociado": {
+                        "type": "number"
+                      },
+                      "localizacao": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "An error occured while getting the activities"
+          }
+        }
+      }
+    },
     "/prestador": {
       "post": {
         "summary": "Create Provider",
@@ -297,6 +388,94 @@
           },
           "400": {
             "description": "There's something wrong with the credentials"
+          }
+        }
+      }
+    },
+    "/prestador/atividades": {
+      "get": {
+        "summary": "Activities List",
+        "description": "Returns a list of all activities related to a provider",
+        "tags": ["Provider"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "The activities were returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Cliente": {
+                        "type": "object",
+                        "properties": {
+                          "bi": {
+                            "type": "string"
+                          },
+                          "nome": {
+                            "type": "string"
+                          },
+                          "morada": {
+                            "type": "string"
+                          },
+                          "email": {
+                            "type": "string"
+                          },
+                          "telefone": {
+                            "type": "number"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "Categoria": {
+                        "type": "object",
+                        "properties": {
+                          "titulo": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "dataCriado": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "dataFinalizado": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "descricao": {
+                        "type": "string"
+                      },
+                      "estado": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "numRef": {
+                        "type": "number"
+                      },
+                      "valorAssociado": {
+                        "type": "number"
+                      },
+                      "localizacao": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "An error occured while getting the activities"
           }
         }
       }
