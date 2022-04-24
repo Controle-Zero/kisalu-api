@@ -114,6 +114,7 @@ model RefreshTokenPrestador {
 model LoginInfo {
   id          String     @id @default(uuid())
   token       String     @unique
+  deviceId    String
   device      Json
   createdAt   DateTime   @default(now())
   Cliente     Cliente?   @relation(fields: [clienteId], references: [id])
