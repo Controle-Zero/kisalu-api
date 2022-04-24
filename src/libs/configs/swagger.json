@@ -140,9 +140,6 @@
                       },
                       "model": {
                         "type": "string"
-                      },
-                      "ipAddress": {
-                        "type": "string"
                       }
                     }
                   }
@@ -285,9 +282,6 @@
                         "type": "string"
                       },
                       "model": {
-                        "type": "string"
-                      },
-                      "ipAddress": {
                         "type": "string"
                       }
                     }
