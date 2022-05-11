@@ -488,7 +488,7 @@
         }
       }
     },
-    "/prestador/categoria": {
+    "/prestador/categorias": {
       "put": {
         "summary": "Attach Categories To Providers",
         "description": "Pass an array of strings representing the categories' ids to be attached into a given provider profile",
