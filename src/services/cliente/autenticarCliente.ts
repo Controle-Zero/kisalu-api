@@ -73,6 +73,5 @@ export async function autenticarClienteService(
     return undefined;
   }
 
-  //const refreshToken = await gerarRefreshTokenCliente(clienteExiste.id);
   return { generatedToken };
 }

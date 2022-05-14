@@ -26,7 +26,6 @@ model Cliente {
   email               String               @unique
   telefone            String
   password            String
-  refreshTokenCliente RefreshTokenCliente?
   atividades          Atividade[]
   loginInfo           LoginInfo[]
 
@@ -46,7 +45,6 @@ model Prestador {
   iban                  String                 @unique
   rate                  Float                  @default(0)
   descricao             String?                @db.Text
-  refreshTokenPrestador RefreshTokenPrestador?
   atividades            Atividade[]
   categorias            PrestadorCategoria[]
   loginInfo             LoginInfo[]
@@ -91,24 +89,6 @@ model PrestadorCategoria {
   categoria   Categoria @relation(fields: [idCategoria], references: [id])
 
   @@id([idPrestador, idCategoria])
-}
-
-model RefreshTokenCliente {
-  id        String  @id @default(uuid())
-  expiraEm  Int
-  cliente   Cliente @relation(fields: [clienteId], references: [id])
-  clienteId String  @unique
-
-  @@map("refresh_token_cliente")
-}
-
-model RefreshTokenPrestador {
-  id          String    @id @default(uuid())
-  expiraEm    Int
-  prestador   Prestador @relation(fields: [prestadorId], references: [id])
-  prestadorId String    @unique
-
-  @@map("refresh_token_prestador")
 }
 
 model LoginInfo {

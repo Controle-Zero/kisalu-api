@@ -73,20 +73,3 @@ export const retornarAtividades = async (req: CustomRequest, res: Response) => {
       .json({ message: "An error occurred while getting the activities" });
   }
 };
-
-/*export const refreshTokenCliente = async (
-  req: CustomRequest,
-  res: Response
-) => {
-  const { refreshToken } = req.body;
-
-  const token = await refreshTokenClienteService(refreshToken);
-
-  if (token) {
-    res.status(200).json(token);
-  } else {
-    res
-      .status(400)
-      .json({ mensagem: "Refresh token inválido", sucesso: false });
-  }
-};*/

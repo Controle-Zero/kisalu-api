@@ -70,23 +70,6 @@ export const autenticarPrestador = async (
   }
 };
 
-/*export const refreshTokenPrestador = async (
-  req: CustomRequest,
-  res: Response
-) => {
-  const { refreshToken } = req.body;
-
-  const token = await refreshTokenPrestadorService(refreshToken);
-
-  if (token) {
-    res.status(200).json(token);
-  } else {
-    res
-      .status(400)
-      .json({ mensagem: "Refresh token inválido", sucesso: false });
-  }
-};*/
-
 export const adicionarCategoriasProvedor = async (
   req: CustomRequest,
   res: Response
