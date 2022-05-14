@@ -1,6 +1,5 @@
 import db from "../../libs/configs/db";
 import { log } from "../../libs/log";
-import Prestador from "../../models/prestador.models";
 
 export async function retornarCategoriasService() {
   try {
