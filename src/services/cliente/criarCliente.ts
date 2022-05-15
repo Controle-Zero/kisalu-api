@@ -24,6 +24,7 @@ export async function criarClienteService(cliente: Cliente) {
           morada: cliente.morada,
           telefone: cliente.telefone,
           password: encryptData(cliente.password),
+          imageUrl: cliente.imageUrl,
           nome: cliente.nome,
         },
       });
