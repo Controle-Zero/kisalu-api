@@ -32,6 +32,7 @@ export async function retornarPrestadorService(idPrestador: string) {
         morada: true,
         rate: true,
         telefone: true,
+        imageUrl: true
       },
     });
     log.info(`prestador retorando: ${prestador?.email}`);

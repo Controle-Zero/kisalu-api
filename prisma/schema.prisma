@@ -18,36 +18,38 @@ enum Estados {
 }
 
 model Cliente {
-  id                  String               @id @default(uuid())
-  bi                  String               @unique
-  nome                String
-  dataNasc            DateTime
-  morada              String
-  email               String               @unique
-  telefone            String
-  password            String
-  atividades          Atividade[]
-  loginInfo           LoginInfo[]
+  id         String      @id @default(uuid())
+  bi         String      @unique
+  nome       String
+  dataNasc   DateTime
+  morada     String
+  email      String      @unique
+  telefone   String
+  password   String
+  imageUrl   String?
+  atividades Atividade[]
+  loginInfo  LoginInfo[]
 
   @@map("clientes")
 }
 
 model Prestador {
-  id                    String                 @id @default(uuid())
-  bi                    String                 @unique
-  nome                  String
-  dataNasc              DateTime
-  morada                String
-  email                 String                 @unique
-  telefone              String
-  password              String
-  estado                String                 @default("DISPONIVEL")
-  iban                  String                 @unique
-  rate                  Float                  @default(0)
-  descricao             String?                @db.Text
-  atividades            Atividade[]
-  categorias            PrestadorCategoria[]
-  loginInfo             LoginInfo[]
+  id         String               @id @default(uuid())
+  bi         String               @unique
+  nome       String
+  dataNasc   DateTime
+  morada     String
+  email      String               @unique
+  telefone   String
+  password   String
+  estado     String               @default("DISPONIVEL")
+  iban       String               @unique
+  rate       Float                @default(0)
+  imageUrl   String?
+  descricao  String?              @db.Text
+  atividades Atividade[]
+  categorias PrestadorCategoria[]
+  loginInfo  LoginInfo[]
 
   @@map("prestadores")
 }

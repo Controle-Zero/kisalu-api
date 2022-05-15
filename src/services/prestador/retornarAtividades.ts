@@ -17,6 +17,7 @@ export default async function retornarAtividadesService(prestadorId: string) {
             email: true,
             id: true,
             telefone: true,
+            imageUrl: true
           },
         },
         Categoria: {

@@ -24,6 +24,7 @@ export async function criarPrestadorService(prestador: Prestador) {
           morada: prestador.morada,
           telefone: prestador.telefone,
           password: encryptData(prestador.password),
+          imageUrl: prestador.imageUrl,
           nome: prestador.nome,
           iban: prestador.iban,
           descricao: prestador.descricao,

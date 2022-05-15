@@ -41,6 +41,7 @@
                     "morada": "Luanda, Centralidade Do Kilamba, E30/7º/72",
                     "email": "afonsolafon@controlezero.com",
                     "telefone": "924586978",
+                    "imageUrl": "htts://someurl.com",
                     "password": "morrer_é_daqui_pra_qui"
                   }
                 }
@@ -98,6 +99,7 @@
                     "morada": "Luanda, Centralidade Do Kilamba, E30/7º/72",
                     "email": "afonsolafon@controlezero.com",
                     "telefone": "924586978",
+                    "imageUrl": "htts://someurl.com",
                     "password": "morrer_é_daqui_pra_qui"
                   }
                 }
@@ -201,6 +203,9 @@
                           },
                           "id": {
                             "type": "string"
+                          },
+                          "imageUrl": {
+                            "type": "string"
                           }
                         }
                       },
@@ -275,6 +280,7 @@
                     "telefone": "924859687",
                     "password": "morrer_é_daqui_pra_qui",
                     "iban": "AO06.1111.1111.1111.1111.1111.1",
+                    "imageUrl": "htts://someurl.com",
                     "descricao": "Decoradora Chateada",
                     "idCategorias": []
                   }
@@ -336,6 +342,7 @@
                     "password": "morrer_é_daqui_pra_qui",
                     "iban": "AO06.1111.1111.1111.1111.1111.1",
                     "descricao": "Decoradora Chateada",
+                    "imageUrl": "htts://someurl.com",
                     "idCategorias": []
                   }
                 }
@@ -435,6 +442,9 @@
                             "type": "number"
                           },
                           "id": {
+                            "type": "string"
+                          },
+                          "imageUrl": {
                             "type": "string"
                           }
                         }
@@ -738,6 +748,9 @@
           "telefone": {
             "type": "number"
           },
+          "imageUrl": {
+            "type": "string"
+          },
           "password": {
             "type": "string",
             "format": "password"
@@ -777,6 +790,9 @@
             "type": "string"
           },
           "descricao": {
+            "type": "string"
+          },
+          "imageUrl": {
             "type": "string"
           },
           "idCategorias": {

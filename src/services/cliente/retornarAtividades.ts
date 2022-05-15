@@ -17,6 +17,7 @@ export default async function retornarAtividadesService(clienteId: string) {
             telefone: true,
             iban: true,
             id: true,
+            imageUrl: true
           },
         },
         Categoria: {
