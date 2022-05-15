@@ -1,5 +1,6 @@
 import db from "../../libs/configs/db";
 import { log } from "../../libs/log";
+import Categoria from "../../models/categoria.models";
 
 export async function retornarCategoriasService() {
   try {
@@ -13,7 +14,8 @@ export async function retornarCategoriasService() {
       },
     });
 
-    let categorias = [];
+    let categorias : Categoria[];
+
     categoriasDB.forEach((e) => {
       categorias.push({
         id: e.id,
