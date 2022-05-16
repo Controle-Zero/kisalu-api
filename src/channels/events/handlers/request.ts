@@ -20,10 +20,9 @@ export async function requestEventHandler(
       atividadeDB,
     };
 
-    socket.emit(
-      `${Events.REQUEST}:${payload.atividade.prestadorId}`,
-      returnPayload
-    );
+    socket
+      .to(payload.atividade.prestadorId)
+      .emit(Events.REQUEST, returnPayload);
   } else {
     log.info("Only customers can trigger the request event");
   }
