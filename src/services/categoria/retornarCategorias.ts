@@ -14,7 +14,7 @@ export async function retornarCategoriasService() {
       },
     });
 
-    let categorias : Categoria[];
+    let categorias = [];
 
     categoriasDB.forEach((e) => {
       categorias.push({
