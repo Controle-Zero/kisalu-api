@@ -15,7 +15,7 @@ export async function requestEventHandler(
     const atividadeDB = criarAtividadeService(payload.atividade);
 
     const returnPayload = {
-      cliente: retornarClienteService(payload.atividade.clienteId),
+      cliente: retornarClienteService(payload.TriggeredBy.id),
       categoria: payload.atividade.categoriaId,
       atividadeDB,
     };
