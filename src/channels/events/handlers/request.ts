@@ -14,15 +14,17 @@ export async function requestEventHandler(
   if (payload.TriggeredBy.role === Roles.CLIENTE) {
     const atividadeDB = criarAtividadeService(payload.atividade);
 
-    const returnPayload = {
-      cliente: retornarClienteService(payload.TriggeredBy.id),
-      categoria: payload.atividade.categoriaId,
-      atividadeDB,
-    };
+    if (atividadeDB) {
+      const returnPayload = {
+        cliente: retornarClienteService(payload.TriggeredBy.id),
+        categoria: payload.atividade.categoriaId,
+        atividadeDB,
+      };
 
-    socket
-      .to(payload.atividade.prestadorId)
-      .emit(Events.REQUEST, returnPayload);
+      socket
+        .to(payload.atividade.prestadorId)
+        .emit(Events.REQUEST, returnPayload);
+    }
   } else {
     log.info("Only customers can trigger the request event");
   }
