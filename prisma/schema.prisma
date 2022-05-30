@@ -70,6 +70,8 @@ model Prestador {
   moradaId String
   morada   Endereco @relation(fields: [moradaId], references: [id])
 
+  portifolio Post[]
+
   @@map("prestadores")
 }
 
@@ -100,6 +102,7 @@ model Categoria {
   imageUrl    String
   Atividade   Atividade[]
   prestadores PrestadorCategoria[]
+  posts       Post[]
 
   @@map("categorias")
 }
@@ -125,4 +128,14 @@ model LoginInfo {
   prestadorId String?
 
   @@map("login_info")
+}
+
+model Post {
+  id          String     @id @default(uuid())
+  descricao   String
+  mediaUrl    String
+  categoria   Categoria  @relation(fields: [categoriaId], references: [id])
+  categoriaId String
+  Prestador   Prestador? @relation(fields: [prestadorId], references: [id])
+  prestadorId String?
 }

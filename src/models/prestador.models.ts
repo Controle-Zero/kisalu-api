@@ -1,3 +1,4 @@
+import Categoria from "./categoria.models";
 import Cliente from "./cliente.models";
 
 export default interface Prestador extends Cliente {
@@ -6,9 +7,16 @@ export default interface Prestador extends Cliente {
   iban: string;
   rate: number;
   descricao: string;
-  verificado : boolean;
-  idCategorias? : string[];
+  verificado: boolean;
+  portifolio: posts;
+  idCategorias?: string[];
   categorias?: {
     idCategoria: string;
   }[];
+}
+
+export interface posts {
+  descricao: string;
+  mediaUrl: string;
+  categoria: Categoria;
 }
