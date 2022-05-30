@@ -38,6 +38,7 @@ model Cliente {
   telefone   String
   password   String
   imageUrl   String?
+  criadoEm   DateTime    @default(now())
   atividades Atividade[]
   loginInfo  LoginInfo[]
 
@@ -60,6 +61,8 @@ model Prestador {
   rate       Float                @default(0)
   imageUrl   String?
   descricao  String?              @db.Text
+  criadoEm   DateTime             @default(now())
+  verificado Boolean              @default(false)
   atividades Atividade[]
   categorias PrestadorCategoria[]
   loginInfo  LoginInfo[]
@@ -83,6 +86,7 @@ model Atividade {
   descricao      String?
   avaliacao      Int?
   localizacao    String?
+  feedback       String?
   Cliente        Cliente   @relation(fields: [clienteId], references: [id])
   Prestador      Prestador @relation(fields: [prestadorId], references: [id])
   Categoria      Categoria @relation(fields: [categoriaId], references: [id])

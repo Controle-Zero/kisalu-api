@@ -13,6 +13,7 @@ export default interface Cliente {
   imageUrl?: string;
   loginInfo?: LoginInfo;
   atividades?: Atividade[];
+  criadoEm: Date;
 }
 
 export interface LoginInfo {

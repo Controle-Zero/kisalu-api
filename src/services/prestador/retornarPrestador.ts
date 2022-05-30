@@ -19,8 +19,14 @@ export async function retornarPrestadorService(idPrestador: string) {
         nome: true,
         bi: true,
         categorias: {
-          select: {
-            idCategoria: true,
+          include: {
+            categoria: {
+              select: {
+                titulo: true,
+                imageUrl: true,
+                id: true,
+              },
+            },
           },
         },
         dataNasc: true,
@@ -32,7 +38,7 @@ export async function retornarPrestadorService(idPrestador: string) {
         morada: true,
         rate: true,
         telefone: true,
-        imageUrl: true
+        imageUrl: true,
       },
     });
     log.info(`prestador retorando: ${prestador?.email}`);

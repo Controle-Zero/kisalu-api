@@ -1,7 +1,11 @@
 import db from "../../libs/configs/db";
 import { log } from "../../libs/log";
 
-export async function rateAtividade(id: string, rate: number) {
+export async function rateAtividade(
+  id: string,
+  rate: number,
+  feedback?: string
+) {
   try {
     await db.atividade.update({
       where: {
