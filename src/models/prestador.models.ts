@@ -8,7 +8,7 @@ export default interface Prestador extends Cliente {
   rate: number;
   descricao: string;
   verificado: boolean;
-  portifolio: posts;
+  portifolio: posts[];
   idCategorias?: string[];
   categorias?: {
     idCategoria: string;
