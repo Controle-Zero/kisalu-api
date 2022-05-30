@@ -7,6 +7,7 @@ import {
   autenticarPrestador,
   adicionarCategoriasProvedor,
   removerCategoriaProvedor,
+  retornarAtividades,
 } from "../controllers/prestador.controllers";
 import bodyParser from "body-parser";
 import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
@@ -23,7 +24,6 @@ prestadorRoutes.get(
   "/",
   ensureAuthenticated,
   checkAuthenticatedToken,
-  jsonParser,
   retornarPrestador
 );
 prestadorRoutes.put(
@@ -53,6 +53,13 @@ prestadorRoutes.delete(
   checkAuthenticatedToken,
   jsonParser,
   removerCategoriaProvedor
+);
+
+prestadorRoutes.get(
+  "/atividades",
+  ensureAuthenticated,
+  checkAuthenticatedToken,
+  retornarAtividades
 );
 
 export { prestadorRoutes };

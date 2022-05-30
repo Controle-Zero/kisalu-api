@@ -17,39 +17,55 @@ enum Estados {
   CANCELADA
 }
 
+model Endereco {
+  id          String  @id @default(uuid())
+  provincia   String
+  distrito    String?
+  bairro      String
+  municipio   String
+  complemento String?
+
+  cliente   Cliente[]
+  prestador Prestador[]
+}
+
 model Cliente {
-  id                  String               @id @default(uuid())
-  bi                  String               @unique
-  nome                String
-  dataNasc            DateTime
-  morada              String
-  email               String               @unique
-  telefone            String
-  password            String
-  refreshTokenCliente RefreshTokenCliente?
-  atividades          Atividade[]
-  loginInfo           LoginInfo[]
+  id         String      @id @default(uuid())
+  bi         String      @unique
+  nome       String
+  dataNasc   DateTime
+  email      String      @unique
+  telefone   String
+  password   String
+  imageUrl   String?
+  atividades Atividade[]
+  loginInfo  LoginInfo[]
+
+  moradaId String
+  morada   Endereco @relation(fields: [moradaId], references: [id])
 
   @@map("clientes")
 }
 
 model Prestador {
-  id                    String                 @id @default(uuid())
-  bi                    String                 @unique
-  nome                  String
-  dataNasc              DateTime
-  morada                String
-  email                 String                 @unique
-  telefone              String
-  password              String
-  estado                String                 @default("DISPONIVEL")
-  iban                  String                 @unique
-  rate                  Float                  @default(0)
-  descricao             String?                @db.Text
-  refreshTokenPrestador RefreshTokenPrestador?
-  atividades            Atividade[]
-  categorias            PrestadorCategoria[]
-  loginInfo             LoginInfo[]
+  id         String               @id @default(uuid())
+  bi         String               @unique
+  nome       String
+  dataNasc   DateTime
+  email      String               @unique
+  telefone   String
+  password   String
+  estado     String               @default("DISPONIVEL")
+  iban       String               @unique
+  rate       Float                @default(0)
+  imageUrl   String?
+  descricao  String?              @db.Text
+  atividades Atividade[]
+  categorias PrestadorCategoria[]
+  loginInfo  LoginInfo[]
+
+  moradaId String
+  morada   Endereco @relation(fields: [moradaId], references: [id])
 
   @@map("prestadores")
 }
@@ -66,6 +82,7 @@ model Atividade {
   categoriaId    String
   descricao      String?
   avaliacao      Int?
+  localizacao    String?
   Cliente        Cliente   @relation(fields: [clienteId], references: [id])
   Prestador      Prestador @relation(fields: [prestadorId], references: [id])
   Categoria      Categoria @relation(fields: [categoriaId], references: [id])
@@ -92,27 +109,10 @@ model PrestadorCategoria {
   @@id([idPrestador, idCategoria])
 }
 
-model RefreshTokenCliente {
-  id        String  @id @default(uuid())
-  expiraEm  Int
-  cliente   Cliente @relation(fields: [clienteId], references: [id])
-  clienteId String  @unique
-
-  @@map("refresh_token_cliente")
-}
-
-model RefreshTokenPrestador {
-  id          String    @id @default(uuid())
-  expiraEm    Int
-  prestador   Prestador @relation(fields: [prestadorId], references: [id])
-  prestadorId String    @unique
-
-  @@map("refresh_token_prestador")
-}
-
 model LoginInfo {
   id          String     @id @default(uuid())
   token       String     @unique
+  deviceId    String
   device      Json
   createdAt   DateTime   @default(now())
   Cliente     Cliente?   @relation(fields: [clienteId], references: [id])

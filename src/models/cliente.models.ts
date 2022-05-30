@@ -1,3 +1,4 @@
+import { Morada } from "../libs/document_generator/types/Morada";
 import Atividade from "./atividade.models";
 
 export default interface Cliente {
@@ -5,21 +6,22 @@ export default interface Cliente {
   bi: string;
   nome: string;
   dataNasc: Date;
-  morada: string;
+  morada: Morada;
   email: string;
   telefone: string;
   password: string;
+  imageUrl?: string;
   loginInfo?: LoginInfo;
   atividades?: Atividade[];
 }
 
 export interface LoginInfo {
-  uniqueID: string;
+  id?: string;
   token: string;
   device: {
+    uniqueID: string;
     brand: string;
     model: string;
-    ipAddress: string;
   };
   createdAt?: string;
 }

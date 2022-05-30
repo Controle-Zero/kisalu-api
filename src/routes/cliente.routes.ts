@@ -5,6 +5,7 @@ import {
   actualizarCliente,
   apagarCliente,
   autenticarCliente,
+  retornarAtividades,
 } from "../controllers/cliente.controllers";
 import bodyParser from "body-parser";
 import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
@@ -28,9 +29,14 @@ clienteRoutes.get(
   "/",
   ensureAuthenticated,
   checkAuthenticatedToken,
-  jsonParser,
   retornarCliente
 );
 clienteRoutes.delete("/", jsonParser, apagarCliente);
+clienteRoutes.get(
+  "/atividades",
+  ensureAuthenticated,
+  checkAuthenticatedToken,
+  retornarAtividades
+);
 
 export { clienteRoutes };

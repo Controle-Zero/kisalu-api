@@ -5,6 +5,7 @@ import { autenticarClienteService } from "../services/cliente/autenticarCliente"
 import { retornarClienteService } from "../services/cliente/retornarCliente";
 import { actualizarClienteService } from "../services/cliente/actualizarCliente";
 import { criarClienteService } from "../services/cliente/criarCliente";
+import retornarAtividadesService from "../services/cliente/retornarAtividades";
 
 export const criarCliente = async (req: CustomRequest, res: Response) => {
   const cliente: Cliente = req.body;
@@ -61,19 +62,14 @@ export const autenticarCliente = async (req: CustomRequest, res: Response) => {
   }
 };
 
-/*export const refreshTokenCliente = async (
-  req: CustomRequest,
-  res: Response
-) => {
-  const { refreshToken } = req.body;
+export const retornarAtividades = async (req: CustomRequest, res: Response) => {
+  const response = await retornarAtividadesService(req.id);
 
-  const token = await refreshTokenClienteService(refreshToken);
-
-  if (token) {
-    res.status(200).json(token);
+  if (response) {
+    res.status(200).json(response);
   } else {
     res
       .status(400)
-      .json({ mensagem: "Refresh token inválido", sucesso: false });
+      .json({ message: "An error occurred while getting the activities" });
   }
-};*/
+};

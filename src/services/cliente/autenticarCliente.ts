@@ -13,6 +13,13 @@ export async function autenticarClienteService(
     where: {
       email: email,
     },
+    include: {
+      loginInfo: {
+        where: {
+          deviceId: device.uniqueID,
+        },
+      },
+    },
   });
 
   if (!clienteExiste) {
@@ -27,10 +34,21 @@ export async function autenticarClienteService(
     return undefined;
   }
 
+  const currentToken = clienteExiste.loginInfo.find(
+    (f) => f.deviceId === device.uniqueID
+  );
+
+  if (currentToken) {
+    await db.loginInfo.delete({
+      where: {
+        token: currentToken.token,
+      },
+    });
+  }
+
   const generatedToken = gerarToken(clienteExiste.id);
 
   const loginInfo: LoginInfo = {
-    uniqueID: device.uniqueID,
     token: generatedToken,
     device,
   };
@@ -42,19 +60,10 @@ export async function autenticarClienteService(
       },
       data: {
         loginInfo: {
-          upsert: {
-            where: {
-              id: loginInfo.uniqueID,
-            },
-            update: {
-              token: loginInfo.token,
-              device: loginInfo.device,
-            },
-            create: {
-              id: loginInfo.uniqueID,
-              token: loginInfo.token,
-              device: loginInfo.device,
-            },
+          create: {
+            device: loginInfo.device,
+            deviceId: loginInfo.device.uniqueID,
+            token: loginInfo.token,
           },
         },
       },
@@ -64,7 +73,5 @@ export async function autenticarClienteService(
     return undefined;
   }
 
-  //const refreshToken = await gerarRefreshTokenCliente(clienteExiste.id);
-  log.info(`Login feito com sucesso!!`);
   return { generatedToken };
 }

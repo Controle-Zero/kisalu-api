@@ -3,7 +3,7 @@ import http from "http";
 import { Server } from "socket.io";
 import Client from "socket.io-client";
 import { Events } from "../channels/events/types/events.types";
-import { ResponsePayload } from "../channels/interfaces/payload";
+import { ResponsePayload } from "../channels/interfaces/payloads";
 import {
   ClientRequestPayload,
   getClientRequestPayload,

@@ -1,38 +1,6 @@
 import db from "../../libs/configs/db";
 import { log } from "../../libs/log";
 
-/*export async function refreshTokenPrestadorService(refreshTokenId: string) {
-  const refreshToken = await db.refreshTokenPrestador.findFirst({
-    where: {
-      id: refreshTokenId,
-    },
-  });
-
-  if (!refreshTokenId) {
-    return undefined;
-  }
-
-  const refreshTokenExpirado = dayjs().isAfter(
-    dayjs.unix(refreshToken?.expiraEm ?? 0)
-  );
-
-  const token = gerarToken(refreshToken?.prestadorId ?? "");
-
-  if (refreshTokenExpirado) {
-    await db.refreshTokenPrestador.deleteMany({
-      where: {
-        prestadorId: refreshToken?.prestadorId,
-      },
-    });
-    const renewedToken = await gerarRefreshTokenPrestador(
-      refreshToken?.prestadorId ?? ""
-    );
-    return { token, renewedToken };
-  }
-
-  return { token };
-}*/
-
 export async function adicionarCategoriasService(
   idPrestador: string,
   idCategorias: string[]

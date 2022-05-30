@@ -1,37 +1,44 @@
 import { decode, verify } from "jsonwebtoken";
-import { ResponseEventContext } from "../interfaces/responseEventContext";
 import { log } from "../../libs/log";
 import dotenv from "dotenv";
+import redisClient from "../../libs/configs/redis";
+import { Socket } from "socket.io";
+import SocketUserInfo, { UserStatus } from "../interfaces/socketUserInfo";
 
 dotenv.config();
 
-export function handleSocketsArray(
+export function handleSocketsInfo(
   id: string,
-  { socket, sockets }: Omit<ResponseEventContext, "payload">
+  socket: Socket,
+  status: UserStatus
 ) {
-  const idExiste = sockets.length > 0 ? sockets.find((f) => f[id]) : undefined;
-  if (idExiste) {
-    const index = sockets.findIndex((fi) => fi[id]);
-    sockets[index][id].socketID = socket.id;
-    sockets[index][id].connected = true;
-  } else {
-    sockets.push({
-      [id]: {
-        socketID: socket.id,
-        connected: true,
-      },
-    });
-  }
+  redisClient
+    .multi()
+    .hset(`userID:${id}`, "socketID", socket.id, "status", status)
+    .expire(`userID:${id}`, 86400)
+    .exec();
+}
+
+export async function getUserSocketData(
+  userID: string
+): Promise<SocketUserInfo> {
+  const [socketID, status] = await redisClient.hmget(
+    `userID:${userID}`,
+    "socketID",
+    "status"
+  );
+
+  return { [userID]: { socketID, status } };
 }
 
 export function verifyToken(token: string) {
   try {
     verify(token, process.env.SECRET!!);
     const { sub: id } = decode(token);
-    log.info("Token Approved (WebSocket Scope)");
+    log.info("Token Approved By JWT (WebSocket Scope)");
     return String(id);
   } catch (e) {
-    log.info("Token Not Approved (WebSocket Scope)");
+    log.info("Token Not Approved By JWT (WebSocket Scope)");
     return undefined;
   }
 }

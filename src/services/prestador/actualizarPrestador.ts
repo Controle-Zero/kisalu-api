@@ -24,7 +24,15 @@ export async function actualizarPrestadorService(
           bi: prestador.bi,
           dataNasc: new Date(prestador.dataNasc),
           email: prestador.email,
-          morada: prestador.morada,
+          morada: {
+            update: {
+              bairro: prestador.morada.bairro,
+              complemento: prestador.morada.complemento,
+              distrito: prestador.morada.distrito,
+              municipio: prestador.morada.municipio,
+              provincia: prestador.morada.provincia,
+            },
+          },
           telefone: prestador.telefone,
           password: encryptData(prestador.password),
           nome: prestador.nome,

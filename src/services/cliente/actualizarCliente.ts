@@ -20,7 +20,15 @@ export async function actualizarClienteService(id: string, cliente: Cliente) {
           bi: cliente.bi,
           dataNasc: new Date(cliente.dataNasc),
           email: cliente.email,
-          morada: cliente.morada,
+          morada: {
+            update: {
+              bairro: cliente.morada.bairro,
+              complemento: cliente.morada.complemento,
+              distrito: cliente.morada.distrito,
+              municipio: cliente.morada.municipio,
+              provincia: cliente.morada.provincia,
+            },
+          },
           telefone: cliente.telefone,
           password: encryptData(cliente.password),
           nome: cliente.nome,

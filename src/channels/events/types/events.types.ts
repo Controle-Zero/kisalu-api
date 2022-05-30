@@ -1,5 +1,6 @@
 export enum Events {
   REQUEST = "REQUEST",
   RESPONSE = "RESPONSE",
-  DISCONNECT = "disconnect"
+  DISCONNECT = "disconnect",
+  PRIVATE_MESSAGE = "PRIVATE_MESSAGE",
 }

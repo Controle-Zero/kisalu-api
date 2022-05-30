@@ -11,9 +11,21 @@ export async function criarAtividadeService(
   try {
     const dbResponse = await db.atividade.create({
       data: {
-        clienteId: atividade.clienteId,
-        prestadorId: atividade.prestadorId,
-        categoriaId: atividade.categoriaId,
+        Cliente: {
+          connect: {
+            id: atividade.clienteId,
+          },
+        },
+        Prestador: {
+          connect: {
+            id: atividade.prestadorId,
+          },
+        },
+        Categoria: {
+          connect: {
+            id: atividade.categoriaId,
+          },
+        },
         descricao: atividade.descricao,
       },
     });

@@ -1,4 +1,4 @@
-import bodyParser, { json } from "body-parser";
+import bodyParser from "body-parser";
 import { Router } from "express";
 import {
   criarCategoria,

@@ -7,6 +7,7 @@ import { retornarPrestadorService } from "../services/prestador/retornarPrestado
 import { actualizarPrestadorService } from "../services/prestador/actualizarPrestador";
 import { criarPrestadorService } from "../services/prestador/criarPrestador";
 import { removerCategoria } from "../services/prestador/removerCategoria";
+import retornarAtividadesService from "../services/prestador/retornarAtividades";
 
 export const criarPrestador = async (req: CustomRequest, res: Response) => {
   const prestador: Prestador = req.body;
@@ -69,23 +70,6 @@ export const autenticarPrestador = async (
   }
 };
 
-/*export const refreshTokenPrestador = async (
-  req: CustomRequest,
-  res: Response
-) => {
-  const { refreshToken } = req.body;
-
-  const token = await refreshTokenPrestadorService(refreshToken);
-
-  if (token) {
-    res.status(200).json(token);
-  } else {
-    res
-      .status(400)
-      .json({ mensagem: "Refresh token inválido", sucesso: false });
-  }
-};*/
-
 export const adicionarCategoriasProvedor = async (
   req: CustomRequest,
   res: Response
@@ -118,5 +102,17 @@ export const removerCategoriaProvedor = async (
       message: "An error occured removing the selected category",
       success: false,
     });
+  }
+};
+
+export const retornarAtividades = async (req: CustomRequest, res: Response) => {
+  const response = await retornarAtividadesService(req.id);
+
+  if (response) {
+    res.status(200).json(response);
+  } else {
+    res
+      .status(400)
+      .json({ message: "An error occurred while getting the activities" });
   }
 };
