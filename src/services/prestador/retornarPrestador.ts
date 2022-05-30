@@ -19,7 +19,7 @@ export async function retornarPrestadorService(idPrestador: string) {
         nome: true,
         bi: true,
         categorias: {
-          include: {
+          select: {
             categoria: {
               select: {
                 titulo: true,
@@ -29,16 +29,26 @@ export async function retornarPrestadorService(idPrestador: string) {
             },
           },
         },
+        morada: {
+          select: {
+            bairro: true,
+            complemento: true,
+            distrito: true,
+            municipio: true,
+            provincia: true,
+          },
+        },
         dataNasc: true,
         descricao: true,
         email: true,
         estado: true,
         iban: true,
         id: true,
-        morada: true,
         rate: true,
         telefone: true,
         imageUrl: true,
+        verificado: true,
+        criadoEm: true,
       },
     });
     log.info(`prestador retorando: ${prestador?.email}`);

@@ -7,6 +7,17 @@ export async function retornarClienteService(idCliente: string) {
       where: {
         id: idCliente,
       },
+      include: {
+        morada: {
+          select: {
+            bairro: true,
+            complemento: true,
+            distrito: true,
+            municipio: true,
+            provincia: true,
+          },
+        },
+      },
     });
     log.info(`Cliente retorando: ${cliente?.email}`);
     return cliente;

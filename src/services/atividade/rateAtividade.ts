@@ -13,6 +13,7 @@ export async function rateAtividade(
       },
       data: {
         avaliacao: rate,
+        feedback
       },
     });
 

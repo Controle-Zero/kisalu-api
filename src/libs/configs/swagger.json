@@ -798,6 +798,10 @@
           "password": {
             "type": "string",
             "format": "password"
+          },
+          "criadoEm": {
+            "type": "string",
+            "format": "date"
           }
         }
       },
@@ -855,6 +859,13 @@
           },
           "descricao": {
             "type": "string"
+          },
+          "criadoEm": {
+            "type": "string",
+            "format": "date"
+          },
+          "verificado": {
+            "type": "boolean"
           },
           "imageUrl": {
             "type": "string"
