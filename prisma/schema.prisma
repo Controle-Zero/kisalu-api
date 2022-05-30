@@ -17,18 +17,32 @@ enum Estados {
   CANCELADA
 }
 
+model Endereco {
+  id          String  @id @default(uuid())
+  provincia   String
+  distrito    String?
+  bairro      String
+  municipio   String
+  complemento String?
+
+  cliente   Cliente[]
+  prestador Prestador[]
+}
+
 model Cliente {
   id         String      @id @default(uuid())
   bi         String      @unique
   nome       String
   dataNasc   DateTime
-  morada     String
   email      String      @unique
   telefone   String
   password   String
   imageUrl   String?
   atividades Atividade[]
   loginInfo  LoginInfo[]
+
+  moradaId String
+  morada   Endereco @relation(fields: [moradaId], references: [id])
 
   @@map("clientes")
 }
@@ -38,7 +52,6 @@ model Prestador {
   bi         String               @unique
   nome       String
   dataNasc   DateTime
-  morada     String
   email      String               @unique
   telefone   String
   password   String
@@ -50,6 +63,9 @@ model Prestador {
   atividades Atividade[]
   categorias PrestadorCategoria[]
   loginInfo  LoginInfo[]
+
+  moradaId String
+  morada   Endereco @relation(fields: [moradaId], references: [id])
 
   @@map("prestadores")
 }
