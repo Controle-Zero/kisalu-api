@@ -38,7 +38,13 @@
                     "nome": "Afonso Lafon",
                     "bi": "0002505BA012",
                     "dataNasc": "1992-05-15",
-                    "morada": "Luanda, Centralidade Do Kilamba, E30/7º/72",
+                    "morada": {
+                      "provincia": "Luanda",
+                      "bairro": "Centralidade Do Kilamba",
+                      "distrito": "Kilamba Kiaxi",
+                      "municipio": "Belas",
+                      "complemento": "E30/7º/72"
+                    },
                     "email": "afonsolafon@controlezero.com",
                     "telefone": "924586978",
                     "imageUrl": "htts://someurl.com",
@@ -96,7 +102,13 @@
                     "nome": "Jorge Lafon",
                     "bi": "0002505BA012",
                     "dataNasc": "1992-05-15",
-                    "morada": "Luanda, Centralidade Do Kilamba, E30/7º/72",
+                    "morada": {
+                      "provincia": "Luanda",
+                      "bairro": "Centralidade Do Kilamba",
+                      "distrito": "Kilamba Kiaxi",
+                      "municipio": "Belas",
+                      "complemento": "E30/7º/72"
+                    },
                     "email": "afonsolafon@controlezero.com",
                     "telefone": "924586978",
                     "imageUrl": "htts://someurl.com",
@@ -275,7 +287,13 @@
                     "nome": "Alice Moreira",
                     "bi": "0002455LA012",
                     "dataNasc": "1998-03-15",
-                    "morada": "Luanda, Centralidade Do Kilamba, A7/2º/20",
+                    "morada": {
+                      "provincia": "Luanda",
+                      "bairro": "Centralidade Do Kilamba",
+                      "distrito": "Kilamba Kiaxi",
+                      "municipio": "Belas",
+                      "complemento": "A7/2º/20"
+                    },
                     "email": "alicemoreira@controlezero.com",
                     "telefone": "924859687",
                     "password": "morrer_é_daqui_pra_qui",
@@ -336,7 +354,13 @@
                     "nome": "Arminda Moreira",
                     "bi": "0002455LA012",
                     "dataNasc": "1998-03-15",
-                    "morada": "Luanda, Centralidade Do Kilamba, A7/2º/20",
+                    "morada": {
+                      "provincia": "Luanda",
+                      "bairro": "Centralidade Do Kilamba",
+                      "distrito": "Kilamba Kiaxi",
+                      "municipio": "Belas",
+                      "complemento": "A20/2º/20"
+                    },
                     "email": "armindamoreira@controlezero.com",
                     "telefone": "924859687",
                     "password": "morrer_é_daqui_pra_qui",
@@ -740,7 +764,27 @@
             "format": "date"
           },
           "morada": {
-            "type": "string"
+            "type": "object",
+            "properties": {
+              "bairro": {
+                "type": "string",
+                "required": true
+              },
+              "distrito": {
+                "type": "string"
+              },
+              "municipio": {
+                "type": "string",
+                "required": true
+              },
+              "complemento": {
+                "type": "string"
+              },
+              "provincia": {
+                "type": "string",
+                "required": true
+              }
+            }
           },
           "email": {
             "type": "string"
@@ -771,7 +815,27 @@
             "format": "date"
           },
           "morada": {
-            "type": "string"
+            "type": "object",
+            "properties": {
+              "bairro": {
+                "type": "string",
+                "required": true
+              },
+              "distrito": {
+                "type": "string"
+              },
+              "municipio": {
+                "type": "string",
+                "required": true
+              },
+              "complemento": {
+                "type": "string"
+              },
+              "provincia": {
+                "type": "string",
+                "required": true
+              }
+            }
           },
           "email": {
             "type": "string"

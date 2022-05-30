@@ -3,7 +3,6 @@ import { log } from "../../libs/log";
 import db from "../../libs/configs/db";
 import { encryptData } from "../../libs/utils/encryption";
 
-
 export async function criarClienteService(cliente: Cliente) {
   try {
     const clienteExiste = await db.cliente.findFirst({
@@ -21,7 +20,15 @@ export async function criarClienteService(cliente: Cliente) {
           bi: cliente.bi,
           dataNasc: new Date(cliente.dataNasc),
           email: cliente.email,
-          morada: cliente.morada,
+          morada: {
+            create: {
+              bairro: cliente.morada.bairro,
+              complemento: cliente.morada.complemento,
+              distrito: cliente.morada.distrito,
+              municipio: cliente.morada.municipio,
+              provincia: cliente.morada.provincia,
+            },
+          },
           telefone: cliente.telefone,
           password: encryptData(cliente.password),
           imageUrl: cliente.imageUrl,

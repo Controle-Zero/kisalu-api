@@ -21,7 +21,15 @@ export async function criarPrestadorService(prestador: Prestador) {
           bi: prestador.bi,
           dataNasc: new Date(prestador.dataNasc),
           email: prestador.email,
-          morada: prestador.morada,
+          morada: {
+            create: {
+              bairro: prestador.morada.bairro,
+              complemento: prestador.morada.complemento,
+              distrito: prestador.morada.distrito,
+              municipio: prestador.morada.municipio,
+              provincia: prestador.morada.provincia,
+            },
+          },
           telefone: prestador.telefone,
           password: encryptData(prestador.password),
           imageUrl: prestador.imageUrl,
