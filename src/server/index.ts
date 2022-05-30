@@ -6,7 +6,7 @@ import { initMongoDB } from "../libs/configs/mongodb";
 import webSocketApp from "../apps/websocket";
 
 dotenv.config();
-initMongoDB();
+//initMongoDB();
 
 const httpServer = http.createServer(app);
 
