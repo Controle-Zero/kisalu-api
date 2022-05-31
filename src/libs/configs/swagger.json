@@ -597,18 +597,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "post": {
-                  "type": "object",
-                  "properties": {
-                    "descricao": {
-                      "type": "string"
-                    },
-                    "idCategoria": {
-                      "type": "string"
-                    },
-                    "mediaUrl": {
-                      "type": "string"
-                    }
+                "type": "object",
+                "properties": {
+                  "descricao": {
+                    "type": "string"
+                  },
+                  "idCategoria": {
+                    "type": "string"
+                  },
+                  "mediaUrl": {
+                    "type": "string"
                   }
                 }
               }
@@ -625,7 +623,7 @@
         }
       }
     },
-    "prestador/portifolio": {
+    "/prestador/portifolio": {
       "get": {
         "summary": "Gets the provider portifolio",
         "description": "Returns a list of all posts related to a category made by a provider",

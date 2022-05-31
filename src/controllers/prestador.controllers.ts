@@ -10,6 +10,7 @@ import { removerCategoria } from "../services/prestador/removerCategoria";
 import retornarAtividadesService from "../services/prestador/retornarAtividades";
 import retornarPortifolioService from "../services/prestador/retornarPortifolio";
 import criarPostService from "../services/prestador/criarPost";
+import { log } from "../libs/log";
 
 export const criarPrestador = async (req: CustomRequest, res: Response) => {
   const prestador: Prestador = req.body;
@@ -120,19 +121,16 @@ export const retornarAtividades = async (req: CustomRequest, res: Response) => {
 };
 
 export const criarPost = async (req: CustomRequest, res: Response) => {
-  const post = req.body;
-
-  const response = await criarPostService(req.id, post);
+  log.info(req.body);
+  const response = await criarPostService(req.id, req.body);
 
   if (response) {
     res.status(201).json(response);
   } else {
-    res
-      .status(400)
-      .json({
-        message: "An error Occureed while creating the post",
-        success: false,
-      });
+    res.status(400).json({
+      message: "An error Occureed while creating the post",
+      success: false,
+    });
   }
 };
 

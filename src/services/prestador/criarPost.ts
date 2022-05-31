@@ -2,7 +2,7 @@ import db from "../../libs/configs/db";
 import { log } from "../../libs/log";
 import { Post } from "../../models/prestador.models";
 
-export default async function criarPostService(id: string, post: Post) {
+export default async function criarPostService(id: string, post) {
   try {
     await db.prestador.update({
       where: {
@@ -12,7 +12,7 @@ export default async function criarPostService(id: string, post: Post) {
         portifolio: {
           create: {
             descricao: post.descricao,
-            categoriaId: post.categoria.id,
+            categoriaId: post.idCategoria,
             mediaUrl: post.mediaUrl,
           },
         },

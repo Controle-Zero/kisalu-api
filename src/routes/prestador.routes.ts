@@ -68,6 +68,7 @@ prestadorRoutes.post(
   "/post",
   ensureAuthenticated,
   checkAuthenticatedToken,
+  jsonParser,
   criarPost
 );
 
