@@ -121,7 +121,6 @@ export const retornarAtividades = async (req: CustomRequest, res: Response) => {
 };
 
 export const criarPost = async (req: CustomRequest, res: Response) => {
-  log.info(req.body);
   const response = await criarPostService(req.id, req.body);
 
   if (response) {
