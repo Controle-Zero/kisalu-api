@@ -8,6 +8,8 @@ import {
   adicionarCategoriasProvedor,
   removerCategoriaProvedor,
   retornarAtividades,
+  criarPost,
+  retornarPortifolio,
 } from "../controllers/prestador.controllers";
 import bodyParser from "body-parser";
 import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
@@ -60,6 +62,20 @@ prestadorRoutes.get(
   ensureAuthenticated,
   checkAuthenticatedToken,
   retornarAtividades
+);
+
+prestadorRoutes.post(
+  "/post",
+  ensureAuthenticated,
+  checkAuthenticatedToken,
+  criarPost
+);
+
+prestadorRoutes.get(
+  "/portifolio",
+  ensureAuthenticated,
+  checkAuthenticatedToken,
+  retornarPortifolio
 );
 
 export { prestadorRoutes };

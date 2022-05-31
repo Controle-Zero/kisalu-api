@@ -8,6 +8,8 @@ import { actualizarPrestadorService } from "../services/prestador/actualizarPres
 import { criarPrestadorService } from "../services/prestador/criarPrestador";
 import { removerCategoria } from "../services/prestador/removerCategoria";
 import retornarAtividadesService from "../services/prestador/retornarAtividades";
+import retornarPortifolioService from "../services/prestador/retornarPortifolio";
+import criarPostService from "../services/prestador/criarPost";
 
 export const criarPrestador = async (req: CustomRequest, res: Response) => {
   const prestador: Prestador = req.body;
@@ -114,5 +116,34 @@ export const retornarAtividades = async (req: CustomRequest, res: Response) => {
     res
       .status(400)
       .json({ message: "An error occurred while getting the activities" });
+  }
+};
+
+export const criarPost = async (req: CustomRequest, res: Response) => {
+  const post = req.body;
+
+  const response = await criarPostService(req.id, post);
+
+  if (response) {
+    res.status(201).json(response);
+  } else {
+    res
+      .status(400)
+      .json({
+        message: "An error Occureed while creating the post",
+        success: false,
+      });
+  }
+};
+
+export const retornarPortifolio = async (req: CustomRequest, res: Response) => {
+  const response = await retornarPortifolioService(req.id);
+
+  if (response) {
+    res.status(200).json(response);
+  } else {
+    res
+      .status(400)
+      .json({ message: "An error occurred while getting the portifolio" });
   }
 };

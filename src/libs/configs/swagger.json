@@ -587,6 +587,60 @@
         }
       }
     },
+    "/prestador/post": {
+      "post": {
+        "summary": "Creates a post and adds it into the provider's portifolio",
+        "description": "Make a post and attach it into the provider's profile to better expose their work",
+        "tags": ["Provider"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "post": {
+                  "type": "object",
+                  "properties": {
+                    "descricao": {
+                      "type": "string"
+                    },
+                    "idCategoria": {
+                      "type": "string"
+                    },
+                    "mediaUrl": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The post was created"
+          },
+          "400": {
+            "description": "Something went wrong while handling this operation"
+          }
+        }
+      }
+    },
+    "prestador/portifolio": {
+      "get": {
+        "summary": "Gets the provider portifolio",
+        "description": "Returns a list of all posts related to a category made by a provider",
+        "tags": ["Provider"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "The portifolio was returned successfully"
+          },
+          "400": {
+            "description": "Something went wrong while handling this operation"
+          }
+        }
+      }
+    },
     "/categoria": {
       "get": {
         "summary": "Get A List Of All Categories",
