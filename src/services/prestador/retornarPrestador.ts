@@ -51,8 +51,20 @@ export async function retornarPrestadorService(idPrestador: string) {
         criadoEm: true,
       },
     });
+
+    const prestadorObj: any = Object.assign({}, prestador);
+    prestadorObj.categorias = [];
+
+    prestador.categorias.forEach((e) => {
+      prestadorObj.categorias.push({
+        titulo: e.categoria.titulo,
+        imageUrl: e.categoria.imageUrl,
+        id: e.categoria.id,
+      });
+    });
+
     log.info(`prestador retorando: ${prestador?.email}`);
-    return prestador;
+    return prestadorObj;
   } catch (e) {
     log.error(`${e}- Falha ao retornar o prestador`);
     return undefined;
